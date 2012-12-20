@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>in.jugchennai</groupId>
+    <artifactId>UrbanTravellers</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>UrbanTravellers</name>
+    <description>This is a Proof of Concept project to illestrate some of the JSRs listed for JEE 7 Release.
+
+        The JSRs used by this project are as follows:
+
+        Java Persistence API 2.1 (JSR 338)
+        JavaServer Faces 2.2 (JSR 344)
+        Batch Applications for the Java Platform 1.0 (JSR 352)
+        Java API for JSON Processing 1.0 (JSR 353)
+        Java API for WebSocket 1.0 (JSR 356)
+
+        The application is a game derived from a famous dice game called Snake and Ladder.
+    </description>
+  
+  
+    <modules>
+        <module>UrbanTravellers-Web</module>
+        <module>UrbanTravellers-JPA</module>
+        <module>UrbanTravellers-Websocket</module>
+        <module>UrbanTravellers-Batch</module>
+    </modules>
+  
+    <properties>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+  
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments/>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>JUGChennai</name>
+        <url>http://jugchennai.in</url>
+    </organization>
+  
+    <scm>
+        <connection>scm:git:git@github.com:jugchennai/UrbanTravellers.git</connection>
+        <developerConnection>scm:git:git@github.com:jugchennai/UrbanTravellers.git</developerConnection>
+        <url>https://github.com/jugchennai/UrbanTravellers</url>
+    </scm>
+    
+    <reporting>
+        <outputDirectory>${project.build.directory}/site</outputDirectory>
+    </reporting>
+  
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/jugchennai/UrbanTravellers/issues</url>
+    </issueManagement>
+  
+   
+</project>

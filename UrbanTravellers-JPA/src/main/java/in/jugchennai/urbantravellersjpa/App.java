@@ -1,0 +1,13 @@
+package in.jugchennai.urbantravellersjpa;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+    }
+}
