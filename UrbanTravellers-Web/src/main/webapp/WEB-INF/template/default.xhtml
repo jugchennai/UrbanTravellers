@@ -75,12 +75,13 @@ limitations under the License.
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="#">Urban Travellers</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li ><h:link value="Registration" outcome="registration" /></li>
+              
+              <li><a href="#loginModal" data-toggle="modal">Login</a></li>
+              <li><h:link value="About" outcome="about" /></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -95,11 +96,56 @@ limitations under the License.
 
 
 </div>
+    
+    <br/><br/>
+    <hr/>
 <div id="footer">
       <div class="container">
         <p class="muted credit">UrbenTravellers (C) JUGChennai  - POC for some nice JSRs in JEE 7 </p>
       </div>
     </div>
+    
+    
+    <!-- Modal -->
+<div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+   
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="loginModallLabel">Login</h3>
+  </div>
+  <div class="modal-body">
+    
+     <form>
+         <table>
+             <tr>
+                 <td>
+                     User Name:
+                 </td>
+                 <td>
+                      <input type="text" placeholder="User Name" />
+                 </td>
+             </tr>
+             <tr>
+                 <td>
+                     Password:
+                 </td>
+                 <td>
+                      <input type="text" placeholder="Password" />
+                 </td>
+             </tr>
+         </table>
+         
+         
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Login</button>
+  </div>
+        
+</div>
+    
+    
 
     <script
             src="http://code.jquery.com/jquery-latest.js"></script>
