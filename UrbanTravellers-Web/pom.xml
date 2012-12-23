@@ -29,8 +29,8 @@
         
         <dependency>
             <groupId>in.jugchennai</groupId>
-  <artifactId>UrbanTravellers-Websocket</artifactId>
-  <version>1.0-SNAPSHOT</version>
+            <artifactId>UrbanTravellers-Websocket</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
         
         <dependency>
@@ -71,6 +71,14 @@
             <version>4.8.1</version>
             <scope>test</scope>
         </dependency>
+       
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+            <scope>compile</scope>
+        </dependency>
+        
     </dependencies>
 
     <build>
@@ -88,6 +96,7 @@
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
+                    <debug>false</debug>
                 </configuration>
             </plugin>
             <plugin>
@@ -127,19 +136,19 @@
     </build>
     
     <!--
-    <repositories>
-  <repository>
-    <id>central</id>
-    <name>Java.net Repository Switchboard</name>
-    <layout>default</layout>
-    <url>https://maven.java.net/content/repositories/snapshots</url>
-    <snapshots>
-      <enabled>true</enabled>
-    </snapshots>
-  </repository>
-</repositories>
--->
-
-
-
+        <repositories>
+      <repository>
+        <id>central</id>
+        <name>Java.net Repository Switchboard</name>
+        <layout>default</layout>
+        <url>https://maven.java.net/content/repositories/snapshots</url>
+        <snapshots>
+          <enabled>true</enabled>
+        </snapshots>
+      </repository>
+    </repositories>
+    -->
+    <properties>
+        <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
+    </properties>
 </project>

@@ -113,16 +113,16 @@ limitations under the License.
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="loginModallLabel">Login</h3>
   </div>
+     <h:form>
   <div class="modal-body">
-    
-     <form>
+
          <table>
              <tr>
                  <td>
                      User Name:
                  </td>
                  <td>
-                      <input type="text" placeholder="User Name" />
+                     <h:inputText id="userName" value="#{loginBean.userName}" />
                  </td>
              </tr>
              <tr>
@@ -130,19 +130,18 @@ limitations under the License.
                      Password:
                  </td>
                  <td>
-                      <input type="text" placeholder="Password" />
+                     <h:inputSecret id="password" redisplay="false" value="#{loginBean.password}" />
                  </td>
              </tr>
          </table>
          
-         
-    </form>
+  
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Login</button>
+    <h:commandButton class="btn btn-primary" action="${loginBean.whenLogin()}" value="Login" />
   </div>
-        
+        </h:form>
 </div>
     
     
