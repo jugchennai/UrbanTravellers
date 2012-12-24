@@ -23,16 +23,16 @@ import org.apache.log4j.Logger;
 
 
 /**
+ * Login form bean and controller method for login.xhtml page.
  *
- * @author rajmahendra
+ * @author Rajmahendra Hegde 
  */
 @ManagedBean
 @RequestScoped
 public class LoginBean {
     
-    Logger log;
-    
-    
+    Logger logger;
+ 
     @NotNull (message = "UserName must not be null")
     @Size(min=4, max=16, message = "Username must be atleast 4 characters and max of 16")
     private String userName;
@@ -42,13 +42,14 @@ public class LoginBean {
     private String password;
 
     public LoginBean(String userName, String password) {
-        this.log = Logger.getLogger(LoginBean.class.getName());
+       logger = Logger.getLogger(LoginBean.class);
         this.userName = userName;
         this.password = password;
+        
     }
 
     public LoginBean() {
-        this.log = Logger.getLogger(LoginBean.class);
+        logger = Logger.getLogger(LoginBean.class);
     }
 
     public String getUserName() {
