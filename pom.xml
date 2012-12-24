@@ -6,7 +6,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>UrbanTravellers</name>
-    <description>This is a Proof of Concept project to illestrate some of the JSRs listed for JEE 7 Release.
+    <description>This is a Proof of Concept project to illustrates some of the JSRs listed for JEE 7 Release.
 
         The JSRs used by this project are as follows:
 
