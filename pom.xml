@@ -22,8 +22,7 @@
   
     <modules>
         <module>UrbanTravellers-Web</module>
-        <module>UrbanTravellers-JPA</module>
-        <module>UrbanTravellers-Websocket</module>
+        <module>UrbanTravellers-JPA</module>    
         <module>UrbanTravellers-Batch</module>
     </modules>
   

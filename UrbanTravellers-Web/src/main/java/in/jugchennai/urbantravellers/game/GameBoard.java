@@ -35,9 +35,7 @@ public class GameBoard {
     private int maxPlayers = 6;
     private GameBoardConfig boardConfig;
 
-    protected GameBoard() {
-        
-    }
+    protected GameBoard() {}
     
     protected GameBoard(GameBoardConfig boardConfig) {
         this.boardConfig = boardConfig;
@@ -45,7 +43,6 @@ public class GameBoard {
         this.signalPoints = boardConfig.getSigPos();
         this.maxPlayers = boardConfig.getMaxNoOfPlayer();
     }
-
 
     /**
      * A player should be enrolled to the game until the max allowed players
