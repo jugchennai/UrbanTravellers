@@ -15,11 +15,18 @@
  */
 package in.jugchennai.urbantravellers.websocket;
 
+import in.jugchennai.urbantravellers.game.GameCache;
 
 /**
  *
  * @author prasannakumar
  */
 public class GameSocket {
-    
+
+    private GameCache cache = GameCache.getInstance();
+    private String gameId = "";
+
+    public void movePlayer(String playerId, int diceValue) {
+        cache.getBoard(gameId).movePlayerPositionOnBoard(playerId, diceValue);
+    }
 }
