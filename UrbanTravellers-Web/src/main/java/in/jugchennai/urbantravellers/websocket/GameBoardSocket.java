@@ -53,7 +53,8 @@ public class GameBoardSocket {
             board.movePlayerPosition(playerId, diceValue);
             board.hasPlayerWon(playerId);
         } catch (JSONException ex) {
-            Logger.getLogger(GameBoardSocket.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(
+                    GameBoardSocket.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
