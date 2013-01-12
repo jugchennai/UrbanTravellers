@@ -18,6 +18,7 @@ package in.jugchennai.urbantravellers.websocket;
 import in.jugchennai.urbantravellers.game.GameCache;
 
 /**
+ * GameBoard endpoint
  *
  * @author prasannakumar
  */
@@ -26,7 +27,14 @@ public class GameSocket {
     private GameCache cache = GameCache.getInstance();
     private String gameId = "";
 
+    /**
+     * move player and check if the player won the race
+     *
+     * @param playerId
+     * @param diceValue
+     */
     public void movePlayer(String playerId, int diceValue) {
         cache.getBoard(gameId).movePlayerPositionOnBoard(playerId, diceValue);
+        cache.getBoard(gameId).hasPlayerWon(playerId);
     }
 }
