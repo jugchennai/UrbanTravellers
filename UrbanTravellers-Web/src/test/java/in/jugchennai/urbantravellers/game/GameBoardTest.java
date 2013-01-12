@@ -26,7 +26,7 @@ import org.junit.Test;
 public class GameBoardTest {
 
     private GameBoardConfig boardConfig = new GameBoardConfig(16, 2, 6);
-    private GameBoard gameBoard = GameBoardFactory.createGameBoard(boardConfig);
+    private GameBoard gameBoard = new GameBoard(boardConfig);
     private Player pras = new Player("pras");
     private Player raj = new Player("raj");
 
@@ -71,51 +71,51 @@ public class GameBoardTest {
     public void playerPositionShouldChangeAfterRollingDice() {
         pras = gameBoard.playerMap.get("pras");
         raj = gameBoard.playerMap.get("raj");
-        assertEquals(gameBoard.movePlayerPositionOnBoard("pras", 2),
+        assertEquals(gameBoard.movePlayerPosition("pras", 2),
                 pras);
-        assertEquals(gameBoard.movePlayerPositionOnBoard("raj", 1),
+        assertEquals(gameBoard.movePlayerPosition("raj", 1),
                 raj);
     }
 
     @Test
     public void playerShoulMoveOnlyForDiceValOneOnSignalRed() {
-        pras = gameBoard.movePlayerPositionOnBoard("pras", 2);
+        pras = gameBoard.movePlayerPosition("pras", 2);
         assertEquals(2, pras.getPosition());
 
-        pras = gameBoard.movePlayerPositionOnBoard("pras", 2);
+        pras = gameBoard.movePlayerPosition("pras", 2);
         assertFalse(1 == pras.getPosition());
 
-        pras = gameBoard.movePlayerPositionOnBoard("pras", 1);
+        pras = gameBoard.movePlayerPosition("pras", 1);
         assertTrue(3 == pras.getPosition());
 
-        pras = gameBoard.movePlayerPositionOnBoard("pras", 1);
+        pras = gameBoard.movePlayerPosition("pras", 1);
         assertTrue(4 == pras.getPosition());
 
-        pras = gameBoard.movePlayerPositionOnBoard("pras", 5);
+        pras = gameBoard.movePlayerPosition("pras", 5);
         assertFalse(9 == pras.getPosition());
 
-        pras = gameBoard.movePlayerPositionOnBoard("pras", 1);
+        pras = gameBoard.movePlayerPosition("pras", 1);
         assertTrue("failed at 5", 5 == pras.getPosition());
     }
 
     @Test
     public void playerShouldMoveAheadWhenSignalTurnsGreen() {
-        pras = gameBoard.movePlayerPositionOnBoard("pras", 2);
+        pras = gameBoard.movePlayerPosition("pras", 2);
         assertEquals(2, pras.getPosition());
 
-        pras = gameBoard.movePlayerPositionOnBoard("pras", 2);
+        pras = gameBoard.movePlayerPosition("pras", 2);
         assertFalse(1 == pras.getPosition());
 
-        pras = gameBoard.movePlayerPositionOnBoard("pras", 1);
+        pras = gameBoard.movePlayerPosition("pras", 1);
         assertTrue(3 == pras.getPosition());
 
-        pras = gameBoard.movePlayerPositionOnBoard("pras", 1);
+        pras = gameBoard.movePlayerPosition("pras", 1);
         assertTrue(4 == pras.getPosition());
 
         gameBoard.getBoardConfig().toggleSignal(
                 gameBoard.getBoardConfig().getSigPos()[0].getSignalPos());
 
-        pras = gameBoard.movePlayerPositionOnBoard("pras", 5);
+        pras = gameBoard.movePlayerPosition("pras", 5);
         assertTrue(9 == pras.getPosition());
     }
 }

@@ -15,9 +15,6 @@
  */
 package in.jugchennai.urbantravellers.game;
 
-import in.jugchennai.urbantravellers.game.SignalPoint;
-import in.jugchennai.urbantravellers.game.GameBoardConfig;
-import in.jugchennai.urbantravellers.game.SignalColor;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -29,6 +26,9 @@ public class GameBoardConfigTest {
 
     private GameBoardConfig boardConfig = new GameBoardConfig(16, 2, 6);
 
+    /**
+     * 
+     */
     @Test
     public void testConfigPostCreate() {
         assertEquals(16, boardConfig.getLastPosOnBoard());

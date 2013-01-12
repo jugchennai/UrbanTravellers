@@ -67,7 +67,7 @@ public class GameBoard {
      * @param diceValue
      * @return
      */
-    public Player movePlayerPositionOnBoard(String name, int diceValue) {
+    public Player movePlayerPosition(String name, int diceValue) {
         Player player = playerMap.get(name);
         SignalPoint nearPoint = findNearestPoint(player.getPosition());
         boolean honorDice = false;

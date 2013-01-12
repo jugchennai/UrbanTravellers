@@ -15,13 +15,23 @@
  */
 package in.jugchennai.urbantravellers.websocket;
 
+import in.jugchennai.urbantravellers.game.GameBoard;
 import in.jugchennai.urbantravellers.game.GameCache;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.websocket.WebSocketEndpoint;
+import javax.websocket.WebSocketMessage;
+import org.codehaus.jettison.json.JSONException;
 
 /**
  * GameBoard endpoint
  *
  * @author prasannakumar
  */
+@WebSocketEndpoint(value = "gameBoard",
+encoders = {UTGameDataEncoder.class},
+decoders = {UTGameDataDecoder.class},
+factory = UTWebSocketEndPointFactory.class)
 public class GameBoardSocket {
 
     private GameCache cache = GameCache.getInstance();
@@ -33,8 +43,21 @@ public class GameBoardSocket {
      * @param playerId
      * @param diceValue
      */
-    public void movePlayer(String playerId, int diceValue) {
-        cache.getBoard(gameId).movePlayerPositionOnBoard(playerId, diceValue);
-        cache.getBoard(gameId).hasPlayerWon(playerId);
+    @WebSocketMessage
+    public synchronized void movePlayer(UTGamedata gamedata) {
+        try {
+            gamedata.getJson().getString("gameId");
+            String playerId = gamedata.getJson().getString("playerId");
+            int diceValue = gamedata.getJson().getInt("diceValue");
+            GameBoard board = cache.getBoard(getGameId());
+            board.movePlayerPosition(playerId, diceValue);
+            board.hasPlayerWon(playerId);
+        } catch (JSONException ex) {
+            Logger.getLogger(GameBoardSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public String getGameId() {
+        return gameId;
     }
 }
