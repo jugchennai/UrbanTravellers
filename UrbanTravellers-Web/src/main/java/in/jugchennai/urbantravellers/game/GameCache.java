@@ -15,20 +15,37 @@
  */
 package in.jugchennai.urbantravellers.game;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author sysadmin
  */
 public class GameCache {
-    private static GameCache  instance  = new GameCache();
+
+    private static GameCache INSTANCE = new GameCache();
+    private Map<String, GameBoard> map = new HashMap();
 
     private GameCache() {
-        System.out.println("creating instance");
     }
-    
+
     public static GameCache getInstance() {
-        return instance;
+        return INSTANCE;
     }
-    
-    
+
+    /**
+     * add board to the cache
+     * @param gameId
+     * @param gameBoard 
+     */
+    public void addBoard(String gameId, GameBoard gameBoard) {
+        if (!map.containsKey(gameId)) {
+            map.put(gameId, gameBoard);
+        }
+    }
+
+    public GameBoard getBoard(String gameId) {
+        return map.get(gameId);
+    }
 }
