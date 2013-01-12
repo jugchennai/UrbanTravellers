@@ -20,9 +20,9 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * The class that models the game-board this is the underlying class which reports
- * about position of the players in the board and makes changes in their
- * position for the given dice value also helps to decide which player has won 
+ * The class that models the game-board this is the underlying class which
+ * reports about position of the players in the board and makes changes in their
+ * position for the given dice value also helps to decide which player has won
  * the race.
  *
  * @author prasannakumar
@@ -35,8 +35,9 @@ public class GameBoard {
     private int maxPlayers = 6;
     private GameBoardConfig boardConfig;
 
-    protected GameBoard() {}
-    
+    protected GameBoard() {
+    }
+
     protected GameBoard(GameBoardConfig boardConfig) {
         this.boardConfig = boardConfig;
         this.lastPos = boardConfig.getLastPosOnBoard();
@@ -92,8 +93,8 @@ public class GameBoard {
      * @param p
      * @return
      */
-    public boolean hasPlayerWon(Player p) {
-        return p.getPosition() == lastPos;
+    public boolean hasPlayerWon(String p) {
+        return playerMap.get(p).getPosition() == lastPos;
     }
 
     /**
