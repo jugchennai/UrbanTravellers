@@ -17,15 +17,18 @@ package in.jugchennai.urbantravellers.game;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author sysadmin
  */
-public class GameCache {
+public final class GameCache {
 
     private static GameCache INSTANCE = new GameCache();
-    private Map<String, GameBoard> map = new HashMap();
+    private static Map<String, GameBoard> map = new HashMap();
+    public static String GAME_ID = "game1";
+    private Logger logger = Logger.getLogger(this.getClass());
 
     private GameCache() {
     }
@@ -36,8 +39,9 @@ public class GameCache {
 
     /**
      * add board to the cache
+     *
      * @param gameId
-     * @param gameBoard 
+     * @param gameBoard
      */
     public void addBoard(String gameId, GameBoard gameBoard) {
         if (!map.containsKey(gameId)) {
@@ -45,7 +49,11 @@ public class GameCache {
         }
     }
 
-    public GameBoard getBoard(String gameId) {
-        return map.get(gameId);
+    public GameBoard getBoard(String gameId) throws Exception {
+        if (map.containsKey(gameId)) {
+            return map.get(gameId);
+        } else {
+            throw new Exception("gameId not found");
+        }
     }
 }

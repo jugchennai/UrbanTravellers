@@ -38,7 +38,7 @@ public class GameBoard {
     protected GameBoard() {
     }
 
-    protected GameBoard(GameBoardConfig boardConfig) {
+    public GameBoard(GameBoardConfig boardConfig) {
         this.boardConfig = boardConfig;
         this.lastPos = boardConfig.getLastPosOnBoard();
         this.signalPoints = boardConfig.getSigPos();
