@@ -7,7 +7,7 @@
         <title>UrbanTravellers</title>
         <script language="javascript" type="text/javascript">
             var dice,name;
-            var wsUri = "ws://" + document.location.host + document.location.pathname + "utRollDice";
+            var wsUri = "ws://" + document.location.host + "/urbantravellers/UTGameSocket";
             var websocket = new WebSocket(wsUri);
             websocket.onopen = function(evt) { onOpen(evt) };
             websocket.onmessage = function(evt) { onMessage(evt) };
