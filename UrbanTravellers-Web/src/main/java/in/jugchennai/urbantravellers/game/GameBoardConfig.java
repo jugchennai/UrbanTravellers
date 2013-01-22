@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 JUGChennai.
+ * Copyright 2013 JUGChennai.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@ package in.jugchennai.urbantravellers.game;
 
 /**
  * POJO to hold constants expected by GameBoard
- * @author prasannakumar
+ * @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 public class GameBoardConfig {
 
