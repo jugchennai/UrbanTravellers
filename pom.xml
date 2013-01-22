@@ -59,6 +59,42 @@
         <system>GitHub</system>
         <url>https://github.com/jugchennai/UrbanTravellers/issues</url>
     </issueManagement>
+    
+    <developers>
+        <developer>
+            <id>rajonjava</id>
+            <name>Rajmahendra Hegde</name>
+            <email>rajmahendra@gmail.com</email>
+            <url>http://twitter.com/rajonjava</url>
+            <organization>JUGChennai</organization>
+            <organizationUrl>http://jugchennai.in</organizationUrl>
+        </developer>
+        <developer>
+            <id>prassee</id>
+            <name>Prasanna Kumar</name>
+            <email>prassee.sathian@gmail.com</email>
+            <url>http://twitter.com/prasonscala</url>
+            <organization>JUGChennai</organization>
+            <organizationUrl>http://jugchennai.in</organizationUrl>
+        </developer>
+        <developer>
+            <id>shivkumarganesh</id>
+            <name>Shiv Kumar Ganesh</name>
+            <email>gshiv.sk@gmail.com</email>
+            <url>http://twitter.com/shivkumarganesh</url>
+            <organization>JUGChennai</organization>
+            <organizationUrl>http://jugchennai.in</organizationUrl>
+        </developer>
+        <developer>
+            <id>arivu86</id>
+            <name>Arivazhagan Ambigapathi</name>
+            <email>arivu86@gmail.com</email>
+            <url>http://twitter.com/arivu86</url>
+            <organization>JUGChennai</organization>
+            <organizationUrl>http://jugchennai.in</organizationUrl>
+        </developer>
+    </developers>
+
     <build>
         <plugins>
             <plugin>
