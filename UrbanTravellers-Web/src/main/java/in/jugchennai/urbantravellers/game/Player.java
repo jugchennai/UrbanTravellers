@@ -27,27 +27,51 @@ public class Player {
     private int position;
     private int diceValue;
 
+    /**
+     *
+     * @param name
+     */
     public Player(String name) {
         this.name = name;
         this.position = 0;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPosition() {
         return position;
     }
 
+    /**
+     *
+     * @param position
+     */
     public void setPosition(int position) {
         this.position = position;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getDiceValue() {
         return diceValue;
     }
 
+    /**
+     *
+     * @param diceValue
+     */
     public void setDiceValue(int diceValue) {
         this.diceValue = diceValue;
     }

@@ -27,12 +27,19 @@ public final class GameCache {
 
     private static GameCache INSTANCE = new GameCache();
     private static Map<String, GameBoard> map = new HashMap();
+    /**
+     *
+     */
     public static String GAME_ID = "game1";
     private Logger logger = Logger.getLogger(this.getClass());
 
     private GameCache() {
     }
 
+    /**
+     *
+     * @return
+     */
     public static GameCache getInstance() {
         return INSTANCE;
     }
@@ -49,6 +56,12 @@ public final class GameCache {
         }
     }
 
+    /**
+     *
+     * @param gameId
+     * @return
+     * @throws Exception
+     */
     public GameBoard getBoard(String gameId) throws Exception {
         if (map.containsKey(gameId)) {
             return map.get(gameId);

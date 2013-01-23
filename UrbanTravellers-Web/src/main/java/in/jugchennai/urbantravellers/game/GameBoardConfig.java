@@ -26,32 +26,58 @@ public class GameBoardConfig {
     private int maxNoOfPlayer;
     private SignalPoint[] sigPos;
     
+    /**
+     *
+     * @param lastPosOnBoard
+     * @param noOfSignalPoints
+     * @param maxNoOfPlayer
+     */
     public GameBoardConfig(int lastPosOnBoard, 
             int noOfSignalPoints, int maxNoOfPlayer) {
         this.lastPosOnBoard = lastPosOnBoard;
         this.noOfSignalPoints = noOfSignalPoints;
         this.maxNoOfPlayer = maxNoOfPlayer;
         this.sigPos = new SignalPoint[noOfSignalPoints];
-        this.sigPos[0] = new SignalPoint(4);
-        this.sigPos[1] = new SignalPoint(11);
+        this.sigPos[0] = new SignalPoint(24);
+        this.sigPos[1] = new SignalPoint(44);
     }
 
+    /**
+     *
+     * @return
+     */
     public int getLastPosOnBoard() {
         return lastPosOnBoard;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getNoOfSignalPoints() {
         return noOfSignalPoints;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMaxNoOfPlayer() {
         return maxNoOfPlayer;
     }
 
+    /**
+     *
+     * @return
+     */
     public SignalPoint[] getSigPos() {
         return sigPos;
     }
     
+    /**
+     *
+     * @param pos
+     */
     public void toggleSignal(int pos) {
         for (SignalPoint point : sigPos) {
             if (point.getSignalPos() == pos) {

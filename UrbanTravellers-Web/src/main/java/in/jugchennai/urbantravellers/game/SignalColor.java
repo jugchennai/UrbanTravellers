@@ -20,5 +20,12 @@ package in.jugchennai.urbantravellers.game;
  * @author prasannakumar
  */
 public enum SignalColor {
-    RED,GREEN
+    /**
+     *
+     */
+    RED,
+    /**
+     *
+     */
+    GREEN
 }

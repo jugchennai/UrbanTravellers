@@ -29,15 +29,25 @@ import java.util.Objects;
  */
 public class GameBoard {
 
+    /**
+     *
+     */
     protected Map<String, Player> playerMap = new HashMap();
     private SignalPoint signalPoints[];
-    private int lastPos = 16;
-    private int maxPlayers = 6;
+    private int lastPos;
+    private int maxPlayers;
     private GameBoardConfig boardConfig;
 
+    /**
+     *
+     */
     protected GameBoard() {
     }
 
+    /**
+     *
+     * @param boardConfig
+     */
     public GameBoard(GameBoardConfig boardConfig) {
         this.boardConfig = boardConfig;
         this.lastPos = boardConfig.getLastPosOnBoard();
@@ -53,7 +63,7 @@ public class GameBoard {
      * @throws Exception
      */
     public void addPlayerToBoard(Player player) throws Exception {
-        if (playerMap.size() <= maxPlayers) {
+        if (playerMap.size() <= boardConfig.getMaxNoOfPlayer()) {
             playerMap.put(player.getName(), player);
         } else {
             throw new Exception("Max player reached");
@@ -90,11 +100,12 @@ public class GameBoard {
      * short circuit the game flow by finding if the given player has reach the
      * last position in the game board
      *
-     * @param p
+     * @param pos
      * @return
      */
-    public boolean hasPlayerWon(String p) {
-        return playerMap.get(p).getPosition() == lastPos;
+    public boolean hasPlayerWon(String pos) {
+        return playerMap.get(pos).getPosition() == 
+                this.boardConfig.getLastPosOnBoard();
     }
 
     /**

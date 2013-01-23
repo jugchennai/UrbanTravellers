@@ -24,29 +24,56 @@ public class SignalPoint {
     private int signalPos;
     private SignalColor signalColor;
 
+    /**
+     *
+     * @param position
+     */
     public SignalPoint(int position) {
         this.signalPos = position;
         this.signalColor = SignalColor.RED;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSignalPos() {
         return signalPos;
     }
 
+    /**
+     *
+     * @return
+     */
     public SignalColor getSignalColor() {
         return signalColor;
     }
 
+    /**
+     *
+     * @param signalColor
+     */
     public void setSignalColor(SignalColor signalColor) {
         this.signalColor = signalColor;
     }
 
+    /**
+     *
+     * @param position
+     * @return
+     */
     public boolean isPositionInSignal(int position) {
         return (this.signalColor == SignalColor.RED)
                 && (position <= this.signalPos)
                 && this.signalPos - position <= 6;
     }
 
+    /**
+     *
+     * @param position
+     * @param diceValue
+     * @return
+     */
     public int getValueToPassThrough(int position, int diceValue) {
         int asumedVal = position + diceValue;
         int edv = 0;

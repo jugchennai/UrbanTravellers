@@ -15,6 +15,7 @@
  */
 package in.jugchennai.urbantravellers.game;
 
+import static in.jugchennai.urbantravellers.game.fixture.GameFixture.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -24,25 +25,24 @@ import org.junit.Test;
  */
 public class GameBoardConfigTest {
 
-    private GameBoardConfig boardConfig = new GameBoardConfig(16, 2, 6);
-
     /**
-     * 
+     *
      */
     @Test
     public void testConfigPostCreate() {
-        assertEquals(16, boardConfig.getLastPosOnBoard());
+        assertEquals(50, boardConfig.getLastPosOnBoard());
         assertEquals(2, boardConfig.getNoOfSignalPoints());
-        assertTrue(boardConfig.getSigPos().length == boardConfig.getNoOfSignalPoints());
-        assertTrue(boardConfig.getSigPos()[0].equals(new SignalPoint(4)));
-        assertTrue(boardConfig.getSigPos()[1].equals(new SignalPoint(11)));
+        assertTrue(boardConfig.getSigPos().length == 
+                boardConfig.getNoOfSignalPoints());
+        assertTrue(boardConfig.getSigPos()[0].equals(new SignalPoint(sp1)));
+        assertTrue(boardConfig.getSigPos()[1].equals(new SignalPoint(sp2)));
     }
 
     @Test
     public void signalShouldChangeWhenToggled() {
         SignalColor color = boardConfig.getSigPos()[0].getSignalColor();
-        boardConfig.toggleSignal(4);
-        assertFalse("assert failed", 
+        boardConfig.toggleSignal(sp1);
+        assertFalse("assert failed",
                 color == boardConfig.getSigPos()[0].getSignalColor());
     }
 }
