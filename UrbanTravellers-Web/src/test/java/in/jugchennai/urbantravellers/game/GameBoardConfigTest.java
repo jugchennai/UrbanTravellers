@@ -20,13 +20,13 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- *
+ * test class for GameBoardConfig
  * @author prasannakumar
  */
 public class GameBoardConfigTest {
 
     /**
-     *
+     * verify the gameboard config
      */
     @Test
     public void testConfigPostCreate() {
@@ -38,6 +38,9 @@ public class GameBoardConfigTest {
         assertTrue(boardConfig.getSigPos()[1].equals(new SignalPoint(sp2)));
     }
 
+    /**
+     * the game board should change when signal toggled
+     */
     @Test
     public void signalShouldChangeWhenToggled() {
         SignalColor color = boardConfig.getSigPos()[0].getSignalColor();
