@@ -80,7 +80,7 @@ public class GameBoardTest {
     }
 
     /**
-     * 
+     * player should be move to new position after rolling dice
      */
     @Test
     public void playerPositionShouldChangeAfterRollingDice() {
@@ -93,7 +93,8 @@ public class GameBoardTest {
     }
 
     /**
-     *
+     * test to hold the vehicle at signal position 
+     * until signal is red
      */
     @Test
     public void playerShoulMoveOnlyForDiceValOneOnSignalRed() {
@@ -114,7 +115,8 @@ public class GameBoardTest {
     }
 
     /**
-     *
+     * test to allow vehicle to move only after signal 
+     * toggle
      */
     @Test
     public void playerShouldMoveAheadWhenSignalTurnsGreen() {
