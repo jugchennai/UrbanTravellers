@@ -67,6 +67,17 @@ public class SignalPoint {
                 && (position <= this.signalPos)
                 && this.signalPos - position <= 6;
     }
+    
+    public boolean allowedToGo(int position, int diceValue) {
+        int asumedVal = position + diceValue;
+        boolean go = false;
+        if (asumedVal <= this.signalPos && this.signalColor == SignalColor.RED) {
+            go = true;
+        } else if (position == this.signalPos && this.signalColor == SignalColor.RED) {
+            go = false;
+        } 
+        return go;
+    }
 
     /**
      *
@@ -77,14 +88,15 @@ public class SignalPoint {
     public int getValueToPassThrough(int position, int diceValue) {
         int asumedVal = position + diceValue;
         int edv = 0;
-        if (this.signalPos == position || this.signalPos - asumedVal == 0) {
+        int projVal = this.signalPos - asumedVal;
+        if (this.signalPos == position || projVal == 0) {
             edv = 1;
-        } else if (this.signalPos - asumedVal < 0) {
-            edv = -(this.signalPos - asumedVal);
-        } else if (this.signalPos - asumedVal > 0) {
-            edv = this.signalPos - asumedVal;
-        } 
-        return (isPositionInSignal(position)) ? edv : position + diceValue;
+        } else if (projVal < 0) {
+            edv = -(projVal);
+        } else if (projVal > 0) {
+            edv = projVal;
+        }
+        return (isPositionInSignal(position)) ? edv : asumedVal;
     }
 
     @Override

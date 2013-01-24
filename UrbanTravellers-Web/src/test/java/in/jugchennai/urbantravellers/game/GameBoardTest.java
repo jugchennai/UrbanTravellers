@@ -38,7 +38,7 @@ public class GameBoardTest {
         try {
             gameBoard.addPlayerToBoard(pras);
             pras.setPosition(20);
-            
+
             gameBoard.addPlayerToBoard(raj);
         } catch (Exception ex) {
             fail();
@@ -59,8 +59,7 @@ public class GameBoardTest {
     }
 
     /**
-     * game board should not allow more than max allowed 
-     * players
+     * game board should not allow more than max allowed players
      */
     @Test
     public void gameBoardShouldNotAllowMoreThanMaxPlayers() {
@@ -93,8 +92,7 @@ public class GameBoardTest {
     }
 
     /**
-     * test to hold the vehicle at signal position 
-     * until signal is red
+     * test to hold the vehicle at signal position until signal is red
      */
     @Test
     public void playerShoulMoveOnlyForDiceValOneOnSignalRed() {
@@ -109,14 +107,11 @@ public class GameBoardTest {
 
         pras = gameBoard.movePlayerPosition("pras", 5);
         assertFalse(29 == pras.getPosition());
-
-        pras = gameBoard.movePlayerPosition("pras", 1);
-        assertTrue("failed at 5", 25 == pras.getPosition());
+        assertTrue(24 == pras.getPosition());
     }
 
     /**
-     * test to allow vehicle to move only after signal 
-     * toggle
+     * test to allow vehicle to move only after signal toggle
      */
     @Test
     public void playerShouldMoveAheadWhenSignalTurnsGreen() {
@@ -125,13 +120,13 @@ public class GameBoardTest {
 
         pras = gameBoard.movePlayerPosition("pras", 1);
         assertTrue(23 == pras.getPosition());
-        
+
         pras = gameBoard.movePlayerPosition("pras", 1);
         assertTrue(24 == pras.getPosition());
 
-         gameBoard.getBoardConfig().toggleSignal(
+        gameBoard.getBoardConfig().toggleSignal(
                 gameBoard.getBoardConfig().getSigPos()[0].getSignalPos());
-         
+
         pras = gameBoard.movePlayerPosition("pras", 1);
         assertTrue(25 == pras.getPosition());
     }

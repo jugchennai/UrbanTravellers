@@ -23,11 +23,11 @@ import in.jugchennai.urbantravellers.game.GameBoardConfig;
  */
 public class GameFixture {
 
-    public static int lasPos = 16;
+    public static int lasPos = 50;
     public static int players = 2;
     public static int maxPlayers = 6;
-    public static int sp1 = 4;
-    public static int sp2 = 11;
+    public static int sp1 = 24;
+    public static int sp2 = 44;
     public static GameBoardConfig boardConfig = new GameBoardConfig(lasPos, players,
             maxPlayers);
 }

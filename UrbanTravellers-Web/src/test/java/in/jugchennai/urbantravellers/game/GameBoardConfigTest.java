@@ -26,7 +26,7 @@ import org.junit.Test;
 public class GameBoardConfigTest {
 
     /**
-     * verify the gameboard config
+     * verify the game board configuration
      */
     @Test
     public void testConfigPostCreate() {

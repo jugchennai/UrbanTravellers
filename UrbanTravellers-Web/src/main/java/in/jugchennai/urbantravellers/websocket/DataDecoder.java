@@ -25,21 +25,30 @@ import org.codehaus.jettison.json.JSONObject;
  * @author Arun Gupta
  */
 public class DataDecoder implements Decoder.Text<Gamedata> {
-     Logger logger = Logger.getLogger(DataDecoder.class);
+
+    Logger logger = Logger.getLogger(DataDecoder.class);
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Gamedata decode(String string) throws DecodeException {
-        logger.info ("In Data Decode");
+        logger.info("In Data Decode");
         try {
             JSONObject jsonObject = new JSONObject(string);
             return new Gamedata(jsonObject);
         } catch (JSONException ex) {
-            throw new DecodeException("Error parsing JSON", ex.getMessage(), ex.fillInStackTrace());
+            throw new DecodeException("Error parsing JSON", ex.getMessage(),
+                    ex.fillInStackTrace());
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean willDecode(String string) {
-         logger.info ("Check Decoding Data: " + string);
+        logger.info("Check Decoding Data: " + string);
         try {
             new JSONObject(string);
             return true;
@@ -48,5 +57,4 @@ public class DataDecoder implements Decoder.Text<Gamedata> {
             return false;
         }
     }
-    
 }

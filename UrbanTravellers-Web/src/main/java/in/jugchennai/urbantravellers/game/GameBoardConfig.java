@@ -27,7 +27,6 @@ public class GameBoardConfig {
     private SignalPoint[] sigPos;
     
     /**
-     *
      * @param lastPosOnBoard
      * @param noOfSignalPoints
      * @param maxNoOfPlayer

@@ -83,7 +83,7 @@ public class GameBoard {
         boolean honorDice = false;
         if (nearPoint.isPositionInSignal(player.getPosition())) {
             int ed = nearPoint.getValueToPassThrough(player.getPosition(), diceValue);
-            if (ed == diceValue) {
+            if (nearPoint.allowedToGo(player.getPosition(), diceValue)) {
                 honorDice = true;
             }
         } else {
