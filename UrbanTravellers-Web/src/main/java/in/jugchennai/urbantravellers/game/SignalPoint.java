@@ -67,13 +67,20 @@ public class SignalPoint {
                 && (position <= this.signalPos)
                 && this.signalPos - position <= 6;
     }
-    
+
+    /**
+     * 
+     * @param position
+     * @param diceValue
+     * @return 
+     */
     public boolean allowedToGo(int position, int diceValue) {
         int asumedVal = position + diceValue;
         boolean go = false;
         if (asumedVal <= this.signalPos && this.signalColor == SignalColor.RED) {
             go = true;
         } else if (position == this.signalPos && this.signalColor == SignalColor.RED) {
+            System.out.println("signal in red");
             go = false;
         } 
         return go;
@@ -98,6 +105,13 @@ public class SignalPoint {
         }
         return (isPositionInSignal(position)) ? edv : asumedVal;
     }
+
+    @Override
+    public String toString() {
+        return "" + this.signalPos + " in " + this.signalColor;
+    }
+    
+    
 
     @Override
     public int hashCode() {

@@ -17,6 +17,7 @@ package in.jugchennai.urbantravellers.game;
 
 /**
  * POJO to hold constants expected by GameBoard
+ *
  * @author prasannakumar
  */
 public class GameBoardConfig {
@@ -25,20 +26,23 @@ public class GameBoardConfig {
     private int noOfSignalPoints;
     private int maxNoOfPlayer;
     private SignalPoint[] sigPos;
-    
+
     /**
      * @param lastPosOnBoard
      * @param noOfSignalPoints
      * @param maxNoOfPlayer
      */
-    public GameBoardConfig(int lastPosOnBoard, 
-            int noOfSignalPoints, int maxNoOfPlayer) {
+    public GameBoardConfig(int lastPosOnBoard,
+            int noOfSignalPoints, int maxNoOfPlayer, int... points) {
         this.lastPosOnBoard = lastPosOnBoard;
         this.noOfSignalPoints = noOfSignalPoints;
         this.maxNoOfPlayer = maxNoOfPlayer;
         this.sigPos = new SignalPoint[noOfSignalPoints];
-        this.sigPos[0] = new SignalPoint(24);
-        this.sigPos[1] = new SignalPoint(44);
+        int index = 0;
+        for (int point : points) {
+            this.sigPos[index] = new SignalPoint(point);
+            index++;
+        }
     }
 
     /**
@@ -72,7 +76,7 @@ public class GameBoardConfig {
     public SignalPoint[] getSigPos() {
         return sigPos;
     }
-    
+
     /**
      *
      * @param pos

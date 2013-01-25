@@ -18,6 +18,7 @@ package in.jugchennai.urbantravellers.game;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import org.apache.log4j.Logger;
 
 /**
  * The class that models the game-board this is the underlying class which
@@ -37,6 +38,7 @@ public class GameBoard {
     private int lastPos;
     private int maxPlayers;
     private GameBoardConfig boardConfig;
+    private Logger log = Logger.getLogger(GameBoard.class);
 
     /**
      *
@@ -80,16 +82,20 @@ public class GameBoard {
     public Player movePlayerPosition(String name, int diceValue) {
         Player player = playerMap.get(name);
         SignalPoint nearPoint = findNearestPoint(player.getPosition());
-        boolean honorDice = false;
+        log.info("\n "+name + " rolled > " + diceValue + 
+                "\n signal point > " + 
+                nearPoint.getSignalPos() + 
+                "\n signal color > " + nearPoint.getSignalColor() );
+        boolean move = false;
         if (nearPoint.isPositionInSignal(player.getPosition())) {
-            int ed = nearPoint.getValueToPassThrough(player.getPosition(), diceValue);
             if (nearPoint.allowedToGo(player.getPosition(), diceValue)) {
-                honorDice = true;
+                move = true;
             }
         } else {
-            honorDice = true;
+            move = true;
         }
-        if (honorDice) {
+        log.info("\n move > " + (move ? "allowed" : "not allowed"));
+        if (move) {
             player.setDiceValue(diceValue);
             player.setPosition(player.getPosition() + diceValue);
         }
@@ -104,8 +110,8 @@ public class GameBoard {
      * @return
      */
     public boolean hasPlayerWon(String pos) {
-        return playerMap.get(pos).getPosition() == 
-                this.boardConfig.getLastPosOnBoard();
+        return playerMap.get(pos).getPosition()
+                == this.boardConfig.getLastPosOnBoard();
     }
 
     /**
@@ -117,6 +123,12 @@ public class GameBoard {
     public GameBoardConfig getBoardConfig() {
         return boardConfig;
     }
+    
+    public void setBoardConfig(GameBoardConfig boardConfig1) {
+        log.info(" board config changed ");
+        log.info(" with signal points " + this.boardConfig.getSigPos());
+        this.boardConfig = boardConfig1;
+    }
 
     /**
      * local helper method to find the nearest proximate signal point
@@ -126,15 +138,16 @@ public class GameBoard {
      */
     private SignalPoint findNearestPoint(int pos) {
         SignalPoint spoint = null;
-        for (SignalPoint point : signalPoints) {
+        for (SignalPoint point : this.boardConfig.getSigPos()) {
             if (pos <= point.getSignalPos()) {
+                System.out.println(" > " + point.getSignalColor());
                 spoint = point;
                 break;
             }
         }
         return spoint;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -143,7 +156,7 @@ public class GameBoard {
         hash = 13 * hash + Objects.hashCode(this.boardConfig);
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

@@ -29,5 +29,5 @@ public class GameFixture {
     public static int sp1 = 24;
     public static int sp2 = 44;
     public static GameBoardConfig boardConfig = new GameBoardConfig(lasPos, players,
-            maxPlayers);
+            maxPlayers,sp1,sp2);
 }

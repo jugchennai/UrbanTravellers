@@ -34,8 +34,8 @@ public class GameBoardConfigTest {
         assertEquals(2, boardConfig.getNoOfSignalPoints());
         assertTrue(boardConfig.getSigPos().length == 
                 boardConfig.getNoOfSignalPoints());
-        assertTrue(boardConfig.getSigPos()[0].equals(new SignalPoint(sp1)));
-        assertTrue(boardConfig.getSigPos()[1].equals(new SignalPoint(sp2)));
+        assertTrue("fails for sp1",boardConfig.getSigPos()[0].getSignalPos() == sp1);
+        assertTrue("fails for sp2",boardConfig.getSigPos()[1].getSignalPos() == sp2);
     }
 
     /**
