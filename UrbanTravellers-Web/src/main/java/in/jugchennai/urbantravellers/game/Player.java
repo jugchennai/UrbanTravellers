@@ -18,14 +18,13 @@ package in.jugchennai.urbantravellers.game;
 import java.util.Objects;
 
 /**
- *
+ * POJO representation Player
  * @author prasannakumar
  */
 public class Player {
 
     private String name;
-    private int position;
-    private int diceValue;
+    private int position,diceValue;
 
     public Player(String name) {
         this.name = name;

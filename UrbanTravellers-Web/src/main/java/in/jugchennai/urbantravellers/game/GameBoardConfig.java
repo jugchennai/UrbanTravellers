@@ -16,7 +16,11 @@
 package in.jugchennai.urbantravellers.game;
 
 /**
- * POJO to hold constants expected by GameBoard
+ * This class holds configuration details
+ * for the GameBoard class. The GameBoardFactory class 
+ * can make use of this while creating an instance of 
+ * GameBoard class
+ * 
  * @author prasannakumar
  */
 public class GameBoardConfig {
@@ -25,17 +29,44 @@ public class GameBoardConfig {
     private int noOfSignalPoints;
     private int maxNoOfPlayer;
     private SignalPoint[] sigPos;
-    
-    public GameBoardConfig(int lastPosOnBoard, 
-            int noOfSignalPoints, int maxNoOfPlayer) {
+   
+    /**
+     * the constructor
+     * @param lastPosOnBoard
+     * @param noOfSignalPoints
+     * @param maxNoOfPlayer
+     * @param points
+     */
+    public GameBoardConfig(int lastPosOnBoard,
+            int noOfSignalPoints, int maxNoOfPlayer, int... points) {
         this.lastPosOnBoard = lastPosOnBoard;
         this.noOfSignalPoints = noOfSignalPoints;
         this.maxNoOfPlayer = maxNoOfPlayer;
         this.sigPos = new SignalPoint[noOfSignalPoints];
-        this.sigPos[0] = new SignalPoint(4);
-        this.sigPos[1] = new SignalPoint(11);
+        int index = 0;
+        for (int point : points) {
+            this.sigPos[index] = new SignalPoint(point);
+            index++;
+        }
     }
 
+    /**
+     * toggle the signal color, clients of this 
+     * class can make use of this to change he signal 
+     * color at any point of time in the game board
+     * @param pos
+     */
+    public void toggleSignal(int pos) {
+        for (SignalPoint point : sigPos) {
+            if (point.getSignalPos() == pos) {
+                point.setSignalColor(
+                        point.getSignalColor() == SignalColor.RED
+                        ? SignalColor.GREEN : SignalColor.RED);
+                break;
+            }
+        }
+    }
+    
     public int getLastPosOnBoard() {
         return lastPosOnBoard;
     }
@@ -50,17 +81,6 @@ public class GameBoardConfig {
 
     public SignalPoint[] getSigPos() {
         return sigPos;
-    }
-    
-    public void toggleSignal(int pos) {
-        for (SignalPoint point : sigPos) {
-            if (point.getSignalPos() == pos) {
-                point.setSignalColor(
-                        point.getSignalColor() == SignalColor.RED
-                        ? SignalColor.GREEN : SignalColor.RED);
-                break;
-            }
-        }
     }
 
     @Override

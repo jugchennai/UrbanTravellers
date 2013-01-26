@@ -15,34 +15,52 @@
  */
 package in.jugchennai.urbantravellers.game;
 
-import in.jugchennai.urbantravellers.game.SignalPoint;
-import in.jugchennai.urbantravellers.game.GameBoardConfig;
-import in.jugchennai.urbantravellers.game.SignalColor;
+import static in.jugchennai.urbantravellers.game.fixture.GameTestFixture.*;
 import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * test class for GameBoardConfig
  *
  * @author prasannakumar
  */
 public class GameBoardConfigTest {
 
-    private GameBoardConfig boardConfig = new GameBoardConfig(16, 2, 6);
+    private GameBoardConfig boardConfig;
 
-    @Test
-    public void testConfigPostCreate() {
-        assertEquals(16, boardConfig.getLastPosOnBoard());
-        assertEquals(2, boardConfig.getNoOfSignalPoints());
-        assertTrue(boardConfig.getSigPos().length == boardConfig.getNoOfSignalPoints());
-        assertTrue(boardConfig.getSigPos()[0].equals(new SignalPoint(4)));
-        assertTrue(boardConfig.getSigPos()[1].equals(new SignalPoint(11)));
+    /**
+     * inits the test class
+     */
+    @Before
+    public void initTest() {
+        boardConfig = new GameBoardConfig(lasPos, players, maxPlayers, 
+                sp1, sp2);
     }
 
+    /**
+     * verify the game board configuration
+     */
+    @Test
+    public void testConfigPostCreate() {
+        assertEquals(lasPos, boardConfig.getLastPosOnBoard());
+        assertEquals(players, boardConfig.getNoOfSignalPoints());
+        assertTrue(boardConfig.getSigPos().length
+                == boardConfig.getNoOfSignalPoints());
+        assertTrue("fails for sp1", 
+                boardConfig.getSigPos()[0].getSignalPos() == sp1);
+        assertTrue("fails for sp2", 
+                boardConfig.getSigPos()[1].getSignalPos() == sp2);
+    }
+
+    /**
+     * the game board should change when signal toggled
+     */
     @Test
     public void signalShouldChangeWhenToggled() {
         SignalColor color = boardConfig.getSigPos()[0].getSignalColor();
-        boardConfig.toggleSignal(4);
-        assertFalse("assert failed", 
+        boardConfig.toggleSignal(sp1);
+        assertFalse("assert failed",
                 color == boardConfig.getSigPos()[0].getSignalColor());
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 JUGChennai.
+ * Copyright 2012 JUGChennai.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package in.jugchennai.urbantravellers.game;
+package in.jugchennai.urbantravellers.websocket;
+
+import javax.websocket.EncodeException;
+import javax.websocket.Encoder;
 
 /**
- *
- * @author prasannakumar
+ * @author Arun Gupta
  */
-public class GameBoardDelegate {
-    
+public class DataEncoder implements Encoder.Text<Gamedata> {
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String encode(Gamedata gd) throws EncodeException {
+        return gd.getJson().toString();
+    }
 }
