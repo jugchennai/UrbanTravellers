@@ -16,18 +16,38 @@
 package in.jugchennai.urbantravellers.game.fixture;
 
 import in.jugchennai.urbantravellers.game.GameBoardConfig;
+import in.jugchennai.urbantravellers.game.Player;
+import java.util.Random;
 
 /**
+ * the class which holds the data required for testing
  *
  * @author prasannakumar
  */
-public class GameFixture {
+public class GameTestFixture {
 
     public static int lasPos = 50;
     public static int players = 2;
     public static int maxPlayers = 6;
     public static int sp1 = 24;
     public static int sp2 = 44;
-    public static GameBoardConfig boardConfig = new GameBoardConfig(lasPos, players,
-            maxPlayers,sp1,sp2);
+    public static GameBoardConfig boardConfig =
+            new GameBoardConfig(lasPos, players, maxPlayers, sp1, sp2);
+    public static Player p3 = new Player("p3");
+    public static Player p4 = new Player("p4");
+    public static Player p5 = new Player("p5");
+    public static Player p6 = new Player("p6");
+    public static Player p7 = new Player("p7");
+    private static Random r = new Random(6);
+
+    /**
+     * @return random dice value
+     */
+   public static int emulateDice() {
+        int dv = r.nextInt(6);
+        if(dv==0) {
+           return  emulateDice();
+        }
+        return  dv;
+    }
 }
