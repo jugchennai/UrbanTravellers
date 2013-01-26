@@ -38,7 +38,7 @@ import org.codehaus.jettison.json.JSONObject;
  *
  * @author prasannakumar
  */
-@WebSocketEndpoint(value = "/utRollDice",
+@WebSocketEndpoint(value = "/gameBoard",
 encoders = {DataEncoder.class},
 decoders = {DataDecoder.class},
 factory = GameBoardEndpointFactory.class)
@@ -46,11 +46,11 @@ public class GameBoardSocket {
 
     private static Logger logger = Logger.getLogger(GameBoardSocket.class);
     // the getInstance method does some bootstrap activities
-    private static GameCache cache = GameCache.getInstance();
+    private static final GameCache cache = GameCache.getInstance();
     private Set<Session> peers = Collections.synchronizedSet(new HashSet());
 
     static {
-        GameBoardConfig boardConfig = new GameBoardConfig(25, 2, 6);
+        GameBoardConfig boardConfig = new GameBoardConfig(50, 2, 6, 24, 44);
         try {
             cache.addBoard(GameCache.GAME_ID, new GameBoard(boardConfig));
             GameBoard board = cache.getBoard(GameCache.GAME_ID);
@@ -58,6 +58,7 @@ public class GameBoardSocket {
             board.addPlayerToBoard(new Player("Raj"));
             board.addPlayerToBoard(new Player("Shiv"));
         } catch (Exception ex) {
+            ex.printStackTrace();
             logger.info("exception while configuring game " + ex);
         }
     }
@@ -85,6 +86,7 @@ public class GameBoardSocket {
 
     /**
      * method to send the result of rolling the dice to all players
+     *
      * @param gd
      * @param peer
      * @throws IOException
@@ -112,10 +114,12 @@ public class GameBoardSocket {
         } catch (JSONException ex) {
             logger.info("json exception has occured");
         } catch (Exception ex) {
-            logger.info(ex.getMessage());
+            ex.printStackTrace();
+            logger.info(ex);
         }
     }
 }
+
 /**
  * A game board endpoint factory
  *
