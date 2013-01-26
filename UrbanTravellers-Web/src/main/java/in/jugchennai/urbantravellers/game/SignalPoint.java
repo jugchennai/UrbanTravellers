@@ -16,7 +16,7 @@
 package in.jugchennai.urbantravellers.game;
 
 /**
- *
+ * This represent signal point on the game board
  * @author prasannakumar
  */
 public class SignalPoint {
@@ -33,32 +33,21 @@ public class SignalPoint {
         this.signalColor = SignalColor.RED;
     }
 
-    /**
-     *
-     * @return
-     */
     public int getSignalPos() {
         return signalPos;
     }
 
-    /**
-     *
-     * @return
-     */
     public SignalColor getSignalColor() {
         return signalColor;
     }
 
-    /**
-     *
-     * @param signalColor
-     */
     public void setSignalColor(SignalColor signalColor) {
         this.signalColor = signalColor;
     }
 
     /**
-     *
+     * if the given position is nearby signal 
+     * to honor the dice or not
      * @param position
      * @return
      */
@@ -69,7 +58,8 @@ public class SignalPoint {
     }
 
     /**
-     * 
+     * check whether to honor the dice 
+     * or not. 
      * @param position
      * @param diceValue
      * @return 
@@ -87,7 +77,8 @@ public class SignalPoint {
     }
 
     /**
-     *
+     * @deprecated 
+     * we may not need this method yet
      * @param position
      * @param diceValue
      * @return
@@ -110,8 +101,6 @@ public class SignalPoint {
     public String toString() {
         return "" + this.signalPos + " in " + this.signalColor;
     }
-    
-    
 
     @Override
     public int hashCode() {

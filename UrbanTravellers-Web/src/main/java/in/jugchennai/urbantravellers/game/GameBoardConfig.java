@@ -16,8 +16,11 @@
 package in.jugchennai.urbantravellers.game;
 
 /**
- * POJO to hold constants expected by GameBoard
- *
+ * This class holds configuration details
+ * for the GameBoard class. The GameBoardFactory class 
+ * can make use of this while creating an instance of 
+ * GameBoard class
+ * 
  * @author prasannakumar
  */
 public class GameBoardConfig {
@@ -26,11 +29,13 @@ public class GameBoardConfig {
     private int noOfSignalPoints;
     private int maxNoOfPlayer;
     private SignalPoint[] sigPos;
-
+   
     /**
+     * the constructor
      * @param lastPosOnBoard
      * @param noOfSignalPoints
      * @param maxNoOfPlayer
+     * @param points
      */
     public GameBoardConfig(int lastPosOnBoard,
             int noOfSignalPoints, int maxNoOfPlayer, int... points) {
@@ -46,39 +51,9 @@ public class GameBoardConfig {
     }
 
     /**
-     *
-     * @return
-     */
-    public int getLastPosOnBoard() {
-        return lastPosOnBoard;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getNoOfSignalPoints() {
-        return noOfSignalPoints;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getMaxNoOfPlayer() {
-        return maxNoOfPlayer;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public SignalPoint[] getSigPos() {
-        return sigPos;
-    }
-
-    /**
-     *
+     * toggle the signal color, clients of this 
+     * class can make use of this to change he signal 
+     * color at any point of time in the game board
      * @param pos
      */
     public void toggleSignal(int pos) {
@@ -90,6 +65,22 @@ public class GameBoardConfig {
                 break;
             }
         }
+    }
+    
+    public int getLastPosOnBoard() {
+        return lastPosOnBoard;
+    }
+
+    public int getNoOfSignalPoints() {
+        return noOfSignalPoints;
+    }
+
+    public int getMaxNoOfPlayer() {
+        return maxNoOfPlayer;
+    }
+
+    public SignalPoint[] getSigPos() {
+        return sigPos;
     }
 
     @Override

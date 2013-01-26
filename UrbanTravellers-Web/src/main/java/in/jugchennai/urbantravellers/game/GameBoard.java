@@ -30,62 +30,51 @@ import org.apache.log4j.Logger;
  */
 public class GameBoard {
 
-    /**
-     *
-     */
     protected Map<String, Player> playerMap = new HashMap();
-    private SignalPoint signalPoints[];
     private int lastPos;
     private int maxPlayers;
     private GameBoardConfig boardConfig;
     private Logger log = Logger.getLogger(GameBoard.class);
 
-    /**
-     *
-     */
     protected GameBoard() {
     }
 
-    /**
-     *
-     * @param boardConfig
-     */
     public GameBoard(GameBoardConfig boardConfig) {
         this.boardConfig = boardConfig;
         this.lastPos = boardConfig.getLastPosOnBoard();
-        this.signalPoints = boardConfig.getSigPos();
         this.maxPlayers = boardConfig.getMaxNoOfPlayer();
     }
 
     /**
-     * A player should be enrolled to the game until the max allowed players
+     * A player should be enrolled 
+     * to the game until the max allowed players
      * reached
-     *
      * @param player
      * @throws Exception
      */
     public void addPlayerToBoard(Player player) throws Exception {
         if (playerMap.size() <= boardConfig.getMaxNoOfPlayer()) {
             playerMap.put(player.getName(), player);
+            log.info(" Player " + player.getName() + " has been added to the board");
         } else {
             throw new Exception("Max player reached");
         }
     }
 
     /**
-     * player position on the board has to be updated each time dice is rolled
-     *
+     * player position on the board 
+     * has to be updated each time dice is rolled
      * @param name
      * @param diceValue
-     * @return
+     * @return Player
      */
     public Player movePlayerPosition(String name, int diceValue) {
         Player player = playerMap.get(name);
         SignalPoint nearPoint = findNearestPoint(player.getPosition());
-        log.info("\n "+name + " rolled > " + diceValue + 
-                "\n signal point > " + 
-                nearPoint.getSignalPos() + 
-                "\n signal color > " + nearPoint.getSignalColor() );
+        log.info("\n " + name + " rolled > " + diceValue
+                + "\n signal point > "
+                + nearPoint.getSignalPos()
+                + "\n signal color > " + nearPoint.getSignalColor());
         boolean move = false;
         if (nearPoint.isPositionInSignal(player.getPosition())) {
             if (nearPoint.allowedToGo(player.getPosition(), diceValue)) {
@@ -103,11 +92,11 @@ public class GameBoard {
     }
 
     /**
-     * short circuit the game flow by finding if the given player has reach the
+     * short circuit the game flow by 
+     * finding if the given player has reach the
      * last position in the game board
-     *
      * @param pos
-     * @return
+     * @return boolean
      */
     public boolean hasPlayerWon(String pos) {
         return playerMap.get(pos).getPosition()
@@ -115,26 +104,10 @@ public class GameBoard {
     }
 
     /**
-     * obtains the game config which is used by the game controller class to
-     * change any behavior of the game board
-     *
-     * @return
-     */
-    public GameBoardConfig getBoardConfig() {
-        return boardConfig;
-    }
-    
-    public void setBoardConfig(GameBoardConfig boardConfig1) {
-        log.info(" board config changed ");
-        log.info(" with signal points " + this.boardConfig.getSigPos());
-        this.boardConfig = boardConfig1;
-    }
-
-    /**
-     * local helper method to find the nearest proximate signal point
-     *
+     * local helper method to find the 
+     * nearest proximate signal point
      * @param pos
-     * @return
+     * @return SignalPoint
      */
     private SignalPoint findNearestPoint(int pos) {
         SignalPoint spoint = null;
@@ -147,7 +120,17 @@ public class GameBoard {
         }
         return spoint;
     }
-    
+
+    public GameBoardConfig getBoardConfig() {
+        return boardConfig;
+    }
+
+    public void setBoardConfig(GameBoardConfig boardConfig1) {
+        log.info(" board config changed ");
+        log.info(" with signal points " + this.boardConfig.getSigPos());
+        this.boardConfig = boardConfig1;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -156,7 +139,7 @@ public class GameBoard {
         hash = 13 * hash + Objects.hashCode(this.boardConfig);
         return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

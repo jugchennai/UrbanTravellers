@@ -21,23 +21,20 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author sysadmin
+ * @author prasannakumar
  */
 public final class GameCache {
 
     private static GameCache INSTANCE = new GameCache();
     private static Map<String, GameBoard> map = new HashMap();
-    /**
-     *
-     */
     public static String GAME_ID = "game1";
-    private Logger logger = Logger.getLogger(this.getClass());
+    private Logger logger = Logger.getLogger(GameCache.class);
 
     private GameCache() {
     }
 
     /**
-     *
+     * get the singleton instance
      * @return
      */
     public static GameCache getInstance() {
@@ -46,18 +43,19 @@ public final class GameCache {
 
     /**
      * add board to the cache
-     *
-     * @param gameId
+     * for holding multiple game instances
+     * @param gameId - the value of the game created by the database
      * @param gameBoard
      */
     public void addBoard(String gameId, GameBoard gameBoard) {
         if (!map.containsKey(gameId)) {
             map.put(gameId, gameBoard);
+            logger.info("added game to cache " + gameId);
         }
     }
 
     /**
-     *
+     * obtains the board instance for the given game id 
      * @param gameId
      * @return
      * @throws Exception
@@ -66,6 +64,7 @@ public final class GameCache {
         if (map.containsKey(gameId)) {
             return map.get(gameId);
         } else {
+            logger.error("Gameboard not found ");
             throw new Exception("gameId not found");
         }
     }
