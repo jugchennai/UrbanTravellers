@@ -15,27 +15,42 @@
  */
 package in.jugchennai.urbantravellers.game;
 
-import static in.jugchennai.urbantravellers.game.fixture.GameFixture.*;
+import static in.jugchennai.urbantravellers.game.fixture.GameTestFixture.*;
 import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
  * test class for GameBoardConfig
+ *
  * @author prasannakumar
  */
 public class GameBoardConfigTest {
+
+    private GameBoardConfig boardConfig;
+
+    /**
+     * inits the test class
+     */
+    @Before
+    public void initTest() {
+        boardConfig = new GameBoardConfig(lasPos, players, maxPlayers, 
+                sp1, sp2);
+    }
 
     /**
      * verify the game board configuration
      */
     @Test
     public void testConfigPostCreate() {
-        assertEquals(50, boardConfig.getLastPosOnBoard());
-        assertEquals(2, boardConfig.getNoOfSignalPoints());
-        assertTrue(boardConfig.getSigPos().length == 
-                boardConfig.getNoOfSignalPoints());
-        assertTrue("fails for sp1",boardConfig.getSigPos()[0].getSignalPos() == sp1);
-        assertTrue("fails for sp2",boardConfig.getSigPos()[1].getSignalPos() == sp2);
+        assertEquals(lasPos, boardConfig.getLastPosOnBoard());
+        assertEquals(players, boardConfig.getNoOfSignalPoints());
+        assertTrue(boardConfig.getSigPos().length
+                == boardConfig.getNoOfSignalPoints());
+        assertTrue("fails for sp1", 
+                boardConfig.getSigPos()[0].getSignalPos() == sp1);
+        assertTrue("fails for sp2", 
+                boardConfig.getSigPos()[1].getSignalPos() == sp2);
     }
 
     /**

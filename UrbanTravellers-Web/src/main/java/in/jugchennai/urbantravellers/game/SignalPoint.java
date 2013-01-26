@@ -69,32 +69,11 @@ public class SignalPoint {
         boolean go = false;
         if (asumedVal <= this.signalPos && this.signalColor == SignalColor.RED) {
             go = true;
-        } else if (position == this.signalPos && this.signalColor == SignalColor.RED) {
-            System.out.println("signal in red");
+        } else if (position == this.signalPos 
+                && this.signalColor == SignalColor.RED) {
             go = false;
         } 
         return go;
-    }
-
-    /**
-     * @deprecated 
-     * we may not need this method yet
-     * @param position
-     * @param diceValue
-     * @return
-     */
-    public int getValueToPassThrough(int position, int diceValue) {
-        int asumedVal = position + diceValue;
-        int edv = 0;
-        int projVal = this.signalPos - asumedVal;
-        if (this.signalPos == position || projVal == 0) {
-            edv = 1;
-        } else if (projVal < 0) {
-            edv = -(projVal);
-        } else if (projVal > 0) {
-            edv = projVal;
-        }
-        return (isPositionInSignal(position)) ? edv : asumedVal;
     }
 
     @Override
@@ -106,7 +85,8 @@ public class SignalPoint {
     public int hashCode() {
         int hash = 7;
         hash = 89 * hash + this.signalPos;
-        hash = 89 * hash + (this.signalColor != null ? this.signalColor.hashCode() : 0);
+        hash = 89 * hash + 
+                (this.signalColor != null ? this.signalColor.hashCode() : 0);
         return hash;
     }
 

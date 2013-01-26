@@ -19,25 +19,34 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- *
+ * unit test for class SignalPoint
  * @author prasannakumar
  */
 public class SignalPointTest {
 
     SignalPoint point = new SignalPoint(4);
 
+    /*
+     * 
+     */
     @Test
     public void testGivenPosInSignal() {
         point.setSignalColor(SignalColor.RED);
         assertEquals(true, point.isPositionInSignal(2));
     }
 
+    /*
+     * 
+     */
     @Test
     public void testToIgnoreOnGreenSignal() {
         point.setSignalColor(SignalColor.GREEN);
         assertEquals(false, point.isPositionInSignal(2));
     }
 
+    /*
+     * 
+     */
     @Test
     public void testToVerifyFarSignal() {
         point = new SignalPoint(11);
@@ -45,12 +54,16 @@ public class SignalPointTest {
         assertEquals(false, point.isPositionInSignal(3));
     }
 
+    /*
+     * 
+     */
     @Test
     public void testShouldGetPassThroughValueOnRedSignal() {
         point = new SignalPoint(4);
         point.setSignalColor(SignalColor.RED);
-        assertEquals(4, point.getValueToPassThrough(2, 6));
-        assertEquals(1, point.getValueToPassThrough(4, 3));
-        assertEquals(1, point.getValueToPassThrough(2, 2));
+        assertFalse(point.allowedToGo(2, 6));
+        assertFalse(point.allowedToGo(4, 3));
+        assertTrue(point.allowedToGo(2, 2));
+        assertTrue(point.allowedToGo(0, 2));
     }
 }
