@@ -105,9 +105,11 @@ public class GameBoardSocket {
                     Integer.parseInt(diceValue));
             Gamedata gamedata = new Gamedata();
             JSONObject json = new JSONObject();
-            json.put("outcome", "Player " + player.getName() + " has moved to "
-                    + player.getPosition() + " by throwing " + diceValue);
+            json.put("player", player.getName());
+            json.put("position", player.getPosition());
+            json.put("diceValue", player.getDiceValue());
             gamedata.setJson(json);
+
             for (Session currPeer : peers) {
                 currPeer.getRemote().sendObject(gamedata);
             }
