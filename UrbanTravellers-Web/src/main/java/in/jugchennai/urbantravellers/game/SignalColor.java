@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 JUGChennai.
+ * Copyright 2012 JUGChennai.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,8 @@
 package in.jugchennai.urbantravellers.game;
 
 /**
- *
- * @author Prasanna Kumar <prassee.sathian@gmail.com>
+ * Constants to hold signal color
+ * @author prasannakumar
  */
 public enum SignalColor {
     RED,GREEN

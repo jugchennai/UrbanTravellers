@@ -19,6 +19,10 @@ import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 
 public class DataEncoder implements Encoder.Text<Gamedata> {
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String encode(Gamedata gd) throws EncodeException {
         return gd.getJson().toString();
