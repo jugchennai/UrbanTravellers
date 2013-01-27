@@ -35,6 +35,7 @@ import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
 /**
+ * GameBoard web-socket
  *
  * @author prasannakumar
  */
@@ -58,8 +59,7 @@ public class GameBoardSocket {
             board.addPlayerToBoard(new Player("Raj"));
             board.addPlayerToBoard(new Player("Shiv"));
         } catch (Exception ex) {
-            ex.printStackTrace();
-            logger.info("exception while configuring game " + ex);
+            logger.error("exception while configuring game " + ex);
         }
     }
 
@@ -112,10 +112,9 @@ public class GameBoardSocket {
                 currPeer.getRemote().sendObject(gamedata);
             }
         } catch (JSONException ex) {
-            logger.info("json exception has occured");
+            logger.error("json exception has occured" + ex.getMessage());
         } catch (Exception ex) {
-            ex.printStackTrace();
-            logger.info(ex);
+            logger.error(ex.getMessage());
         }
     }
 }

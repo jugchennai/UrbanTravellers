@@ -3,11 +3,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <title>UrbanTravelers</title>
+        <title>Urban Travelers</title>
         <script language="javascript" type="text/javascript">
             var dice,name;
-            var wsUri = "ws://" + document.location.host + document.location.pathname + "gameBoard";
+            var wsUri = "ws://127.0.0.1:8080/urbantravellers/gameBoard";
             var websocket = new WebSocket(wsUri);
             websocket.onopen = function(evt) { onOpen(evt) };
             websocket.onmessage = function(evt) { onMessage(evt) };
