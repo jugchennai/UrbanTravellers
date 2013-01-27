@@ -15,18 +15,23 @@
  */
 package in.jugchennai.urbantravellers.game;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-
 /**
  *
- * @author sysadmin
+ * @author prasannakumar
  */
-public class GameCacheTest {
+public class GameBoardFactory {
 
-    @Test
-    public void testSingleton() {
-        GameCache gc = GameCache.getInstance();
-        assertEquals(gc, GameCache.getInstance());
+    public static GameBoard createGameBoard(
+            int maxPoints, int noOfSigPoints, int maxPlayers) {
+        return new GameBoard(
+                new GameBoardConfig(maxPoints, noOfSigPoints,
+                maxPlayers, createPoints()));
+    }
+
+    private static int[] createPoints() {
+        int a[] = new int[2];
+        a[0] = 24;
+        a[1] = 44;
+        return a;
     }
 }

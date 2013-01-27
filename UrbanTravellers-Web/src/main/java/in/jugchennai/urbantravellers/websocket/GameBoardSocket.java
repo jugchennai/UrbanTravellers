@@ -34,8 +34,8 @@ import org.apache.log4j.Logger;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
-
 /**
+ * GameBoard web-socket
  *
  * @author Prasanna Kumar <prassee.sathian@gmail.com>
  * @author Rajmahendra Hegde <rajmahendra@gmail.com>
@@ -45,14 +45,14 @@ encoders = {DataEncoder.class},
 decoders = {DataDecoder.class},
 factory = GameBoardEndpointFactory.class)
 public class GameBoardSocket {
-    
-    private Logger logger = Logger.getLogger(this.getClass());
+
+    private static Logger logger = Logger.getLogger(GameBoardSocket.class);
     // the getInstance method does some bootstrap activities
-    private static GameCache cache = GameCache.getInstance();
+    private static final GameCache cache = GameCache.getInstance();
     private Set<Session> peers = Collections.synchronizedSet(new HashSet());
-    
+
     static {
-        GameBoardConfig boardConfig = new GameBoardConfig(25, 2, 6);
+        GameBoardConfig boardConfig = new GameBoardConfig(50, 2, 6, 24, 44);
         try {
             cache.addBoard(GameCache.GAME_ID, new GameBoard(boardConfig));
             GameBoard board = cache.getBoard(GameCache.GAME_ID);
@@ -60,28 +60,38 @@ public class GameBoardSocket {
             board.addPlayerToBoard(new Player("Raj"));
             board.addPlayerToBoard(new Player("Shiv"));
         } catch (Exception ex) {
-            System.out.println("ex while socket boot " + ex);
+            logger.error("exception while configuring game " + ex);
         }
     }
-    
+
+    /**
+     *
+     * @param peer
+     * @throws Exception
+     */
     @WebSocketOpen
     public void onOpen(Session peer) throws Exception {
         logger.info("added player to session ");
         peers.add(peer);
     }
-    
+
+    /**
+     *
+     * @param peer
+     */
     @WebSocketClose
     public void onClose(Session peer) {
         logger.info("removing player from session");
         peers.remove(peer);
     }
-    
+
     /**
-     * 
+     * method to send the result of rolling the dice to all players
+     *
      * @param gd
      * @param peer
      * @throws IOException
-     * @throws EncodeException 
+     * @throws EncodeException
      */
     @WebSocketMessage
     public void broadCastMessage(Gamedata gd, Session peer)
@@ -90,30 +100,40 @@ public class GameBoardSocket {
             logger.info("Boradcast Game Data:" + gd);
             String playerName = gd.getJson().getString("playerName");
             String diceValue = gd.getJson().getString("diceValue");
-            
+
             GameBoard board = cache.getBoard(GameCache.GAME_ID);
             Player player = board.movePlayerPosition(playerName,
                     Integer.parseInt(diceValue));
             Gamedata gamedata = new Gamedata();
             JSONObject json = new JSONObject();
-            json.put("outcome", "Player " + player.getName() + " has moved to "
-                    + player.getPosition() + " by throwing " + diceValue);
+            json.put("player", player.getName());
+            json.put("position", player.getPosition());
+            json.put("diceValue", player.getDiceValue());
             gamedata.setJson(json);
+
             for (Session currPeer : peers) {
-                logger.info("send info to peers");
                 currPeer.getRemote().sendObject(gamedata);
             }
         } catch (JSONException ex) {
-            logger.info("json exception has occured");
+            logger.error("json exception has occured" + ex.getMessage());
         } catch (Exception ex) {
-            logger.info(ex.getMessage());
-        } 
+            logger.error(ex.getMessage());
+        }
     }
 }
+
+/**
+ * A game board endpoint factory
+ *
+ * @author prasannakumar
+ */
 class GameBoardEndpointFactory implements EndpointFactory {
-    
+
     private Logger logger = Logger.getLogger(this.getClass());
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Object createEndpoint() {
         logger.info("creating new end point");
