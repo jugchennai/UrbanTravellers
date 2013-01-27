@@ -33,5 +33,5 @@ public class GameBoardFactory {
         a[0] = 24;
         a[1] = 44;
         return a;
-    }
+    }   
 }
