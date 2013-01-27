@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author prasannakumar
+ * @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 public final class GameCache {
 

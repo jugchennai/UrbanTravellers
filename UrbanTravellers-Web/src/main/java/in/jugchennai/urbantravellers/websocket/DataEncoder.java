@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 JUGChennai.
+ * Copyright 2013 JUGChennai.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,6 @@ package in.jugchennai.urbantravellers.websocket;
 import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 
-/**
- * @author Arun Gupta
- */
 public class DataEncoder implements Encoder.Text<Gamedata> {
 
     /**

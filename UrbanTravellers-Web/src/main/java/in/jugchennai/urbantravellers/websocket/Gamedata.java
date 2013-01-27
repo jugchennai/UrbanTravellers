@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 JUGChennai.
+ * Copyright 2013 JUGChennai.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
 /**
- * @author iArivu
+ * @author Arivazhagan Ambigapathi <arivu86@gmail.com>
  */
 public class Gamedata {
 

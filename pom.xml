@@ -59,6 +59,42 @@
         <system>GitHub</system>
         <url>https://github.com/jugchennai/UrbanTravellers/issues</url>
     </issueManagement>
+    
+    <developers>
+        <developer>
+            <id>rajonjava</id>
+            <name>Rajmahendra Hegde</name>
+            <email>rajmahendra@gmail.com</email>
+            <url>http://twitter.com/rajonjava</url>
+            <organization>JUGChennai</organization>
+            <organizationUrl>http://jugchennai.in</organizationUrl>
+        </developer>
+        <developer>
+            <id>prassee</id>
+            <name>Prasanna Kumar</name>
+            <email>prassee.sathian@gmail.com</email>
+            <url>http://twitter.com/prasonscala</url>
+            <organization>JUGChennai</organization>
+            <organizationUrl>http://jugchennai.in</organizationUrl>
+        </developer>
+        <developer>
+            <id>shivkumarganesh</id>
+            <name>Shiv Kumar Ganesh</name>
+            <email>gshiv.sk@gmail.com</email>
+            <url>http://twitter.com/shivkumarganesh</url>
+            <organization>JUGChennai</organization>
+            <organizationUrl>http://jugchennai.in</organizationUrl>
+        </developer>
+        <developer>
+            <id>arivu86</id>
+            <name>Arivazhagan Ambigapathi</name>
+            <email>arivu86@gmail.com</email>
+            <url>http://twitter.com/arivu86</url>
+            <organization>JUGChennai</organization>
+            <organizationUrl>http://jugchennai.in</organizationUrl>
+        </developer>
+    </developers>
+
     <build>
         <plugins>
             <plugin>
@@ -66,8 +102,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
         </plugins>
