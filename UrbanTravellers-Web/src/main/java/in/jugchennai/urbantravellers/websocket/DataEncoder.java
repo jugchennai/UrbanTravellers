@@ -18,6 +18,9 @@ package in.jugchennai.urbantravellers.websocket;
 import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 
+/*
+ * 
+ */
 public class DataEncoder implements Encoder.Text<Gamedata> {
 
     /**

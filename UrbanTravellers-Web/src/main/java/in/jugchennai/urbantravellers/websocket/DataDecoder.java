@@ -21,6 +21,9 @@ import org.apache.log4j.Logger;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
+/*
+ * 
+ */
 public class DataDecoder implements Decoder.Text<Gamedata> {
 
     Logger logger = Logger.getLogger(DataDecoder.class);
