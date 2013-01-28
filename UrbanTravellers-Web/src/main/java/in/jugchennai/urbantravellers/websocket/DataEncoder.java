@@ -13,12 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package in.jugchennai.urbantravellers.game;
+package in.jugchennai.urbantravellers.websocket;
 
-/**
- *
- * @author prasannakumar
+import javax.websocket.EncodeException;
+import javax.websocket.Encoder;
+
+/*
+ * 
  */
-public class GameBoardDelegate {
-    
+public class DataEncoder implements Encoder.Text<GameData> {
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String encode(GameData gd) throws EncodeException {
+        return gd.getJson().toString();
+    }
 }

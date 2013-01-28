@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 JUGChennai.
+ * Copyright 2013 JUGChennai.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,13 +17,17 @@ package in.jugchennai.urbantravellers.game;
 
 /**
  *
- * @author prasannakumar
+ * @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 public class SignalPoint {
 
     private int signalPos;
     private SignalColor signalColor;
 
+    /**
+     *
+     * @param position
+     */
     public SignalPoint(int position) {
         this.signalPos = position;
         this.signalColor = SignalColor.RED;
@@ -41,30 +45,48 @@ public class SignalPoint {
         this.signalColor = signalColor;
     }
 
+    /**
+     * if the given position is nearby signal 
+     * to honor the dice or not
+     * @param position
+     * @return
+     */
     public boolean isPositionInSignal(int position) {
         return (this.signalColor == SignalColor.RED)
                 && (position <= this.signalPos)
                 && this.signalPos - position <= 6;
     }
 
-    public int getValueToPassThrough(int position, int diceValue) {
+    /**
+     * check whether to honor the dice 
+     * or not. 
+     * @param position
+     * @param diceValue
+     * @return 
+     */
+    public boolean allowedToGo(int position, int diceValue) {
         int asumedVal = position + diceValue;
-        int edv = 0;
-        if (this.signalPos == position || this.signalPos - asumedVal == 0) {
-            edv = 1;
-        } else if (this.signalPos - asumedVal < 0) {
-            edv = -(this.signalPos - asumedVal);
-        } else if (this.signalPos - asumedVal > 0) {
-            edv = this.signalPos - asumedVal;
+        boolean go = false;
+        if (asumedVal <= this.signalPos && this.signalColor == SignalColor.RED) {
+            go = true;
+        } else if (position == this.signalPos 
+                && this.signalColor == SignalColor.RED) {
+            go = false;
         } 
-        return (isPositionInSignal(position)) ? edv : position + diceValue;
+        return go;
+    }
+
+    @Override
+    public String toString() {
+        return "" + this.signalPos + " in " + this.signalColor;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 89 * hash + this.signalPos;
-        hash = 89 * hash + (this.signalColor != null ? this.signalColor.hashCode() : 0);
+        hash = 89 * hash + 
+                (this.signalColor != null ? this.signalColor.hashCode() : 0);
         return hash;
     }
 
