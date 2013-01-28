@@ -94,7 +94,7 @@ public class GameBoardSocket {
      * @throws EncodeException
      */
     @WebSocketMessage
-    public void broadCastMessage(Gamedata gd, Session peer)
+    public void broadCastMessage(GameData gd, Session peer)
             throws IOException, EncodeException {
         try {
             logger.info("Boradcast Game Data:" + gd);
@@ -104,7 +104,7 @@ public class GameBoardSocket {
             GameBoard board = cache.getBoard(GameCache.GAME_ID);
             Player player = board.movePlayerPosition(playerName,
                     Integer.parseInt(diceValue));
-            Gamedata gamedata = new Gamedata();
+            GameData gamedata = new GameData();
             JSONObject json = new JSONObject();
             json.put("player", player.getName());
             json.put("position", player.getPosition());

@@ -24,7 +24,7 @@ import org.junit.Test;
 /**
  * the test class for GameBoard
  *
- * @author prasannakumar
+ *  @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 public class GameBoardTest {
 

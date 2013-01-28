@@ -20,7 +20,7 @@ import org.junit.Test;
 
 /**
  * unit test for class SignalPoint
- * @author prasannakumar
+ *  @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 public class SignalPointTest {
 

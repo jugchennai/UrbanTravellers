@@ -24,7 +24,7 @@ import org.codehaus.jettison.json.JSONObject;
 /*
  * 
  */
-public class DataDecoder implements Decoder.Text<Gamedata> {
+public class DataDecoder implements Decoder.Text<GameData> {
 
     Logger logger = Logger.getLogger(DataDecoder.class);
 
@@ -32,11 +32,11 @@ public class DataDecoder implements Decoder.Text<Gamedata> {
      * {@inheritDoc}
      */
     @Override
-    public Gamedata decode(String string) throws DecodeException {
+    public GameData decode(String string) throws DecodeException {
         logger.info("In Data Decode");
         try {
             JSONObject jsonObject = new JSONObject(string);
-            return new Gamedata(jsonObject);
+            return new GameData(jsonObject);
         } catch (JSONException ex) {
             throw new DecodeException("Error parsing JSON", ex.getMessage(),
                     ex.fillInStackTrace());
