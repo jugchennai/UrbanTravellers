@@ -25,7 +25,7 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author prasannakumar
+ * @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 @Singleton
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
@@ -34,7 +34,8 @@ public class SignalChangeTimer {
     Logger logger = Logger.getLogger(SignalChangeTimer.class);
 
     /**
-     * this method changes the signal at certain interval of time so that
+     * This method changes the signal at certain interval of time.
+     * 
      */
     @Lock(LockType.WRITE)
     // @Schedule(minute="3")
