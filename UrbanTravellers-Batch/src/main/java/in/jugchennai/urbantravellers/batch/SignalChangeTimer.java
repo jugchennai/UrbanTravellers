@@ -38,9 +38,9 @@ public class SignalChangeTimer {
      * 
      */
     @Lock(LockType.WRITE)
-    // @Schedule(minute="3")
     public void toggleSignal() {
         try {
+            logger.info("change signal");
 //            GameBoard board = GameCache.getInstance().getBoard(GameCache.GAME_ID);
 //            GameBoardConfig boardConfig = board.getBoardConfig();
 //            for (SignalPoint point : board.getBoardConfig().getSigPos()) {
