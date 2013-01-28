@@ -17,7 +17,7 @@ package in.jugchennai.urbantravellers.game;
 
 /**
  *
- * @author prasannakumar
+ *  @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 public class GameBoardFactory {
 

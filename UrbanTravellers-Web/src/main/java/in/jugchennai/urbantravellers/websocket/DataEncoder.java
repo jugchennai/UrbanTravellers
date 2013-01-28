@@ -18,13 +18,16 @@ package in.jugchennai.urbantravellers.websocket;
 import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 
-public class DataEncoder implements Encoder.Text<Gamedata> {
+/*
+ * 
+ */
+public class DataEncoder implements Encoder.Text<GameData> {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String encode(Gamedata gd) throws EncodeException {
+    public String encode(GameData gd) throws EncodeException {
         return gd.getJson().toString();
     }
 }

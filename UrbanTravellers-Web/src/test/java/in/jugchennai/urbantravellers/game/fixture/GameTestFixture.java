@@ -22,7 +22,7 @@ import java.util.Random;
 /**
  * the class which holds the data required for testing
  *
- * @author prasannakumar
+ *  @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 public class GameTestFixture {
 
