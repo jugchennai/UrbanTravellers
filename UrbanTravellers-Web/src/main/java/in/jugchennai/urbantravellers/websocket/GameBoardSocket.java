@@ -42,8 +42,7 @@ import org.codehaus.jettison.json.JSONObject;
  */
 @WebSocketEndpoint(value = "/UTGameSocket",
 encoders = {DataEncoder.class},
-decoders = {DataDecoder.class},
-factory = GameBoardEndpointFactory.class)
+decoders = {DataDecoder.class})
 public class GameBoardSocket {
 
     private static Logger logger = Logger.getLogger(GameBoardSocket.class);
@@ -110,7 +109,6 @@ public class GameBoardSocket {
             json.put("position", player.getPosition());
             json.put("diceValue", player.getDiceValue());
             gamedata.setJson(json);
-
             for (Session currPeer : peers) {
                 currPeer.getRemote().sendObject(gamedata);
             }
