@@ -22,16 +22,16 @@ import org.codehaus.jettison.json.JSONObject;
 /**
  * @author Arivazhagan Ambigapathi <arivu86@gmail.com>
  */
-public class Gamedata {
+public class GameData {
 
     private JSONObject json;
     private Logger logger = Logger.getLogger(this.getClass());
    //  private String[] UserData = new String[50];
 
-    public Gamedata() {
+    public GameData() {
         
     }
-    public Gamedata(JSONObject json) {
+    public GameData(JSONObject json) {
         this.json = json;
         logger.info("In GameData" + json);
         logger.info("GameData Length" + json.length());

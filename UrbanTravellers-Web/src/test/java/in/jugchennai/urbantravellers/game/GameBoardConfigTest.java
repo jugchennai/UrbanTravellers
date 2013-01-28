@@ -23,7 +23,7 @@ import org.junit.Test;
 /**
  * test class for GameBoardConfig
  *
- * @author prasannakumar
+ *  @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 public class GameBoardConfigTest {
 
