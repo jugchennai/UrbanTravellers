@@ -42,11 +42,5 @@
             <to-view-id>/login.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-    
-    <managed-bean>
-      <managed-bean-name>loginBean</managed-bean-name>
-	    <managed-bean-class>in.jugchennai.urbantravellers.formbean.LoginBean</managed-bean-class>
-	    <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    
+        
 </faces-config>
