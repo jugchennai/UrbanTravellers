@@ -14,27 +14,27 @@
                 <tr>
                     <td>Full Name:</td>
                     <td>
-                        <h:inputText id="fullName" value="#{loginBean.userName}" />
+                        <h:inputText id="fullName" value="#{regBean.fullName}" required="true" />
                     </td>
                 </tr>
 
                 <tr>
                     <td>Display Name:</td>
                     <td>
-                        <h:inputText id="displayName" value="#{loginBean.userName}" />
+                        <h:inputText id="displayName" value="#{regBean.userName}" required="true" />
                     </td>
                 </tr>
 
                 <tr>
                     <td>User Name:</td>
                     <td>
-                        <h:inputText id="userName" value="#{loginBean.userName}" />
+                        <h:inputText id="userName" value="#{regBean.userName}" required="true" />
                     </td>
                 </tr>
                 <tr>
                     <td>Password:</td>
                     <td>
-                        <h:inputSecret id="password" redisplay="false" value="#{loginBean.password}" />
+                        <h:inputSecret id="password" redisplay="false" value="#{regBean.password}" required="true" />
                     </td>
                 </tr>
 
@@ -51,7 +51,9 @@
 
             <div class="modal-footer">
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                <h:commandButton class="btn btn-primary" action="${loginBean.whenLogin()}" value="Login" />
+                <h:commandButton class="btn btn-primary" action="${regBean.whenRegisteration()}" value="Register" >
+                    
+                </h:commandButton>
             </div>
         </h:form>
 
