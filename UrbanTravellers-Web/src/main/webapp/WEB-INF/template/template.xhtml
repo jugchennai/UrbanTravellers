@@ -25,7 +25,7 @@
         <title><ui:insert name="title">Default title</ui:insert></title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <f:event listener="#{loginBean.verifyUseLogin()}" type="preRenderView"></f:event>
+        <f:event listener="#{loginBean.userLogged()}" type="preRenderView"></f:event>
         <h:outputStylesheet name="bootstrap.min.css" library="css"/>
         <style type="text/css">
             body {
@@ -76,13 +76,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#">Urban Travellers</a>
+                    <a class="brand" href="member.xhtml">Urban Travellers</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li ><h:link value="Registration" outcome="registration" /></li>
-
-                            <li><h:link value="Login" outcome="login" /></li>
-                            <li><h:link value="About" outcome="about" /></li>
+                            
+                            <li><h:link value="Welcome #{loginBean.userName}" outcome="member" /></li>
+                            
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -103,7 +102,7 @@
         <hr/>
         <div id="footer">
             <div class="container">
-                <p class="muted credit">UrbenTravellers (C) JUGChennai  - POC for some nice JSRs in JEE 7 </p>
+                <p class="muted credit">UrbanTravellers (C) JUGChennai  - POC for some nice JSRs in JEE 7 </p>
             </div>
         </div>
 
