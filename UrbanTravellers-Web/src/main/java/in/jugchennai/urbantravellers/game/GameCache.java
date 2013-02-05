@@ -61,7 +61,7 @@ public final class GameCache {
      * @throws Exception
      */
     public GameBoard getBoard(String gameId) throws Exception {
-        if (map.containsKey(gameId)) {
+        if (map.size() >0 && map.containsKey(gameId)) {
             return map.get(gameId);
         } else {
             logger.error("Gameboard not found ");

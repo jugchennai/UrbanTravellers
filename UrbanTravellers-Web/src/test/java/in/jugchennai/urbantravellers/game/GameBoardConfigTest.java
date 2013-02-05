@@ -30,7 +30,7 @@ public class GameBoardConfigTest {
     private GameBoardConfig boardConfig;
 
     /**
-     * inits the test class
+     * initializes the test class
      */
     @Before
     public void initTest() {

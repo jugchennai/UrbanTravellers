@@ -24,7 +24,7 @@ import org.junit.Test;
 /**
  * the test class for GameBoard
  *
- *  @author Prasanna Kumar <prassee.sathian@gmail.com>
+ * @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 public class GameBoardTest {
 
@@ -83,8 +83,8 @@ public class GameBoardTest {
     }
 
     /**
-     * player should be move to new position after rolling dice 
-     * this test assumes that player is not anywhere in signal range
+     * player should be move to new position after rolling dice this test
+     * assumes that player is not anywhere in signal range
      */
     @Test
     public void playerPositionShouldChangeAfterRollingDice() {
@@ -108,49 +108,49 @@ public class GameBoardTest {
         initpos = 20;
         int diceValue = 2;
         pras.setPosition(initpos); // 20
-        
+
         // 20 + 2 = 22 allowed
         automatePlayerMove(diceValue);
-        
+
         // 22 + 1 = 23 allowed 
         diceValue = 1;
         automatePlayerMove(diceValue);
-        
+
         // 23+1 = 24 allowed 
         diceValue = 1;
         automatePlayerMove(diceValue);
-        
+
         // 24 + 1 = 25 not allowed (signal still in red)
         diceValue = 1;
         initpos = initpos + diceValue;
         pras = gameBoard.movePlayerPosition("pras", diceValue);
-        assertFalse("assert failed expt => " + (initpos) +" obt=> " + pras.getPosition() , 
+        assertFalse("assert failed expt => " + (initpos) + " obt=> " + pras.getPosition(),
                 initpos == pras.getPosition());
-        
+
         // assert failed so reverting back to prev position
         initpos = initpos - diceValue;
-        
+
         // change signal to green - this will be done by batch
         GameBoardConfig boardConfig = gameBoard.getBoardConfig();
         boardConfig.toggleSignal(
                 gameBoard.getBoardConfig().getSigPos()[0].getSignalPos());
         gameBoard.setBoardConfig(boardConfig);
-        
+
         // 24 + 1 = 25 allowed (signal changed to green)
         diceValue = 1;
         automatePlayerMove(diceValue);
     }
-    
+
     /**
-     * a helper method to automate and assert player 
-     * position b4 and after dice roll
-     * @param diceValue 
+     * a helper method to automate and assert player position b4 and after dice
+     * roll
+     *
+     * @param diceValue
      */
     private void automatePlayerMove(int diceValue) {
         initpos = initpos + diceValue;
         pras = gameBoard.movePlayerPosition("pras", diceValue);
-        assertTrue("assert failed expt => " + (initpos) +" obt=> " + pras.getPosition(),
+        assertTrue("assert failed expt => " + (initpos) + " obt=> " + pras.getPosition(),
                 initpos == pras.getPosition());
     }
-    
 }
