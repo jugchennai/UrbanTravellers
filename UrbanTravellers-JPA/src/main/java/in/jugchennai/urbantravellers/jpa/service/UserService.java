@@ -20,11 +20,13 @@ import java.util.Collection;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
  * @author rajmahendrahegde
  */
+
 public class UserService {
 
     private EntityManagerFactory emFactory;
@@ -52,16 +54,26 @@ public class UserService {
                 .getResultList();
     }
 
-    public Long addUser(UtUsers newUser) {
+    public boolean addUser(UtUsers newUser) {
         eManager.getTransaction().begin();
         eManager.persist(newUser);
         eManager.getTransaction().commit();
-        return newUser.getUserid();
+        return true;
     }
 
     public void validateUser(String username, String password) {
-        
+
         Collection<UtUsers> list = findByUsername(username);
+    }
+
+    public boolean validateUserName(String username) {
+        Query validate = eManager.createQuery("select count from UtUsers where username=:" + username);
+        long counter = 0;
+        counter = (Long) validate.getSingleResult();
+        if (counter > 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
