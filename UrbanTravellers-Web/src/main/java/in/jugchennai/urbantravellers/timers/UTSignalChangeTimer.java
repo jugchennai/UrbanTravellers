@@ -41,11 +41,9 @@ public class UTSignalChangeTimer {
         try {
             GameBoard gameBoard = cache.getBoard(GameCache.GAME_ID);
             GameBoardConfig boardConfig = gameBoard.getBoardConfig();
-            int index = 0;
-            for (SignalPoint points : boardConfig.getSigPos()) {
+            for (int i = 0; i < boardConfig.getNoOfSignalPoints(); i++) {
                 boardConfig.toggleSignal(
-                        boardConfig.getSigPos()[index].getSignalPos());
-                index ++;
+                        boardConfig.getSigPos()[i].getSignalPos());
             }
             gameBoard.setBoardConfig(boardConfig);
         } catch (Exception ex) {

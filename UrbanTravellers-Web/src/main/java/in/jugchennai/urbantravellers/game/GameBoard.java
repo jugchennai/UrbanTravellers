@@ -17,7 +17,6 @@ package in.jugchennai.urbantravellers.game;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import org.apache.log4j.Logger;
 
 /**
@@ -136,7 +135,7 @@ public class GameBoard {
         int hash = 7;
         hash = 13 * hash + this.lastPos;
         hash = 13 * hash + this.maxPlayers;
-        hash = 13 * hash + Objects.hashCode(this.boardConfig);
+        
         return hash;
     }
 
