@@ -16,21 +16,15 @@
 package in.jugchennai.urbantravellers.websocket;
 
 import in.jugchennai.urbantravellers.game.GameBoard;
-import in.jugchennai.urbantravellers.game.GameBoardConfig;
 import in.jugchennai.urbantravellers.game.GameBoardFactory;
 import in.jugchennai.urbantravellers.game.GameCache;
 import in.jugchennai.urbantravellers.game.Player;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 import javax.websocket.EncodeException;
 import javax.websocket.EndpointFactory;
 import javax.websocket.Session;
-import javax.websocket.WebSocketClose;
 import javax.websocket.WebSocketEndpoint;
 import javax.websocket.WebSocketMessage;
-import javax.websocket.WebSocketOpen;
 import org.apache.log4j.Logger;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;

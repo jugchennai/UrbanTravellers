@@ -47,7 +47,7 @@ public class GameBootSocket extends UTSocket {
         GameBoard board = cache.getBoard(gd.getJson().get("gameId").toString());
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("players", board.getPlayersOnBoard());
-        jSONObject.put("gameId", gd.getJson().get("gameId"));
+        jSONObject.put("gameId", gd.getJson().get("gameId").toString());
         gd.setJson(jSONObject);
         for (Session currPeer : peers) {
             currPeer.getRemote().sendObject(gd);
