@@ -20,7 +20,8 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 /**
- *
+ * This is a application wide scheduler to toggle 
+ * signal point across multiple game instances.
  * @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 public final class GameCache {
@@ -35,15 +36,20 @@ public final class GameCache {
 
     /**
      * get the singleton instance
+     *
      * @return
      */
     public static GameCache getInstance() {
         return INSTANCE;
     }
+    
+    public Map<String, GameBoard> getBoards() {
+        return this.map;
+    }
 
     /**
-     * add board to the cache
-     * for holding multiple game instances
+     * add board to the cache for holding multiple game instances
+     *
      * @param gameId - the value of the game created by the database
      * @param gameBoard
      */
@@ -55,13 +61,14 @@ public final class GameCache {
     }
 
     /**
-     * obtains the board instance for the given game id 
+     * obtains the board instance for the given game id
+     *
      * @param gameId
      * @return
      * @throws Exception
      */
     public GameBoard getBoard(String gameId) throws Exception {
-        if (map.containsKey(gameId)) {
+        if (map.size() > 0 && map.containsKey(gameId)) {
             return map.get(gameId);
         } else {
             logger.error("Gameboard not found ");
