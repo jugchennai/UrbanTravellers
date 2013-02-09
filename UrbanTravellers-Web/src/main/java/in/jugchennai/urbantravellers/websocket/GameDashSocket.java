@@ -16,7 +16,9 @@
 package in.jugchennai.urbantravellers.websocket;
 
 import in.jugchennai.urbantravellers.game.GameBoard;
+import in.jugchennai.urbantravellers.game.GameCache;
 import java.io.IOException;
+import java.util.Map;
 import javax.websocket.EncodeException;
 import javax.websocket.Session;
 import javax.websocket.WebSocketEndpoint;
@@ -28,10 +30,10 @@ import org.codehaus.jettison.json.JSONObject;
  *
  * @author prasannakumar
  */
-@WebSocketEndpoint(value = "/UTGameBootSocket",
+@WebSocketEndpoint(value = "/UTGameDashSocket",
 encoders = {DataEncoder.class},
 decoders = {DataDecoder.class})
-public class GameBootSocket extends UTSocket {
+public class GameDashSocket extends UTSocket {
 
     /**
      *
@@ -43,15 +45,29 @@ public class GameBootSocket extends UTSocket {
      */
     @WebSocketMessage
     public void broadCastMessage(GameData gd, Session peer)
-            throws IOException, EncodeException, JSONException, Exception {
-        GameBoard board = cache.getBoard(gd.getJson().get("gameId").toString());
-        JSONObject jSONObject = new JSONObject();
-        jSONObject.put("players", board.getPlayersOnBoard());
-        jSONObject.put("gameId", gd.getJson().get("gameId"));
-        gd.setJson(jSONObject);
+            throws IOException, EncodeException, JSONException {
+        gd.setJson(prepareGameDash(gd));
         for (Session currPeer : peers) {
             currPeer.getRemote().sendObject(gd);
         }
+    }
+
+    /**
+     *
+     * @param gd
+     * @return
+     * @throws JSONException
+     */
+    private JSONObject prepareGameDash(GameData gd) throws JSONException {
+        JSONObject jSONObject = gd.getJson();
+        Map<String, GameBoard> map = cache.getBoards();
+        for (String key : map.keySet()) {
+            if (!map.get(key).hasGameStarted()) {
+                jSONObject.put("gameId", key);
+                jSONObject.put("players", map.get(key).getCurrentPlayersOnBoard());
+            }
+        }
+        return jSONObject;
     }
 
     @Override

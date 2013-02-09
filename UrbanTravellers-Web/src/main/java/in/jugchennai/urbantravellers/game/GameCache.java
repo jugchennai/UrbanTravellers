@@ -42,6 +42,10 @@ public final class GameCache {
     public static GameCache getInstance() {
         return INSTANCE;
     }
+    
+    public Map<String, GameBoard> getBoards() {
+        return this.map;
+    }
 
     /**
      * add board to the cache for holding multiple game instances

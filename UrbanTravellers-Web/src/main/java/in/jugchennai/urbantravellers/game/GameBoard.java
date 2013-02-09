@@ -17,6 +17,7 @@ package in.jugchennai.urbantravellers.game;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import org.apache.log4j.Logger;
 
 /**
@@ -34,6 +35,7 @@ public class GameBoard {
     private int maxPlayers;
     private GameBoardConfig boardConfig;
     private Logger log = Logger.getLogger(GameBoard.class);
+    private boolean hasPlayStarted = false;
 
     protected GameBoard() {
     }
@@ -100,6 +102,22 @@ public class GameBoard {
     public boolean hasPlayerWon(String pos) {
         return playerMap.get(pos).getPosition()
                 == this.boardConfig.getLastPosOnBoard();
+    }
+    
+    public void startPlay() {
+        this.hasPlayStarted = true;
+    }
+    
+    public int getCurrentPlayersOnBoard() {
+        return playerMap.size();
+    }
+    
+    public Set<String> getPlayersOnBoard() {
+        return playerMap.keySet();
+    }
+    
+    public boolean hasGameStarted() {
+        return hasPlayStarted;
     }
 
     /**

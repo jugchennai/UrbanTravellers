@@ -17,6 +17,7 @@ package in.jugchennai.urbantravellers.websocket;
 
 import in.jugchennai.urbantravellers.game.GameBoard;
 import in.jugchennai.urbantravellers.game.GameBoardConfig;
+import in.jugchennai.urbantravellers.game.GameBoardFactory;
 import in.jugchennai.urbantravellers.game.GameCache;
 import in.jugchennai.urbantravellers.game.Player;
 import java.io.IOException;
@@ -43,42 +44,38 @@ import org.codehaus.jettison.json.JSONObject;
 @WebSocketEndpoint(value = "/UTGameSocket",
 encoders = {DataEncoder.class},
 decoders = {DataDecoder.class})
-public class GameBoardSocket {
+public class GameBoardSocket extends UTSocket {
 
     private static Logger logger = Logger.getLogger(GameBoardSocket.class);
     // the getInstance method does some bootstrap activities
-    private static final GameCache cache = GameCache.getInstance();
-    private Set<Session> peers = Collections.synchronizedSet(new HashSet());
-
+   
+    /**
+     * the following block of code might be moved to a JSF handler 
+     */
     static {
-        GameBoardConfig boardConfig = new GameBoardConfig(50, 2, 6, 24, 44);
         try {
-            cache.addBoard(GameCache.GAME_ID, new GameBoard(boardConfig));
+            // replace the GameCache.GAME_ID with id obtained from DB
+            cache.addBoard(GameCache.GAME_ID, 
+                    GameBoardFactory.createGameBoard("brandNewGame", 50, 2, 6));
             GameBoard board = cache.getBoard(GameCache.GAME_ID);
+            
+            // except the following lines
             board.addPlayerToBoard(new Player("Pras"));
             board.addPlayerToBoard(new Player("Raj"));
             board.addPlayerToBoard(new Player("Shiv"));
+            
         } catch (Exception ex) {
             logger.error("exception while configuring game " + ex);
         }
     }
 
-    /**
-     *
-     * @param peer
-     * @throws Exception
-     */
-    @WebSocketOpen
+    @Override
     public void onOpen(Session peer) throws Exception {
         logger.info("added player to session ");
         peers.add(peer);
     }
 
-    /**
-     *
-     * @param peer
-     */
-    @WebSocketClose
+    @Override
     public void onClose(Session peer) {
         logger.info("removing player from session");
         peers.remove(peer);

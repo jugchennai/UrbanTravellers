@@ -15,13 +15,15 @@
  */
 package in.jugchennai.urbantravellers.game;
 
+import java.util.Random;
+
 /**
  *
- *  @author Prasanna Kumar <prassee.sathian@gmail.com>
+ * @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 public class GameBoardFactory {
 
-    public static GameBoard createGameBoard(
+    public static GameBoard createGameBoard(String boradName,
             int maxPoints, int noOfSigPoints, int maxPlayers) {
         return new GameBoard(
                 new GameBoardConfig(maxPoints, noOfSigPoints,
@@ -30,8 +32,13 @@ public class GameBoardFactory {
 
     private static int[] createPoints() {
         int a[] = new int[2];
-        a[0] = 24;
-        a[1] = 44;
+        a[0] = createPoint(20);
+        a[1] = createPoint(40);
         return a;
-    }   
+    }
+    
+    private static int createPoint(int range) {
+        Random r = new Random(range);
+        return r.nextInt(range+10);
+    }
 }
