@@ -38,7 +38,7 @@ public class GameBootSocketClient {
      * @param peer
      * @throws Exception
      */
-    @WebSocketMessage
+    @WebSocketOpen
     public void sendMessage(Session peer) throws Exception {
         peer.getRemote().sendObject(this.jSONObject);
     }
