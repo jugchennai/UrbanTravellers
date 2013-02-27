@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 public class LogoutBean {
     
   public String logout() {
-    String result="/faces/login.xhtml?faces-redirect=true";
+    String result="/login.xhtml?faces-redirect=true";
 
     FacesContext context = FacesContext.getCurrentInstance();
     context.getExternalContext().invalidateSession();

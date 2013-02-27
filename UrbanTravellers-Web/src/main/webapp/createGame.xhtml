@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                template="WEB-INF/template/template.xhtml">
+    <ui:define name="title">Urban Travellers :: Registration form</ui:define>
+
+    <ui:define name="script">
+        <script language="javascript" type="text/javascript">
+
+            function init() {
+                output = document.getElementById("output");
+            }
+                
+            function send()
+            {
+                say_hello();
+            }
+
+            window.addEventListener("load", init, false);
+                
+        </script>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <h1>Urban Travelers</h1>
+            </div>
+            <div class="row-fluid">
+                <div class="span3">
+                    <h:form id="createGame"> 
+                        <legend>Create Game</legend>
+                        <label>Name your game :</label>
+                        <h:inputText id="nameField" value="#{createGame.gameId}" required="true" /><br /><br />
+                        <h:commandButton class="btn btn-primary" onclick="send()" action="${createGame.createGame()}" value="Create" >
+                            <f:ajax execute="@form" render="@none" />
+                        </h:commandButton>
+                    </h:form>
+                    
+                    <h:form id="rollDice"> 
+                        <label>Name:</label>
+                        <input id="nameField" placeholder="Name" type="text" /><br/><br/>
+                        <label>Dice Count:</label>
+                        <input id="diceField" disabled="disabled" placeholder="Dice" type="text" /><br/><br/>
+                        <!-- <label>Position</label> -->
+                        <input id="positionField" placeholder="Position" type="hidden" value="0" /><br/><br/>
+                        <input class="btn btn-primary btn-large" onclick="say_hello()" value="Roll" type="button" />
+                        <input class="btn-primary btn-large"  value="Toggle Signal" type="button"/>
+                    </h:form>
+                    
+                </div>
+                <div class="span9">
+                    <div id="output"></div>
+                    <div class="span6" id="score">
+                        <h2>Active GameBoards</h2>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+</ui:composition>
