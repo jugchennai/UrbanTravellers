@@ -26,6 +26,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <f:event listener="#{loginBean.userLogged()}" type="preRenderView"></f:event>
+        <h:outputScript name="websocket.js" library="javascript"/>
         <h:outputStylesheet name="bootstrap.min.css" library="css"/>
         <style type="text/css">
             body {
@@ -62,8 +63,21 @@
             }
             .marketing p + h4 {
                 margin-top: 28px;
+            }   
+            
+            #createGame
+            {
+                display: block;
             }
+            #rollDice
+            {
+                display: none;
+            }
+            
         </style>
+        
+        <ui:insert name="script"></ui:insert>
+        
     </h:head>
     <h:body>
 
