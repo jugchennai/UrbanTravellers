@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-  var dice,name;
+  	var dice,name;
 	var wsUri = "ws://localhost:8080/UrbanTravellers-Web/UTGameDashSocket";
 	var websocket = new WebSocket(wsUri);
         websocket.onopen = function(evt) { onOpen(evt) };
@@ -28,7 +28,7 @@
 
             name = document.getElementById("createGame:nameField").value;                                
             var json = JSON.stringify({
-                "type" : "createGame",     //type refers to message type to be sent eg. createGame on Create Game Event will be roll on Dice Roll event
+                "type" : "createGame",    //type of request for processing createGame will trigger createGame code and roll_dice will trigger roll_dice code
                 "gameId" :name,
                 "playerName": "mgosemath"
             });
@@ -36,12 +36,12 @@
             websocket.send(json);
             writeToScreen("SENT: " +json);
             console.log("Msg Sent"+json);   
-            turnmodule();         	
+            turnmodule();       	
         }
 
             function roll()
             {
-                //code to update players position
+
             }
 
         function onOpen(evt) {
@@ -64,13 +64,23 @@
         function onMessage(evt) {
             alert("Response received");
             var ab =evt.data;
-            var json = ab;
-            obj = JSON.parse(json);
+            var json = JSON.parse(ab);
+            if(json.type==="createGame")   //list the newly created games as sidebar
+            {
+                var temp=document.createElement("newDiv");
+                temp.innerHTML="<div class='box'><form>"+
+                                "Name :"+json.gameId+"<br/>"+
+                                "Players :"+json.players+"<br/>"+
+                                "<input class='btn btn-primary' type='button' value='Join' /></form></div>";
+                document.getElementById("games").appendChild(temp);
+            }
+            //obj = JSON.parse(json);
+            //var some=JSON.parse(evt.data);
+            //alert(some.gameId);
             console.log("Msg Recieving");
             console.log(ab);
             writeToScreen("RECEIVED: " + evt.data);
             //updateScore(obj);
-            //conditions depending on type of message received
         }
 
         function writeToScreen(message) {
@@ -79,11 +89,10 @@
             pre.innerHTML = message;
             output.appendChild(pre);
         }
-        
-        //to hide createGame form and to display roll dice form
+
+	//to hide the game create form and display roll dice form
         function turnmodule()
         {	
             document.getElementById("createGame").style.display="none";
             document.getElementById("rollDice").style.display="block";
         }
-
