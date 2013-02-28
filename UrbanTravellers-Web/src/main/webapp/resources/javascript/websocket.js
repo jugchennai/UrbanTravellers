@@ -45,7 +45,7 @@
             }
 
         function onOpen(evt) {
-            alert("Connected");
+            //alert("Connected");
             writeToScreen("WELCOME !!!! you have been now placed in the game board !!! ");
         }
 
