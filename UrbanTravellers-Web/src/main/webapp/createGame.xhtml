@@ -39,26 +39,31 @@
                         </h:commandButton>
                     </h:form>
                     
-                    <h:form id="rollDice"> 
+                    <h:form id="rollDice">  <!--will be displayed only after game is created or a game is joined-->
                         <label>Name:</label>
                         <input id="nameField" placeholder="Name" type="text" /><br/><br/>
                         <label>Dice Count:</label>
                         <input id="diceField" disabled="disabled" placeholder="Dice" type="text" /><br/><br/>
                         <!-- <label>Position</label> -->
                         <input id="positionField" placeholder="Position" type="hidden" value="0" /><br/><br/>
-                        <input class="btn btn-primary btn-large" onclick="say_hello()" value="Roll" type="button" />
-                        <input class="btn-primary btn-large"  value="Toggle Signal" type="button"/>
+                        <input class="btn btn-primary" onclick="say_hello()" value="Roll" type="button" />
+                        <input class="btn btn-primary"  value="Toggle Signal" type="button"/>
                     </h:form>
                     
-                </div>
+                </div>                  
+                
                 <div class="span9">
-                    <div id="output"></div>
-                    <div class="span6" id="score">
-                        <h2>Active GameBoards</h2>
-
+                    <div class="span7" id="score">
+                        <h3>GameBoard</h3>
+                            <div id="output"></div>
                     </div>
-                </div>
+                    <!--sidebar to list newly created games-->
+                    <div id="games" class="boards">
+                        <legend>Active Games</legend>            
+                    </div>
+                </div>    
             </div>
+            
         </div>
 
     </ui:define>
