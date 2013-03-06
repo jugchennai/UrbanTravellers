@@ -16,7 +16,11 @@
             {
                 say_hello();
             }
-
+            
+            function roll()
+            {
+                rollDice();
+            }
             window.addEventListener("load", init, false);
                 
         </script>
@@ -33,20 +37,23 @@
                     <h:form id="createGame"> 
                         <legend>Create Game</legend>
                         <label>Name your game :</label>
-                        <h:inputText id="nameField" value="#{createGame.gameId}" required="true" /><br /><br />
+                        <h:inputText id="nameField" value="#{createGame.gameId}" /><br /><br />
+                        <h:inputHidden id="userName" value="#{loginBean.userName}" />
                         <h:commandButton class="btn btn-primary" onclick="send()" action="${createGame.createGame()}" value="Create" >
                             <f:ajax execute="@form" render="@none" />
-                        </h:commandButton>
+                        </h:commandButton>                      
                     </h:form>
                     
-                    <h:form id="rollDice">  <!--will be displayed only after game is created or a game is joined-->
-                        <label>Name:</label>
-                        <input id="nameField" placeholder="Name" type="text" /><br/><br/>
+                    <h:form id="rollDice"> 
                         <label>Dice Count:</label>
                         <input id="diceField" disabled="disabled" placeholder="Dice" type="text" /><br/><br/>
                         <!-- <label>Position</label> -->
                         <input id="positionField" placeholder="Position" type="hidden" value="0" /><br/><br/>
-                        <input class="btn btn-primary" onclick="say_hello()" value="Roll" type="button" />
+                        <h:inputHidden id="gameId" value="#{createGame.gameId}"  />
+                        <h:inputHidden id="userName" value="#{loginBean.userName}" />
+                        <h:commandButton class="btn btn-primary" onclick="roll()" value="Roll" >
+                            <f:ajax execute="@form" render="@none" />
+                        </h:commandButton>
                         <input class="btn btn-primary"  value="Toggle Signal" type="button"/>
                     </h:form>
                     
@@ -57,7 +64,6 @@
                         <h3>GameBoard</h3>
                             <div id="output"></div>
                     </div>
-                    <!--sidebar to list newly created games-->
                     <div id="games" class="boards">
                         <legend>Active Games</legend>            
                     </div>
