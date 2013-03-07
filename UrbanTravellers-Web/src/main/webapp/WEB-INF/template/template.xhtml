@@ -25,7 +25,8 @@
         <title><ui:insert name="title">Default title</ui:insert></title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <f:event listener="#{loginBean.verifyUseLogin()}" type="preRenderView"></f:event>
+        <f:event listener="#{loginBean.userLogged()}" type="preRenderView"></f:event>
+        <h:outputScript name="websocket.js" library="javascript"/>
         <h:outputStylesheet name="bootstrap.min.css" library="css"/>
         <style type="text/css">
             body {
@@ -62,8 +63,38 @@
             }
             .marketing p + h4 {
                 margin-top: 28px;
+            }   
+            
+            #createGame
+            {
+                display: block;
             }
+            #rollDice
+            {
+                display: none;
+            }
+            
+            .boards
+            {
+                float: right;
+                width: 20%;
+            }
+            
+            .box
+            {
+                width: 140px;
+                height: 80px;
+                padding: 10px; 
+                float: left; 
+                border: none;
+                margin: 10px 10px 0 0; 
+                background: #b2e7ca;
+            }
+            
         </style>
+        
+        <ui:insert name="script"></ui:insert>
+        
     </h:head>
     <h:body>
 
@@ -76,13 +107,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#">Urban Travellers</a>
+                    <a class="brand" href="member.xhtml">Urban Travellers</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li ><h:link value="Registration" outcome="registration" /></li>
-
-                            <li><h:link value="Login" outcome="login" /></li>
-                            <li><h:link value="About" outcome="about" /></li>
+                            
+                            <li><h:link value="Welcome #{loginBean.userName}" outcome="member" /></li>
+                            
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -103,7 +133,7 @@
         <hr/>
         <div id="footer">
             <div class="container">
-                <p class="muted credit">UrbenTravellers (C) JUGChennai  - POC for some nice JSRs in JEE 7 </p>
+                <p class="muted credit">UrbanTravellers (C) JUGChennai  - POC for some nice JSRs in JEE 7 </p>
             </div>
         </div>
 

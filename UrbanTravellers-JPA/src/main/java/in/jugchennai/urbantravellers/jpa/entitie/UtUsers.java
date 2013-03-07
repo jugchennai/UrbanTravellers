@@ -91,7 +91,7 @@ public class UtUsers implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
     public Date getLastlogin() {
         return lastlogin;
     }
