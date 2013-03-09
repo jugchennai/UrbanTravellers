@@ -22,15 +22,15 @@ import java.util.Random;
 /**
  * the class which holds the data required for testing
  *
- *  @author Prasanna Kumar <prassee.sathian@gmail.com>
+ * @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 public class GameTestFixture {
 
-    public static int lasPos = 50;
-    public static int players = 2;
-    public static int maxPlayers = 6;
-    public static int sp1 = 24;
-    public static int sp2 = 44;
+    public static final int lasPos = 50;
+    public static final int players = 2;
+    public static final int maxPlayers = 6;
+    public static final int sp1 = 24;
+    public static final int sp2 = 44;
     public static GameBoardConfig boardConfig =
             new GameBoardConfig(lasPos, players, maxPlayers, sp1, sp2);
     public static Player p3 = new Player("p3");
@@ -43,11 +43,11 @@ public class GameTestFixture {
     /**
      * @return random dice value
      */
-   public static int emulateDice() {
+    public static int emulateDice() {
         int dv = r.nextInt(6);
-        if(dv==0) {
-           return  emulateDice();
+        if (dv == 0) {
+            return emulateDice();
         }
-        return  dv;
+        return dv;
     }
 }

@@ -18,7 +18,6 @@ package in.jugchennai.urbantravellers.timers;
 import in.jugchennai.urbantravellers.game.GameBoard;
 import in.jugchennai.urbantravellers.game.GameBoardConfig;
 import in.jugchennai.urbantravellers.game.GameCache;
-import in.jugchennai.urbantravellers.game.SignalPoint;
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import org.apache.log4j.Logger;
@@ -44,6 +43,7 @@ public class UTSignalChangeTimer {
             for (int i = 0; i < boardConfig.getNoOfSignalPoints(); i++) {
                 boardConfig.toggleSignal(
                         boardConfig.getSigPos()[i].getSignalPos());
+                // code to call websocket client 
             }
             gameBoard.setBoardConfig(boardConfig);
         } catch (Exception ex) {

@@ -19,7 +19,6 @@ import in.jugchennai.urbantravellers.game.GameBoard;
 import in.jugchennai.urbantravellers.game.GameBoardFactory;
 import in.jugchennai.urbantravellers.game.GameCache;
 import in.jugchennai.urbantravellers.game.Player;
-import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -32,54 +31,47 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class CreateGame {
 
-    
     private String gameId;
     private GameBoard board;
     private Player player;
     private GameCache cache;
-    
-    @ManagedProperty(value="#{loginBean.userName}")
+    @ManagedProperty(value = "#{loginBean.userName}")
     private String userName;
-    
+
     /**
      * Creates a new instance of CreateGame
      */
-    
     public CreateGame() {
     }
-    
-    public void setGameId(String gameId)
-    {
-        this.gameId=gameId;
+
+    public void setGameId(String gameId) {
+        this.gameId = gameId;
     }
-    
-    public String getGameId()
-    {
+
+    public String getGameId() {
         return gameId;
     }
-    
-    public void setUserName(String userName)
-    {
-        this.userName=userName;
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
-      
-    public String getUserName()
-    {
+
+    public String getUserName() {
         return userName;
     }
-    
-    public void createGame()
-    {
-        try
-        {
-            cache=GameCache.getInstance();
-            cache.addBoard(gameId, GameBoardFactory.createGameBoard("gameId", 50, 2, 6));
-            player=new Player(userName);
+
+    public void createGame() {
+        try {
+            cache = GameCache.getInstance();
+            /*hard coded GAME_ID to ensure only one game across app
+             */
+            cache.addBoard(GameCache.GAME_ID,
+                    GameBoardFactory.createGameBoard(
+                    this.gameId, 50, 2, 6));
+            player = new Player(userName);
             board = cache.getBoard(gameId);
             board.addPlayerToBoard(player);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
     }

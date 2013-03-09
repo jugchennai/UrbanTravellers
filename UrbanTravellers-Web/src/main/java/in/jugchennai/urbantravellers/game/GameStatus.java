@@ -13,27 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package in.jugchennai.urbantravellers.formbean;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
+package in.jugchennai.urbantravellers.game;
 
 /**
  *
- * @author MahiRaj Gosemath
+ * @author prasannakumar
  */
-@ManagedBean
-@RequestScoped
-public class LogoutBean {
-    
-  public String logout() {
-    String result="/login.xhtml?faces-redirect=true";
-
-    FacesContext context = FacesContext.getCurrentInstance();
-    context.getExternalContext().invalidateSession();
-    
-    return result;
-  }
+public enum GameStatus {
+    /**
+     * when no game is happening
+     */
+    UNINITIALIZED,
+    /**
+     * when a game has initialized but waiting for players
+     */
+    INITIALIZED,
+    /**
+     * game has started, no more players could be added after this
+     */
+    HAPPENING
 }
-
