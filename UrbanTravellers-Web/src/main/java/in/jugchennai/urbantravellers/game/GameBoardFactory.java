@@ -23,6 +23,9 @@ import java.util.Random;
  */
 public class GameBoardFactory {
 
+    private GameBoardFactory() {
+    }
+    
     public static GameBoard createGameBoard(String boradName,
             int maxPoints, int noOfSigPoints, int maxPlayers) {
         return new GameBoard(

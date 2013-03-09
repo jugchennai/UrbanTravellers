@@ -45,6 +45,8 @@ public class GameBoardSocket extends UTSocket {
 
     /**
      * the following block of code might be moved to a JSF handler
+     * and it has to be removed from here 
+     * @Deprecated
      */
     static {
         try {
