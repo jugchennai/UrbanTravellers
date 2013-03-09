@@ -25,12 +25,11 @@ import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
 /**
- *
  * @author prasannakumar
  */
 @WebSocketEndpoint(value = "/UTGameBootSocket",
-encoders = {DataEncoder.class},
-decoders = {DataDecoder.class})
+        encoders = {DataEncoder.class},
+        decoders = {DataDecoder.class})
 public class GameBootSocket extends UTSocket {
 
     /**
@@ -44,10 +43,14 @@ public class GameBootSocket extends UTSocket {
     @WebSocketMessage
     public void broadCastMessage(GameData gd, Session peer)
             throws IOException, EncodeException, JSONException, Exception {
-        GameBoard board = cache.getBoard(gd.getJson().get("gameId").toString());
+        String gameID = gd.getJson().get("gameId").toString();
+        GameBoard board = cache.getBoard(gameID);
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("players", board.getPlayersOnBoard());
-        jSONObject.put("gameId", gd.getJson().get("gameId"));
+        jSONObject.put("gameId", gameID);
+        if (board.getPlayersOnBoard().size() == 3) {
+            jSONObject.put("startGame", true);
+        }
         gd.setJson(jSONObject);
         for (Session currPeer : peers) {
             currPeer.getRemote().sendObject(gd);

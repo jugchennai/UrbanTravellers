@@ -13,33 +13,30 @@
                 <hr>
             </div>
             <div class="row-fluid">
-                <div class="span3">
+                <div class="span3 offset1">
                     <form action=""> 
-                        <legend>Create Game</legend>
+                        <b>Create Game</b>
                         <label>Name your game :</label>
                         <input id="nameField" placeholder="Name"type="text"/><br><br>
-                        <input class="btn btn-primary btn-large" value="create" type="button"/>
+                        <input class="btn btn-primary" value="create" type="button"/>
                     </form>
                 </div>
-                <div class="span9">
-                    <div id="output"></div>
-                    <div class="span6" id="score">
-                        <h2>Active GameBoards</h2>
-                        <div class="span3">
-                            <h4>
-                                Pras
-                            </h4> 
-                            <div id="prasScore">
+                <div class="span7">
 
-                            </div>
-                        </div>
-                        <div class="span3">
+                    <div class="span7" id="score">
+                        <p> 
+                        <h4 class="small">
+                            GameBoard/s you may wish to join .... 
+                        </h4>
+                        </p>
+                        <div class="span7">
+                            <p>
                             <h4>
-                                Raj 
-                            </h4> 
-                            <div id="rajScore">
-
-                            </div>
+                                New Game 1     
+                            </h4>
+                            <span  class="badge badge-important">3</span> Players on-board
+                            </p>
+                            <a href="gameBoot.jsp" class="btn btn-primary btn-small">Join</a>
                         </div>
                     </div>
                 </div>

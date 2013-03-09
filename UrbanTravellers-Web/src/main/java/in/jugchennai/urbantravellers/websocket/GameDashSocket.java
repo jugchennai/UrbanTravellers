@@ -17,8 +17,9 @@ package in.jugchennai.urbantravellers.websocket;
 
 import in.jugchennai.urbantravellers.game.GameBoard;
 import in.jugchennai.urbantravellers.game.GameCache;
+import in.jugchennai.urbantravellers.game.GameStatus;
+import static in.jugchennai.urbantravellers.websocket.UTSocket.cache;
 import java.io.IOException;
-import java.util.Map;
 import javax.websocket.EncodeException;
 import javax.websocket.Session;
 import javax.websocket.WebSocketEndpoint;
@@ -31,8 +32,8 @@ import org.codehaus.jettison.json.JSONObject;
  * @author prasannakumar
  */
 @WebSocketEndpoint(value = "/UTGameDashSocket",
-encoders = {DataEncoder.class},
-decoders = {DataDecoder.class})
+        encoders = {DataEncoder.class},
+        decoders = {DataDecoder.class})
 public class GameDashSocket extends UTSocket {
 
     /**
@@ -45,7 +46,7 @@ public class GameDashSocket extends UTSocket {
      */
     @WebSocketMessage
     public void broadCastMessage(GameData gd, Session peer)
-            throws IOException, EncodeException, JSONException {
+            throws IOException, EncodeException, JSONException, Exception {
         gd.setJson(prepareGameDash(gd));
         for (Session currPeer : peers) {
             currPeer.getRemote().sendObject(gd);
@@ -58,15 +59,15 @@ public class GameDashSocket extends UTSocket {
      * @return
      * @throws JSONException
      */
-    private JSONObject prepareGameDash(GameData gd) throws JSONException {
+    private JSONObject prepareGameDash(GameData gd) 
+            throws JSONException, Exception {
         JSONObject jSONObject = gd.getJson();
-        Map<String, GameBoard> map = cache.getBoards();
-        for (String key : map.keySet()) {
-            if (!map.get(key).hasGameStarted()) {
-                jSONObject.put("gameId", key);
-                jSONObject.put("players", map.get(key).getCurrentPlayersOnBoard());
-            }
+         GameBoard board = cache.getBoard(GameCache.GAME_ID);
+        if (!board.getGameStatus().equals(GameStatus.HAPPENING)) {
+            jSONObject.put("gameId", GameCache.GAME_ID);
+            jSONObject.put("players", board.getCurrentPlayersOnBoard());
         }
+        jSONObject.put("gameStatus", board.getGameStatus().name());
         return jSONObject;
     }
 

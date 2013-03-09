@@ -36,6 +36,7 @@ public class GameBoard {
     private GameBoardConfig boardConfig;
     private Logger log = Logger.getLogger(GameBoard.class);
     private boolean hasPlayStarted = false;
+    private GameStatus gameStatus = GameStatus.UNINITIALIZED;
 
     protected GameBoard() {
     }
@@ -55,6 +56,9 @@ public class GameBoard {
      */
     public void addPlayerToBoard(Player player) throws Exception {
         if (playerMap.size() <= boardConfig.getMaxNoOfPlayer()) {
+            if(playerMap.isEmpty()) {
+                this.gameStatus = GameStatus.INITIALIZED;
+            }
             playerMap.put(player.getName(), player);
             log.info(" Player " + player.getName() + " has been added to the board");
         } else {
@@ -106,6 +110,7 @@ public class GameBoard {
     
     public void startPlay() {
         this.hasPlayStarted = true;
+        this.gameStatus = GameStatus.HAPPENING;
     }
     
     public int getCurrentPlayersOnBoard() {
@@ -146,6 +151,10 @@ public class GameBoard {
         log.info(" board config changed ");
         log.info(" with signal points " + this.boardConfig.getSigPos());
         this.boardConfig = boardConfig1;
+    }
+    
+    public GameStatus getGameStatus() {
+        return this.gameStatus;
     }
 
     @Override

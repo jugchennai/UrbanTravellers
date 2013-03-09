@@ -15,21 +15,31 @@
  */
 package in.jugchennai.urbantravellers.websocket;
 
-import javax.websocket.WebSocketEndpoint;
-import javax.websocket.WebSocketMessage;
-import org.apache.log4j.Logger;
+import javax.websocket.*;
+import org.codehaus.jettison.json.JSONObject;
 
 /**
+ * this client would be used by the EJBTimer to send frequent updates about
+ * players joined the board
  *
  * @author prasannakumar
  */
-@WebSocketEndpoint("/pingEndpoint")
-public class SampleEndpoint {
+@WebSocketClient
+public class GameBootSocketClient {
 
-    Logger logger = Logger.getLogger(SampleEndpoint.class);
+    private JSONObject jSONObject;
 
-    @WebSocketMessage
-    public void onMessage(String message) {
-        logger.info("just a msg arrived on sample WS endpoint");
+    public GameBootSocketClient(JSONObject message) {
+        jSONObject = message;
+    }
+
+    /**
+     *
+     * @param peer
+     * @throws Exception
+     */
+    @WebSocketOpen
+    public void sendMessage(Session peer) throws Exception {
+        peer.getRemote().sendObject(this.jSONObject);
     }
 }
