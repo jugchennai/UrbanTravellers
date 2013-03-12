@@ -31,7 +31,7 @@ import org.codehaus.jettison.json.JSONObject;
 /**
  *
  * @author prasannakumar
- * @MahiRaj Gosemath  
+ * @author MahiRaj Gosemath  
  */
 @WebSocketEndpoint(value = "/UTGameBootSocket",
 encoders = {DataEncoder.class},
