@@ -10,17 +10,14 @@
 
             function init() {
                 output = document.getElementById("output");
+                createsocket("UTGameBootSocket");
             }
                 
             function send()
             {
                 say_hello();
             }
-            
-            function roll()
-            {
-                rollDice();
-            }
+
             window.addEventListener("load", init, false);
                 
         </script>
@@ -42,19 +39,6 @@
                         <h:commandButton class="btn btn-primary" onclick="send()" action="${createGame.createGame()}" value="Create" >
                             <f:ajax execute="@form" render="@none" />
                         </h:commandButton>                      
-                    </h:form>
-                    
-                    <h:form id="rollDice"> 
-                        <label>Dice Count:</label>
-                        <input id="diceField" disabled="disabled" placeholder="Dice" type="text" /><br/><br/>
-                        <!-- <label>Position</label> -->
-                        <input id="positionField" placeholder="Position" type="hidden" value="0" /><br/><br/>
-                        <h:inputHidden id="gameId" value="#{createGame.gameId}"  />
-                        <h:inputHidden id="userName" value="#{loginBean.userName}" />
-                        <h:commandButton class="btn btn-primary" onclick="roll()" value="Roll" >
-                            <f:ajax execute="@form" render="@none" />
-                        </h:commandButton>
-                        <input class="btn btn-primary"  value="Toggle Signal" type="button"/>
                     </h:form>
                     
                 </div>                  
