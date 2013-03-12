@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2013 JUGChennai.
  *
@@ -53,68 +54,6 @@ public class GameDashSocket extends UTSocket {
             throws IOException, EncodeException, JSONException {
         String type=gd.getJson().getString("type");
         System.out.println("JSON Received");
-        if(type.equals("loadGames"))
-        {
-            JSONObject jSONObject = gd.getJson();
-            jSONObject.put("type", "loadGames");
-            if(cache.getBoards().isEmpty())
-            {  
-                jSONObject.put("status", "no_game");        
-            }
-            else
-            {                
-                jSONObject=prepareGameDash(gd);
-            }
-            gd.setJson(jSONObject);
-            peer.getRemote().sendObject(gd);
-        }
-        if(type.equals("createGame"))
-        {
-            try
-            {
-                Thread.sleep(2000);
-            }catch(Exception e){}
-            System.out.println("Game Created.");
-            gd.setJson(prepareGameDash(gd));  
-            System.out.println("JSON Created");
-            for (Session currPeer : peers) {
-                //if(!currPeer.equals(peer)) {
-                currPeer.getRemote().sendObject(gd);
-                // }
-            } 
-        }
-        if(type.equals("gameJoined"))
-        {
-            System.out.println("Game joined by a player.");
-            String player=gd.getJson().getString("playerName");
-            String game=gd.getJson().getString("gameId");
-            try
-            {
-                Player addPlayer=new Player(player);
-                GameBoard board=cache.getBoard(game);
-                board.addPlayerToBoard(addPlayer);
-                Set<String> playersOnBoard=board.getPlayersOnBoard();
-                Map<String, Integer> playersPosition=new HashMap();
-                for(String s : playersOnBoard)
-                {
-                    Player temp=board.getPlayer(s);
-                    int position=temp.getPosition();
-                    playersPosition.put(s, position);
-                }
-                JSONObject jSONObject = gd.getJson();
-                jSONObject.accumulate("players", playersPosition);
-                gd.setJson(jSONObject);
-                for (Session currPeer : peers) {
-                    //if(!currPeer.equals(peer)) {
-                    currPeer.getRemote().sendObject(gd);
-                    // }
-                } 
-            }
-            catch(Exception e)
-            {
-                
-            }
-        }
         if(type.equals("roll"))
         {
             String gameId=gd.getJson().getString("gameId");
@@ -137,14 +76,27 @@ public class GameDashSocket extends UTSocket {
                     playersPosition.put(s, newposition);
                 }
                 JSONObject jSONObject = gd.getJson();
-                jSONObject.accumulate("players", playersPosition);
+                jSONObject.put("players",playersPosition);
                 gd.setJson(jSONObject);
                 for (Session currPeer : peers) {
-                    //if(!currPeer.equals(peer)) {
                     currPeer.getRemote().sendObject(gd);
-                    // }
                 } 
             }catch(Exception e){}
+        }
+        if(type.equals("notify")) 
+        {
+            int players=0;
+            JSONObject jSONObject = gd.getJson();
+            String gameId=jSONObject.getString("gameId");
+            try
+            {
+                players=cache.getBoard(gameId).getCurrentPlayersOnBoard();
+            }catch(Exception e){}
+            jSONObject.put("number", players);
+            for(Session currPeer : peers)
+            {
+                currPeer.getRemote().sendObject(gd);
+            }
         }
     }
 
@@ -154,23 +106,6 @@ public class GameDashSocket extends UTSocket {
      * @return
      * @throws JSONException
      */
-    private JSONObject prepareGameDash(GameData gd) throws JSONException {
-        JSONObject jSONObject = gd.getJson();
-        Map<String, GameBoard> map = cache.getBoards();
-        System.out.println("Cache lenght : "+cache.getBoards().size());
-        for (String key : map.keySet()) {
-            System.out.println("Debug : "+key+" "+map.get(key).hasGameStarted());
-            if (!map.get(key).hasGameStarted()) {
-                System.out.println(key);
-                jSONObject.put("type", "createGame");
-                jSONObject.put("status", "active");
-                jSONObject.put("gameId", key);
-                jSONObject.put("players", map.get(key).getCurrentPlayersOnBoard());
-                System.out.println("JSON "+jSONObject);
-            }
-        }
-        return jSONObject;
-    }
 
     @WebSocketOpen
     public void onOpen(Session peer) throws Exception {
