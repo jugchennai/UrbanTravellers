@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                template="WEB-INF/template/template.xhtml">
+    <ui:define name="title">Urban Travellers :: Registration form</ui:define>
+
+    <ui:define name="script">
+        <script language="javascript" type="text/javascript">
+
+            function init() {
+                output = document.getElementById("output");
+                createsocket("UTGameDashSocket");
+            }
+                      
+            function roll()
+            {
+                rollDice();
+            }
+            window.addEventListener("load", init, false);
+                
+        </script>
+    </ui:define>
+    
+     <ui:define name="content">
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <h1>Urban Travelers</h1>
+            </div>
+            <div class="row-fluid">
+                <div class="span3">
+                    <h:form id="rollDice"> 
+                        <legend>Create Game</legend>
+                        <label>Dice :</label>
+                        <h:inputHidden id="userName" value="#{loginBean.userName}" />
+                        <h:inputText disabled="true" id="rollvalue" />
+                        <h:commandButton id="roll" class="btn btn-primary" action="${createGame.createGame()}" onclick="roll()" value="Roll" >
+                            <f:ajax execute="@form" render="@none" />
+                        </h:commandButton>                    
+                    </h:form>
+                                        
+                </div>                  
+                
+                <div class="span9">
+                    <div class="span7" id="score">
+                        <h3>GameBoard</h3>
+                            <div id="output"></div>
+                    </div>
+                    <div id="games" class="boards">
+                        <legend>Logs</legend>            
+                    </div>
+                </div>    
+            </div>
+            
+        </div>
+
+    </ui:define>
+    
+</ui:composition>
+
