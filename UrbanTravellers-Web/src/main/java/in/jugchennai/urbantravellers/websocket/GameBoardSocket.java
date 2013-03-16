@@ -44,27 +44,24 @@ public class GameBoardSocket extends UTSocket {
     // the getInstance method does some bootstrap activities
 
     /**
-     * the following block of code might be moved to a JSF handler
-     * and it has to be removed from here 
+     * the following block of code might be moved to a JSF handler and it has to
+     * be removed from here
+     *
      * @Deprecated
+     *
+     * static { try { // replace the GameCache.GAME_ID with id obtained from DB
+     * cache.addBoard(GameCache.GAME_ID,
+     * GameBoardFactory.createGameBoard("brandNewGame", 50, 2, 6)); GameBoard
+     * board = cache.getBoard(GameCache.GAME_ID);
+     *
+     * // except the following lines board.addPlayerToBoard(new Player("Pras"));
+     * board.addPlayerToBoard(new Player("Raj")); board.addPlayerToBoard(new
+     * Player("Shiv"));
+     *
+     * } catch (Exception ex) { logger.error("exception while configuring game "
+     * + ex); } }
+     *
      */
-    static {
-        try {
-            // replace the GameCache.GAME_ID with id obtained from DB
-            cache.addBoard(GameCache.GAME_ID,
-                    GameBoardFactory.createGameBoard("brandNewGame", 50, 2, 6));
-            GameBoard board = cache.getBoard(GameCache.GAME_ID);
-
-            // except the following lines
-            board.addPlayerToBoard(new Player("Pras"));
-            board.addPlayerToBoard(new Player("Raj"));
-            board.addPlayerToBoard(new Player("Shiv"));
-
-        } catch (Exception ex) {
-            logger.error("exception while configuring game " + ex);
-        }
-    }
-
     @Override
     public void onOpen(Session peer) throws Exception {
         logger.info("added player to session ");
@@ -93,7 +90,7 @@ public class GameBoardSocket extends UTSocket {
             String playerName = gd.getJson().getString("playerName");
             String diceValue = gd.getJson().getString("diceValue");
 
-            GameBoard board = cache.getBoard(GameCache.GAME_ID);
+            GameBoard board = cache.getBoard();
             Player player = board.movePlayerPosition(playerName,
                     Integer.parseInt(diceValue));
             GameData gamedata = new GameData();
@@ -114,13 +111,14 @@ public class GameBoardSocket extends UTSocket {
 
     /**
      * send signal change msg to connected browsers
+     *
      * @param name
      * @throws JSONException
      * @throws IOException
-     * @throws EncodeException 
+     * @throws EncodeException
      */
     @WebSocketMessage
-    public void sendSignalChange(String name) throws 
+    public void sendSignalChange(String name) throws
             JSONException, IOException, EncodeException {
         GameData gamedata = new GameData();
         JSONObject json = new JSONObject();

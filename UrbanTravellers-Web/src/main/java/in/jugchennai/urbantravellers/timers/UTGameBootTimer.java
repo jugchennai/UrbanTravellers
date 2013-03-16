@@ -21,7 +21,7 @@ import org.codehaus.jettison.json.JSONObject;
 @Stateless
 public class UTGameBootTimer {
 
-    @Schedule(minute = "*/3", hour = "*", persistent = false)
+    // @Schedule(minute = "*/3", hour = "*", persistent = false)
     public void myTimer() {
         try {
             CountDownLatch messageLatch = new CountDownLatch(1);
