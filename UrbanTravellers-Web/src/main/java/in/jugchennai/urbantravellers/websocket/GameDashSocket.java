@@ -62,7 +62,7 @@ public class GameDashSocket extends UTSocket {
     private JSONObject prepareGameDash(GameData gd)
             throws JSONException, Exception {
         JSONObject jSONObject = gd.getJson();
-        GameBoard board = cache.getBoard(GameCache.GAME_ID);
+        GameBoard board = cache.getBoard();
         if (!board.getGameStatus().equals(GameStatus.HAPPENING)) {
             jSONObject.put("gameId", GameCache.GAME_ID);
             jSONObject.put("players", board.getCurrentPlayersOnBoard());
