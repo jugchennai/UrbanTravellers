@@ -38,7 +38,7 @@ public class UTSignalChangeTimer {
     @Schedule(minute = "*/3", hour = "*", persistent = false)
     public void toggleSignal() {
         try {
-            GameBoard gameBoard = cache.getBoard(GameCache.GAME_ID);
+            GameBoard gameBoard = cache.getBoard();
             GameBoardConfig boardConfig = gameBoard.getBoardConfig();
             for (int i = 0; i < boardConfig.getNoOfSignalPoints(); i++) {
                 boardConfig.toggleSignal(

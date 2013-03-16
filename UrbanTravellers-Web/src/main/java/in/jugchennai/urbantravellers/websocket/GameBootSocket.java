@@ -44,7 +44,10 @@ public class GameBootSocket extends UTSocket {
     public void broadCastMessage(GameData gd, Session peer)
             throws IOException, EncodeException, JSONException, Exception {
         String gameID = gd.getJson().get("gameId").toString();
-        GameBoard board = cache.getBoard(gameID);
+        
+        // we may not need these lines 
+        GameBoard board = cache.getBoard();
+        
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("players", board.getPlayersOnBoard());
         jSONObject.put("gameId", gameID);

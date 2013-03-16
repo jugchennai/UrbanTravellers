@@ -16,7 +16,6 @@
 package in.jugchennai.urbantravellers.formbean;
 
 import in.jugchennai.urbantravellers.game.GameBoard;
-import in.jugchennai.urbantravellers.game.GameBoardFactory;
 import in.jugchennai.urbantravellers.game.GameCache;
 import in.jugchennai.urbantravellers.game.Player;
 import javax.faces.bean.ManagedBean;
@@ -65,11 +64,8 @@ public class CreateGame {
             cache = GameCache.getInstance();
             /*hard coded GAME_ID to ensure only one game across app
              */
-            cache.addBoard(GameCache.GAME_ID,
-                    GameBoardFactory.createGameBoard(
-                    this.gameId, 50, 2, 6));
             player = new Player(userName);
-            board = cache.getBoard(gameId);
+            board = cache.getBoard();
             board.addPlayerToBoard(player);
         } catch (Exception e) {
             System.out.println(e.toString());
