@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-   	var dice,name, username, websocket;
+   		var dice,name, username, websocket;
 	
 	var bootsocket = "ws://localhost:8080/UrbanTravellers-Web/UTGameBootSocket";
 	
@@ -82,21 +82,17 @@
             
             if(json.type==="addPlayer")
             {
-				var content;
+				var content="";
 				var players = json.players;
 				for(var i=0;i<players.length;i++)
 				{
-					content += players[i]+" joined the game.\n";
+					content += players[i]+" joined the game.<br/>";
 				}
 				writeToScreen(content);
-				alert("Game Found.");
-				temp=document.createElement("newDiv");
-                temp.innerHTML="<div class='box'><form>"+
+                content="<div class='box'>"+
                                 "Name :"+json.gameId+"<br/>"+
-                                "Players :"+json.players+"<br/>"+
-								"<input type='hidden' value='"+json.gameId+"' id='hid'><br/>";
-                document.getElementById("games").appendChild(temp);
-				alert(json.startGame);
+                                "Players :"+json.players+"<br/></div>";
+				document.getElementById("activeGames").innerHTML=content;
 				if(json.startGame==false)
 				{
 					//writeToScreen("Waiting for others to join.");
