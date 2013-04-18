@@ -46,33 +46,33 @@ public class GameBootSocket extends UTSocket {
     @WebSocketMessage
     public void broadCastMessage(GameData gd, Session peer)
             throws IOException, EncodeException, JSONException, Exception {
+        System.out.println("JSON RECEIVED");
         String gameID = gd.getJson().get("gameId").toString();
-        GameBoard board = cache.getBoard(gameID);
-        String player=gd.getJson().get("player").toString();
-        board.addPlayerToBoard(new Player(player));
+        String playername = gd.getJson().getString("playerName");
+        
+        // we may not need these lines 
+        GameBoard board = cache.getBoard();
+        board.addPlayerToBoard(new Player(playername));
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("players", board.getPlayersOnBoard());
         jSONObject.put("gameId", gameID);
-        jSONObject.put("type","addPlayer");
+        jSONObject.put("type", "notify");
+        jSONObject.put("playerName", playername);
         if (board.getPlayersOnBoard().size() == 3) {
             jSONObject.put("startGame", true);
         }
-    else{
-            jSONObject.put("startGame", false);
-	}
-        System.out.println("JSON :" +jSONObject);
         gd.setJson(jSONObject);
-        System.out.println("Peers : "+peers.size());
-        for(Session currPeer : peers) {
-            System.out.println(currPeer);
+        System.out.println("JSON : "+gd.getJson());
+        for (Session currPeer : peers) {
             currPeer.getRemote().sendObject(gd);
         }
-        System.out.println("JSON SENT :" +jSONObject);
+        System.out.println("JSON SENT");
     }
 
     @WebSocketOpen
     public void onOpen(Session peer) throws Exception {
         peers.add(peer);
+        System.out.println("player added");
     }
 
     @WebSocketClose
