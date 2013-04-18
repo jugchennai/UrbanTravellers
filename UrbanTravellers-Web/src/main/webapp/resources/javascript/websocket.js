@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-   		var dice,name, username, websocket;
+   	var dice,name, username, websocket;
 	
-	var bootsocket = "ws://localhost:8080/UrbanTravellers-Web/UTGameBootSocket";
+	var dice,name, username, websocket;
+	var players = new Array();
+	var positions = new Array();
 	
 	function createsocket(socket){
-	
 		var wsUri = "ws://localhost:8080/UrbanTravellers-Web/"+socket;
 		websocket = new WebSocket(wsUri);
 		websocket.onopen = function(evt) { onOpen(evt) };
 		websocket.onmessage = function(evt) { onMessage(evt) };
 		websocket.onerror = function(evt) { onError(evt) };  
 	}
-	
+            
 	function init() {
             output = document.getElementById("output");    
         }
@@ -34,8 +35,14 @@
         {
             name = document.getElementById("rollDice:userName").value;
             dice = Math.floor((Math.random()*6)+1);
-            document.getElementById("rollDice:rollvalue").value=dice;
-                
+            document.getElementById("rollDice:diceField").value=dice;
+			var position = document.getElementById("rollDice:positionField").value;
+            document.getElementById("rollDice:positionField").value = parseInt(position) + dice;
+			position = parseInt(position)+dice;
+			UB.moveCar(getIndex(name)+1, position);
+			temp=document.createElement("newDiv");
+			temp.innerHTML="<p>"+name+"("+position+") rolled "+dice+"</p>";
+			document.getElementById("games").appendChild(temp);
             var json = JSON.stringify({
                     "type" : "roll",
                     "gameId" : "game1",
@@ -48,18 +55,21 @@
         }
 
         function onOpen(evt) {
-            alert("Connected");
+            //alert("Connected");
             writeToScreen("WELCOME !!!! you have been now placed in the game board !!! ");
 			var url=window.location.pathname;
 			var newurl=url.substring(url.lastIndexOf('/') + 1)
 			if(newurl==="createGame.xhtml")
 			{
-				var name=document.getElementById("createGame:userName").value;
-				onConnected(name);
+				onConnected();
 			}
-			if(newurl==="gamedash.xhtml")
+			if(newurl==="gameboard.xhtml")
 			{
-				addPlayer();
+				notify();
+			}
+			if(newurl==="game.xhtml")
+			{
+				getPlayers();
 			}
         }
 
@@ -67,79 +77,140 @@
             writeToScreen('<span style="color: red;">ERROR:</span> ' + evt);
         }
 
-        function updateScore(obj) {
-                if(obj.player === "Pras") {
-                    prasscore.innerHTML = obj.position
-                } else if (obj.player === "Raj") {
-                    rajscore.innerHTML = obj.position
-            }
-        }
-
         function onMessage(evt) {
-            //alert("Response received");
             var ab =evt.data;
             var json = JSON.parse(ab);
-            
-            if(json.type==="addPlayer")
-            {
-				var content="";
-				var players = json.players;
-				for(var i=0;i<players.length;i++)
+			if(json.type==="loadGames")
+			{
+				if(document.getElementById("no_game"))
 				{
-					content += players[i]+" joined the game.<br/>";
+					document.getElementById("no_game").style.display="none";
 				}
-				writeToScreen(content);
-                content="<div class='box'>"+
+				temp=document.createElement("newDiv");
+                temp.innerHTML="<div class='box'><form>"+
                                 "Name :"+json.gameId+"<br/>"+
-                                "Players :"+json.players+"<br/></div>";
-				document.getElementById("activeGames").innerHTML=content;
-				if(json.startGame==false)
+                                "Players :"+json.players+"<br/>"+
+				"<input type='hidden' value='"+json.gameId+"' id='hid'><br/>"+
+                                "<input id='joinGame' class='btn btn-primary' type='button' onclick='join()' value='Join' /></form></div>";
+                document.getElementById("games").appendChild(temp);
+			}
+			
+			if(json.type==="notify")
+			{
+				var output="";
+				//name=document.getElementById("rollDice:userName").value;
+				if(name!=json.playerName)
 				{
-					//writeToScreen("Waiting for others to join.");
+					temp=document.createElement("newDiv");
+					temp.innerHTML="<p>"+json.playerName+" joined.</p>";
+					document.getElementById("games").appendChild(temp);
 				}
-				else
+				var numbers = json.players.length;
+				for(var i=0;i<numbers;i++)
 				{
-					writeToScreen("Loading Game.");
+					output += json.players[i]+" joined the game<br/>";
 				}
-            }
-            console.log("Msg Recieving");
-            console.log(ab);
-            //writeToScreen("RECEIVED: " + evt.data);
+				document.getElementById("players").innerHTML=output;
+					
+				if(numbers>=3)
+				{
+					setTimeout(function() { alert("Loading Gameboard"); window.location.href="game.xhtml"; }, 3000);
+				}
+						
+			}
+			
+			if(json.type==="roll")
+			{
+				name=document.getElementById("rollDice:userName").value;
+				if(name!=json.player)
+				{
+					temp=document.createElement("newDiv");
+					temp.innerHTML="<p>"+json.player+"("+json.position+") rolled "+json.diceValue+"</p>";
+					document.getElementById("games").appendChild(temp);
+					var index = getIndex(json.player)+1;
+					UB.moveCar(index, json.position);
+				}
+			}
+			
+			if(json.type==="getPlayers")
+			{
+				var length = json.players.length;
+				for(var i=0;i<length;i++)
+				{
+					players[i] = json.players[i];
+					positions[i] = 0;
+					UB.addCar(i+1);	
+				}
+			}
+			
+			console.log("Msg Recieving");
+			console.log(ab);
+			writeToScreen("RECEIVED: " + evt.data);
         }
+		
 
         function writeToScreen(message) {
             var pre = document.createElement("p");
             pre.style.wordWrap = "break-word";
-			output.innerHTML=message;
-            /*pre.innerHTML = message;
-            output.appendChild(pre);*/
+            pre.innerHTML = message;
+            output.appendChild(pre);
         }
 		
-		function onConnected(name)
-		{
-            var json = JSON.stringify({
-                "type" : "addPlayer",
-				"gameId" : "game1",
-				"player" : name
-            });
+	function onConnected()
+	{
+		var json = JSON.stringify({
+           	"type" : "loadGames",
+			"gameId" : "game1"
+        });
 
-            websocket.send(json);
-            //writeToScreen("SENT: " +json);
-            console.log("Msg Sent"+json);
+       	websocket.send(json);
+       	writeToScreen("SENT: " +json);
+       	console.log("Msg Sent"+json);	
+	}
+		
+	function join()
+	{
+      	window.location.href="gameboard.xhtml";	
+	}
+		
+	function notify()
+	{
+		temp=document.createElement("newDiv");
+		temp.innerHTML="<p>You joined the game.</p>";
+		document.getElementById("games").appendChild(temp);
+		name=document.getElementById("rollDice:userName").value;
+		var json = JSON.stringify({
+        	        "type" : "notify",
+                        "gameId" : "game1",
+                        "playerName": name
+                });
+
+                websocket.send(json);
+                writeToScreen("SENT: " +json); 
+	}
+	
+	function getPlayers()
+	{
+		name = document.getElementById("rollDice:userName").value;
+		var json = JSON.stringify({
+            "type" : "getPlayers",
+            "gameId" : "game1",
+            "playerName": name,
+            "diceValue": 0
+        });
+                
+        websocket.send(json);
+        writeToScreen("SENT: " +json);
+	}
+	
+	function getIndex(name)
+	{
+		for(var i=0;i<3;i++)
+		{
+			if(name===players[i])
+			{
+				return i;
+			}
 		}
-				
-		function notify()
-		{
-            temp=document.createElement("newDiv");
-            temp.innerHTML="<p>You joined the game.</p>";
-            document.getElementById("games").appendChild(temp);
-            var json = JSON.stringify({
-                       "type" : "notify",
-                       "gameId" : "game1",
-                       "playerName": "mgosemath"
-            });
-
-            websocket.send(json);
-            writeToScreen("SENT: " +json); 
-        }
-		
+		return 0;
+	}
