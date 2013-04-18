@@ -10,14 +10,14 @@
 
             function init() {
                 output = document.getElementById("output");
-                createsocket("UTGameBootSocket");
+                createsocket("UTGameDashSocket");
             }
                 
             function send()
             {
                 say_hello();
             }
-
+            
             window.addEventListener("load", init, false);
                 
         </script>
@@ -45,11 +45,12 @@
                 
                 <div class="span9">
                     <div class="span7" id="score">
-                        <h3>GameBoard</h3>
-                            <div id="output"></div>
+                        <h3>Instructions</h3>
+                        <div id="output"></div>
                     </div>
                     <div id="games" class="boards">
-                        <legend>Active Games</legend>            
+                        <legend>Active Games</legend>  
+                        <div id="activeGames"></div>
                     </div>
                 </div>    
             </div>
