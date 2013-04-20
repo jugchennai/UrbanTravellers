@@ -1,9 +1,10 @@
 <%-- 
-    Document   : login
-    Created on : Apr 20, 2013, 2:49:49 PM
+    Document   : rest
+    Created on : Apr 20, 2013, 8:54:06 PM
     Author     : prasannakumar
 --%>
 
+<%@page import="in.jugchennai.urbantravellers.game.GameCache"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,12 +13,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="enrollgame" method="post">
-            Your Name <input type="text" name="name"> 
-            <button type="submit">Login</button>
-        </form>
-        <a href="rest.jsp">Reset</a>
+        <%
+            GameCache.getInstance().getBoard().clearPlayers();
+            response.sendRedirect("index.jsp");
+        %>
     </body>
 </html>
-
-

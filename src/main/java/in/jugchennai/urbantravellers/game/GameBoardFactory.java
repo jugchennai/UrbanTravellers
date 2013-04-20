@@ -34,9 +34,11 @@ public class GameBoardFactory {
     }
 
     private static int[] createPoints() {
-        int a[] = new int[2];
+        int a[] = new int[4];
         a[0] = createPoint(20);
         a[1] = createPoint(40);
+        a[2] = createPoint(60);
+        a[3] = createPoint(70);
         return a;
     }
     

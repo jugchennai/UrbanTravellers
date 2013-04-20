@@ -32,7 +32,8 @@ function writeToScreen(message) {
     pre.style.wordWrap = "break-word";
     var resp = eval("(" + message.toString() + ")");
     if (resp.startGame) {
-        pre.innerHTML = "all player joined <a href='game.jsp'>Lets Start </a> ";
+        var plyrName = document.getElementById("plyrName").value;
+        pre.innerHTML = "all player joined <a href='game.jsp?player=" + plyrName + "'>Lets Start </a> ";
     } else {
         pre.innerHTML = resp.player;
     }

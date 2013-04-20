@@ -106,7 +106,12 @@ public class GameBoard {
     public String getNextPlayer(String playerName) {
         int index = 0;
         String nextPlayer = null;
-        String players[] = (String[]) playerMap.keySet().toArray();
+        String players[] = new String[playerMap.size()];
+        int plyridx = 0;
+        for (String string : playerMap.keySet()) {
+            players[plyridx] = string;
+            plyridx++;
+        }
         while (index < playerMap.keySet().toArray().length) {
             if (players[index].toString().equals(playerName)) {
                 int val = index++;
@@ -147,6 +152,10 @@ public class GameBoard {
 
     public Set<String> getPlayersOnBoard() {
         return playerMap.keySet();
+    }
+
+    public void clearPlayers() {
+        playerMap.clear();
     }
 
     public boolean hasGameStarted() {

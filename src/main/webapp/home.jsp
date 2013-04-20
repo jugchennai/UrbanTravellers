@@ -13,5 +13,6 @@
         <div id="output">
             
         </div>
+        <input type="text" id="plyrName" value="<%=request.getAttribute("player") %>">
     </body>
 </html>
