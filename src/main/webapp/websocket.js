@@ -1,5 +1,5 @@
 
-var wsUri = "ws://localhost:8080/whiteboard/HomeWS";
+var wsUri = "ws://localhost:8080/urbantravellers/HomeWS";
 var websocket = new WebSocket(wsUri);
 websocket.binaryType = "arraybuffer";
 var output = document.getElementById("output");
