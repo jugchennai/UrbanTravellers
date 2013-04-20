@@ -1,13 +1,53 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
-
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Urban Travelers</title>
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css">
+        <script type="text/javascript" src="resources/javascript/jquery-1.8.3.js"></script>
+        <script type="text/javascript">
+            $("#output").load("index.html");
+        </script>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <h1>Urban Travelers</h1>
+                <hr>
+            </div>
+            <div class="row-fluid">
+                <div class="span3">
+                    <form action=""> 
+                        <legend>Create Game</legend>
+                        <label>Name your game :</label>
+                        <input name="nameField" id="nameField" placeholder="Name"type="text"/><br><br>
+                        <input class="btn btn-primary btn-large" value="create" type="submit"/>
+                    </form>
+                </div>
+                <div class="span9">
+                    <div id="output"></div>
+                    <div class="span6" id="score">
+                        <h2>Active GameBoards</h2>
+                        <div class="span3">
+                            <h4>
+                                Pras
+                            </h4> 
+                            <div id="prasScore">
+
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <h4>
+                                Raj 
+                            </h4> 
+                            <div id="rajScore">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

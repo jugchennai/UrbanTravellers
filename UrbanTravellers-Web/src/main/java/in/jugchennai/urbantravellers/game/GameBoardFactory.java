@@ -1,5 +1,6 @@
+
 /*
- * Copyright 2012 JUGChennai.
+ * Copyright 2013 JUGChennai.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +16,30 @@
  */
 package in.jugchennai.urbantravellers.game;
 
-/**
- * Class that creates GameBoard
- * @author prasannakumar
- */
-public final class GameBoardFactory {
+import java.util.Random;
 
-    public static GameBoard createGameBoard(GameBoardConfig boardConfig) {
-        return new GameBoard(boardConfig);
+/**
+ *
+ * @author Prasanna Kumar <prassee.sathian@gmail.com>
+ */
+public class GameBoardFactory {
+
+    public static GameBoard createGameBoard(String boradName,
+            int maxPoints, int noOfSigPoints, int maxPlayers) {
+        return new GameBoard(
+                new GameBoardConfig(maxPoints, noOfSigPoints,
+                maxPlayers, createPoints()));
+    }
+
+    private static int[] createPoints() {
+        int a[] = new int[2];
+        a[0] = createPoint(20);
+        a[1] = createPoint(40);
+        return a;
+    }
+    
+    private static int createPoint(int range) {
+        Random r = new Random(range);
+        return r.nextInt(range+10);
     }
 }

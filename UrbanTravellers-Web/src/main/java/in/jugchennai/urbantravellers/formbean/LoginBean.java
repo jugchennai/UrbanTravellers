@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 JUGChennai.
+ * Copyright 2013 JUGChennai.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,23 +15,32 @@
  */
 package in.jugchennai.urbantravellers.formbean;
 
+import in.jugchennai.urbantravellers.jpa.entitie.UtUsers;
+import in.jugchennai.urbantravellers.jpa.service.UserService;
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.apache.log4j.Logger;
 
-
 /**
  * Login form bean and controller method for login.xhtml page.
  *
- * @author Rajmahendra Hegde 
+ * @author Rajmahendra Hegde <rajmahendra@gmail.com>
  */
 @ManagedBean
-@RequestScoped
-public class LoginBean {
+@SessionScoped
+public class LoginBean implements Serializable{
     
     Logger logger;
+    
+    private boolean logged=false;
+    private Date lastLogin;
  
     @NotNull (message = "UserName must not be null")
     @Size(min=4, max=16, message = "Username must be atleast 4 characters and max of 16")
@@ -45,7 +54,7 @@ public class LoginBean {
        logger = Logger.getLogger(LoginBean.class);
         this.userName = userName;
         this.password = password;
-        
+        this.logged=false;
     }
 
     public LoginBean() {
@@ -68,9 +77,66 @@ public class LoginBean {
         this.password = password;
     }
     
-      public String whenLogin () {
-
-        return "";
+    public void setLogged(boolean value)
+    {
+        logged=true;
     }
+    
+    public boolean getLogged()
+    {
+        return logged;
+    }
+    
+    public void setDate(Date date)
+    {
+        this.lastLogin=date;
+    }
+    
+    public Date getDate()
+    {
+        return lastLogin;
+    }
+    
+    public String whenLogin () {
+  
+        UserService service=new UserService();
+        Collection<UtUsers> findByUsername = service.findByUsername(userName);
+        for (UtUsers next : findByUsername) {
+            if(next.getPassword().equals(password))
+            {
+                setDate(next.getLastlogin());
+                setLogged(true);
+                addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Successful!!!", null));
+                return "success";
+            }
+        }
+        addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Incorrect Username/Password.", null));
+        return "failure";
+    }
+    
+    private void addMessage(FacesMessage message){
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
+    public void userLogged()
+    {
+        if(!logged)
+        {
+            doRedirect("login.xhtml");
+        }
+    }
+    
+    public void verifyUseLogin(){
+        if(logged){
+             doRedirect("member.xhtml");
+        }
+    }
+    private void doRedirect(String url){
+        try {
+            FacesContext context=FacesContext.getCurrentInstance();
+            context.getExternalContext().redirect(url);
+        } catch (Exception e) {
+        }
+    } 
     
 }

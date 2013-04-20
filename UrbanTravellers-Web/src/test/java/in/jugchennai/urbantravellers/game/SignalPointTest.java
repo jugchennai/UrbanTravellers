@@ -16,29 +16,37 @@
 package in.jugchennai.urbantravellers.game;
 
 import static org.junit.Assert.*;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
- *
- * @author prasannakumar
+ * unit test for class SignalPoint
+ *  @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 public class SignalPointTest {
 
     SignalPoint point = new SignalPoint(4);
 
+    /*
+     * 
+     */
     @Test
     public void testGivenPosInSignal() {
         point.setSignalColor(SignalColor.RED);
         assertEquals(true, point.isPositionInSignal(2));
     }
 
+    /*
+     * 
+     */
     @Test
     public void testToIgnoreOnGreenSignal() {
         point.setSignalColor(SignalColor.GREEN);
         assertEquals(false, point.isPositionInSignal(2));
     }
 
+    /*
+     * 
+     */
     @Test
     public void testToVerifyFarSignal() {
         point = new SignalPoint(11);
@@ -46,12 +54,20 @@ public class SignalPointTest {
         assertEquals(false, point.isPositionInSignal(3));
     }
 
+    /*
+     * 
+     */
     @Test
-    public void testShouldGetPassThroughValueOnRedSignal() {
+    public void vehicleNOTMoveUntilRedSignal() {
         point = new SignalPoint(4);
         point.setSignalColor(SignalColor.RED);
-        assertEquals(4, point.getValueToPassThrough(2, 6));
-        assertEquals(1, point.getValueToPassThrough(4, 3));
-        assertEquals(1, point.getValueToPassThrough(2, 2));
+        
+        assertTrue(point.allowedToGo(0, 2)); // 0+ 2 =2 allowd 
+        assertTrue(point.allowedToGo(2, 2)); // 2 + 2 = 4 allowd 
+        
+        // signal @ 4 
+        assertFalse(point.allowedToGo(2, 6)); // 2 + 6 = 6 not allowed
+        assertFalse(point.allowedToGo(4, 3)); // 4 +3 = 7 not allowed 
     }
+    
 }

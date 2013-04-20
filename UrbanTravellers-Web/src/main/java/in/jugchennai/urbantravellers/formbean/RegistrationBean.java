@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 JUGChennai.
+ * Copyright 2013 JUGChennai.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,16 +15,24 @@
  */
 package in.jugchennai.urbantravellers.formbean;
 
+import in.jugchennai.urbantravellers.jpa.entitie.UtUsers;
+import in.jugchennai.urbantravellers.jpa.service.UserService;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import org.apache.log4j.Logger;
 
 /**
  * Registration form bean and controller method for registration.xhtml page.
  *
- * @author Rajmahendra Hegde 
+ * @author Rajmahendra Hegde <rajmahendra@gmail.com>
  */
-@ManagedBean
+
+@ManagedBean(name="regBean")
 public class RegistrationBean {
+    
+    private UserService service;
+    private UtUsers utusers;
     
     private Logger logger;
     
@@ -33,6 +41,7 @@ public class RegistrationBean {
     private String password;
     private String reenterPassword;
     private String displayName;
+    private long updateValue=0;
 
     public RegistrationBean() {
          logger = Logger.getLogger(RegistrationBean.class);
@@ -45,6 +54,7 @@ public class RegistrationBean {
         this.userName = userName;
         this.password = password;
         this.displayName = displayName;
+        utusers=new UtUsers();
     }
 
     public String getFullName() {
@@ -82,7 +92,27 @@ public class RegistrationBean {
     
     public String whenRegisteration() {
         
-        return "";
+        //If Successfull, return success message.
+        //if(service.validateUserName(userName)){}
+        service=new UserService();
+        utusers=new UtUsers();
+        utusers.setUserid(updateValue);
+        utusers.setUsername(userName);
+        utusers.setPassword(password);
+        utusers.setLastlogin(new java.util.GregorianCalendar().getTime());
+        /*if(service.validateUserName(userName))
+        {
+            addMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Username Already Exists. Please use another username.", null));
+            return "failure";
+        }*/
+            if(service.addUser(this.utusers)){
+                addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "User Registration Successful!!!", null));
+                return "success";
+            }
+
+            //If Unsuccessful, return failure message
+            addMessage(new FacesMessage(FacesMessage.SEVERITY_ERROR, "User Registration Failed!!!", null));
+            return "failure";
     }
 
     public String getReenterPassword() {
@@ -93,5 +123,8 @@ public class RegistrationBean {
         this.reenterPassword = reenterPassword;
     }
     
+    private void addMessage(FacesMessage message){
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
     
 }

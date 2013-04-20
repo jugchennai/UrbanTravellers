@@ -3,6 +3,7 @@
   <persistence-unit name="urbanTravellersPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>in.jugchennai.urbantravellers.jpa.entitie.UtUsers</class>
+    <class>in.jugchennai.urbantravellers.jpa.entitie.Game</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/urbantravellers"/>
       <property name="javax.persistence.jdbc.password" value="APP"/>

@@ -1,0 +1,33 @@
+#canvas{
+    float: left;
+    box-shadow: 7px 7px 26px;
+    width: 500;
+    margin-right: 11px;
+    height: 600px;
+} 
+body{
+	background-color: #f7b03d;
+}
+
+.number{
+	height: auto;
+	width: 20%;
+	margin-left: 15px;
+	background-color: #68b553;
+	box-shadow: 7px 7px 26px;
+} 
+.number p {
+	margin-left: 50px;
+}
+.number #content{
+	margin-left: 90px;
+}
+h2{
+	margin-left: 40px;
+	text-shadow:3px 3px 3px #66625d;
+}
+
+#logo{
+	margin-left: -70px;
+	box-shadow: 7px 7px 26px;
+}

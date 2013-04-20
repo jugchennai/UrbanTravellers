@@ -1,0 +1,95 @@
+<link rel="stylesheet" type="text/css" href="css/track.css"/>
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/raphael-min.js"></script>
+<script type="text/javascript" src="js/track.js"></script>
+<div id="canvas">
+</div>
+<div class="number" style="float:left">
+		<div id="content">
+		<br>
+	<button id="newG">New Game</button><br><br>
+	<img id="logo" src="img/UrbenTravellers200.png"/><br><br>
+	<img id="dice" src="img/magic_dice.png" alt="Dice"/><br>
+	
+	</div>
+	<p>car1:<input type="text" id="car1"/></p>
+	<p>car2:<input type="text" id="car2"/></p>
+	<p>car3:<input type="text" id="car3"/></p>
+	<p>car4:<input type="text" id="car4"/></p>
+	<p>car5:<input type="text" id="car5"/></p>
+	<p style="color:red">Please dont put any value greater than 100</p>
+	<p><input type="submit" id="submit"/></p>
+</div>
+<script>
+$(document).ready(function(){
+
+    var signal={
+        'record':[
+            {'id':15},
+            {'id':34},
+            {'id':75},
+            {'id':66}]
+            };
+    var booster={
+        'record':[
+            {'id':25},
+            {'id':48},
+            {'id':80},
+            {'id':90}]
+            };
+            
+	$('#submit').click(function(){
+
+	var c1=Number($('#car1').val());
+	var c2=Number($('#car2').val());
+	var c3=Number($('#car3').val());
+	var c4=Number($('#car4').val());
+	var c5=Number($('#car5').val());
+
+		a={
+					'cars': [{
+					        'block':c1,
+					        'exist':true,
+					        'color':'yellow',
+							'src':'img/car1.png'
+					    },
+					    {
+					        'block':c2,
+					        'exist':true,
+					        'color':'lightgreen',
+							'src':'img/car2.png'
+					    },
+					    {
+					        'block':c3,
+					        'exist':true,
+					        'color':'orange',
+							'src':'img/car3.png'
+					    },
+					    {
+					        'block':c4,
+					        'exist':true,
+					        'color':'white',
+							'src':'img/car4.png'
+					    },
+					    {
+					        'block':c5,
+					        'exist':true,
+					        'color':'grey',
+							'src':'img/car5.png'
+					    }]
+
+			};
+			//UB.init();
+            UB.init(signal,booster);
+			CarLocation(a);
+	});
+	$('#newG').click(function(){
+		CarLocation(0);
+	});
+
+	$('#submit').click(function(){
+   
+	});	
+});
+
+</script>

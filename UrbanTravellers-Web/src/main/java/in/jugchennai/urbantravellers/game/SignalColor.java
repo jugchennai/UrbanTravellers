@@ -16,8 +16,8 @@
 package in.jugchennai.urbantravellers.game;
 
 /**
- *
- * @author prasannakumar
+ * Constants to hold signal color
+ *  @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
 public enum SignalColor {
     RED,GREEN

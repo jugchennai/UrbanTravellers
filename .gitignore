@@ -1,1 +1,32 @@
+#OS dep. file/folder
+.DS_Store
+Thumbs.db
+
+# build system
+build
+bin
+gensrc
+output
+out
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea
+
+# Maven
+target/
+
+# Netbeans
+nb-configuration.xml
+
+# TestNG
+test-output/
+
 target/
