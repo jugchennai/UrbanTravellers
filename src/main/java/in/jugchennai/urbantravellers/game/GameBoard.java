@@ -98,6 +98,10 @@ public class GameBoard {
         return player;
     }
 
+    public String getFirstPlayer() {
+        return this.playerMap.keySet().toArray()[0].toString();
+    }
+
     /**
      *
      * @param playerName

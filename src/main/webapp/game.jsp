@@ -12,7 +12,7 @@
     <body>
         <h1>Hello World!</h1>
         <%
-            String nexplayr = GameCache.getInstance().getBoard().getNextPlayer(request.getParameter("player"));
+            String nexplayr = GameCache.getInstance().getBoard().getFirstPlayer();
         %>
         <input type="text" value="<%= request.getParameter("player")%>">
         <%
