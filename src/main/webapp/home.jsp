@@ -6,13 +6,33 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript" src="websocket.js"></script>
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <style type="text/css">
+            .bigtext {
+                font-size: x-large;
+            }
+        </style>
     </head>
     <body>
-        welcome , <%= request.getAttribute("player") %>
-        <button type="button" onclick="sendText('<%= request.getAttribute("player") %>');" >send</button>
-        <div id="output">
-            
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <div class="span4 offset2">
+                        <h2>
+                            Welcome, <%= request.getAttribute("player")%> !!!
+                        </h2>
+                        <button type="button" class="btn btn-primary btn-large" 
+                                onclick="sendText('<%= request.getAttribute("player")%>');" >Join</button>
+                    </div>
+                    <div class="span2 bigtext">
+                        <h4>Players on board </h4>
+                        <div id="output">
+                            
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="plyrName" value="<%=request.getAttribute("player")%>"> 
+            </div>   
         </div>
-        <input type="text" id="plyrName" value="<%=request.getAttribute("player") %>">
     </body>
 </html>

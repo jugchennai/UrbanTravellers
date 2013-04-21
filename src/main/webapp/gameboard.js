@@ -1,5 +1,5 @@
 
-var wsUri = "ws://localhost:8080/urbantravellers/HomeWS";
+var wsUri = "ws://localhost:8080/urbantravellers/GameBoardWS";
 var websocket = new WebSocket(wsUri);
 websocket.binaryType = "arraybuffer";
 var output = document.getElementById("output");
@@ -10,21 +10,21 @@ websocket.onerror = function(evt) {
     onError(evt);
 };
 
-function sendText(json) {
-    var jsonst = JSON.stringify({
-        "playerName": json
-    });
+function rolldice(json) {
+    var diceThrow = new Object();
+    diceThrow.playerName = json;
+    diceThrow.diceValue = Math.floor((Math.random() * 6) + 1);
+    var jsonst = JSON.stringify(diceThrow);
     console.log("sending text: " + jsonst);
-    websocket.send(jsonst);
+    //websocket.send(jsonst);
 }
 
 function onMessage(evt) {
     console.log("received: " + evt.data);
-    writeToScreen(evt.data);
 }
 
 function onError(evt) {
-    writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+    console.log("error in handling msg")
 }
 
 function writeToScreen(message) {
