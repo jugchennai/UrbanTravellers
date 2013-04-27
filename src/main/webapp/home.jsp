@@ -8,12 +8,35 @@
         <script type="text/javascript" src="js/websocket.js"></script>
         <link href="css/bootstrap.css" rel="stylesheet">
         <style type="text/css">
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
             .bigtext {
-                font-size: x-large;
+                font-size: larger;
             }
         </style>
     </head>
     <body>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="#">UrbanTravellers</a>
+                    <div class="nav-collapse collapse">
+                        <p class="navbar-text pull-right">
+                        </p>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+
+
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span10 offset1">
@@ -27,7 +50,7 @@
                     <div class="span2 bigtext">
                         <h4>Players on board </h4>
                         <div id="output">
-                            
+
                         </div>
                     </div>
                 </div>

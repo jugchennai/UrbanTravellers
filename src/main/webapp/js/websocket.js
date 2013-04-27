@@ -33,7 +33,7 @@ function writeToScreen(message) {
     var resp = eval("(" + message.toString() + ")");
     if (resp.startGame) {
         var plyrName = document.getElementById("plyrName").value;
-        pre.innerHTML = "all player joined <a href='game.jsp?player=" + plyrName + "' class='btn btn-primary btn-small' >Lets Start </a> ";
+        pre.innerHTML = "all players joined <br> <a href='game.jsp?player=" + plyrName + "' class='btn btn-primary btn-small' >Lets Start </a> ";
     } else {
         var plnames = resp.player.split(",");
         var x = "<ul>";

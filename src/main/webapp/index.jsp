@@ -50,7 +50,7 @@
         <div class="container">
 
             <form action="enrollgame" method="post" class="form-signin">
-                <h1>UrbanTravellers</h1>
+                <img src="images/urbanTravellers.png">
                 <hr>   
                 <h4 class="form-signin-heading">Please sign in to join the game </h4>
                 Your Name <input type="text" name="name"> 

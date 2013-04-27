@@ -34,19 +34,22 @@
     <body>
         <div class="container-fluid">
             <div class="row-fluid">
-                <div class="span10 offset1">
-                    <div class="span8">
+                <div class="span12">
+                    <div class="span7 offset1">
                         <div id="container"></div>
                     </div>
-                    <div class="span2">
+                    <div class="span3">
                         <img src="images/urbanTravellers.png">
                         <hr>
+                        <div class="alert alert-success">
+                            A <b>"roll dice"</b> button would be displayed to play your turn
+                        </div>
                         <input type="text" id="playerName" value="<%= request.getParameter("player")%>">
                         <%
                             if (board.getFirstPlayer().equals(request.getParameter("player").toString())) {
                         %>
-                        <button class="btn btn-primary" type="button" id="firstRoll" onclick="rolldice('<%= request.getParameter("player")%>')">RollDice</button>
-                        <button class="btn btn-primary" type="button" id="dicer" style="display: none" onclick="rolldice('<%= request.getParameter("player")%>')">RollDice</button>
+                        <button class="btn btn-primary" type="button" id="firstRoll" onclick="rolldice('<%= request.getParameter("player")%>')">Roll Dice</button>
+                        <button class="btn btn-primary" type="button" id="dicer" style="display: none" onclick="rolldice('<%= request.getParameter("player")%>')">Roll Dice</button>
                         <%
                         } else {
                         %>
