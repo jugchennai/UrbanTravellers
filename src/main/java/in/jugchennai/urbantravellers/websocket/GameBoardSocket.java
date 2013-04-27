@@ -13,7 +13,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
+import javax.json.JsonValue;
 import javax.websocket.EncodeException;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -35,14 +37,11 @@ public class GameBoardSocket {
 
     @OnOpen
     public void onOpen(Session peer) throws Exception {
-        System.out.println("connecting to peer");
-        System.out.println("size of peers " + peers.size());
         peers.add(peer);
     }
 
     @OnClose
     public void onClose(Session peer) {
-        System.out.println("disconnecting from peer");
         peers.remove(peer);
     }
 
@@ -58,16 +57,21 @@ public class GameBoardSocket {
             GameData gamedata = new GameData();
             JsonObjectBuilder json = Json.createObjectBuilder();
             json.add("player", player.getName());
-            json.add("position", player.getPosition());
+            json.add("old-position", player.getOldPosition());
+            json.add("new-position", player.getPosition());
             json.add("diceValue", player.getDiceValue());
             json.add("nextplayer", board.getNextPlayer(playerName));
             gamedata.setJson(json.build());
             gd = gamedata;
-            for (Session currPeer : peers) {
-                currPeer.getBasicRemote().sendObject(gd);
-            }
+            broadCastMsg(gd);
         } catch (NumberFormatException | IOException | EncodeException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    private void broadCastMsg(GameData gd) throws IOException, EncodeException {
+        for (Session currPeer : peers) {
+            currPeer.getBasicRemote().sendObject(gd);
         }
     }
 }

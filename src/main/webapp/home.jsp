@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script type="text/javascript" src="websocket.js"></script>
+        <script type="text/javascript" src="js/websocket.js"></script>
         <link href="css/bootstrap.css" rel="stylesheet">
         <style type="text/css">
             .bigtext {

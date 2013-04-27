@@ -36,6 +36,7 @@ public class GameBoard {
     private Logger log = Logger.getLogger(GameBoard.class);
     private boolean hasPlayStarted = false;
     private GameStatus gameStatus = GameStatus.UNINITIALIZED;
+    private boolean player1Moved = false;
 
     protected GameBoard() {
     }
@@ -53,7 +54,6 @@ public class GameBoard {
      * @throws Exception
      */
     public void addPlayerToBoard(Player player) throws Exception {
-        System.out.println("plyer ma" + playerMap.size());
         if (playerMap.size() < boardConfig.getMaxNoOfPlayer()) {
             if (playerMap.isEmpty()) {
                 this.gameStatus = GameStatus.INITIALIZED;
@@ -93,6 +93,7 @@ public class GameBoard {
         log.info("\n move > " + (move ? "allowed" : "not allowed"));
         if (move) {
             player.setDiceValue(diceValue);
+            player.setOldPosition(player.getPosition());
             player.setPosition(player.getPosition() + diceValue);
         }
         return player;
@@ -103,6 +104,7 @@ public class GameBoard {
      * @return
      */
     public String getFirstPlayer() {
+        this.player1Moved = true;
         return this.playerMap.keySet().toArray()[0].toString();
     }
 
@@ -162,6 +164,10 @@ public class GameBoard {
 
     public boolean hasGameStarted() {
         return hasPlayStarted;
+    }
+
+    public boolean hasPlayer1Started() {
+        return player1Moved;
     }
 
     /**

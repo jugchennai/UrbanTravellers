@@ -24,7 +24,7 @@ package in.jugchennai.urbantravellers.game;
 public class Player {
 
     private String name;
-    private int position,diceValue;
+    private int position,diceValue,oldPosition;
 
     public Player(String name) {
         this.name = name;
@@ -49,6 +49,14 @@ public class Player {
 
     public void setDiceValue(int diceValue) {
         this.diceValue = diceValue;
+    }
+
+    public void setOldPosition(int oldPosition) {
+        this.oldPosition = oldPosition;
+    }
+
+    public int getOldPosition() {
+        return oldPosition;
     }
 
     @Override

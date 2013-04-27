@@ -17,6 +17,10 @@ function rolldice(json) {
     var jsonst = JSON.stringify(diceThrow);
     console.log("sending text: " + jsonst);
     websocket.send(jsonst);
+    if (document.getElementById("firstRoll")) {
+        document.getElementById("firstRoll").style.display = "none";
+    }
+    document.getElementById("dicer").style.display = "none";
 }
 
 function onMessage(evt) {
@@ -24,8 +28,9 @@ function onMessage(evt) {
     var resp = eval("(" + evt.data + ")");
     var plyr = document.getElementById("playerName").value;
     if ((resp.nextplayer) && (plyr == resp.nextplayer)) {
-        document.getElementById("dicer").style.display = "block"
-        alert("you are next");
+        document.getElementById("dicer").style.display = "block";
+    } else {
+        document.getElementById("dicer").style.display = "none";
     }
 }
 
@@ -34,5 +39,5 @@ function onError(evt) {
 }
 
 function writeToScreen(message) {
-
+    
 }
