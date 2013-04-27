@@ -9,15 +9,15 @@
     </head>
     <body>
         <h1>UrbanTravellers</h1>
+        <input type="text" id="playerName" value="<%= request.getParameter("player")%>">
         <%
-            String nexplayr = GameCache.getInstance().getBoard().getFirstPlayer();
+            if (GameCache.getInstance().getBoard().getFirstPlayer().equals(request.getParameter("player").toString())) {
         %>
-        <input type="text" value="<%= request.getParameter("player")%>">
+        <button type="button" id="firstRoll" onclick="rolldice('<%= request.getParameter("player")%>')">RollDice</button>
         <%
-            if (nexplayr.equals(request.getParameter("player").toString())) {
+        } else {
         %>
-        <button type="button" onclick="rolldice(<%request.getParameter("player").toString();%>)">RollDice</button>
-        <%            }
-        %>
+        <button type="button" id="dicer" style="display: none" onclick="rolldice('<%= request.getParameter("player")%>')">RollDice</button>
+        <% }%>
     </body>
 </html>

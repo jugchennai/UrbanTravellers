@@ -1,4 +1,3 @@
-
 package in.jugchennai.urbantravellers.websocket;
 
 import in.jugchennai.urbantravellers.game.GameCache;
@@ -40,9 +39,6 @@ public class HomeWS {
     @OnMessage
     public void boradcastFigure(GameData figure, Session session) throws IOException, EncodeException {
         try {
-           for(String string : gameCache.getBoard().getPlayersOnBoard()) {
-               System.out.println("playes " + string);
-           }
             gameCache.getBoard().addPlayerToBoard(new Player(figure.getJson().getString("playerName")));
             GameData f = new GameData();
             JsonObjectBuilder builder = Json.createObjectBuilder();

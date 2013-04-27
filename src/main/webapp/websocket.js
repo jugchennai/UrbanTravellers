@@ -36,11 +36,11 @@ function writeToScreen(message) {
         pre.innerHTML = "all player joined <a href='game.jsp?player=" + plyrName + "' class='btn btn-primary btn-small' >Lets Start </a> ";
     } else {
         var plnames = resp.player.split(",");
-        var x = "<ul>"
+        var x = "<ul>";
         for (var i = 0; i < plnames.length - 1; i++) {
-            x = x + "<li>" + plnames[i] + "</li>"
+            x = x + "<li>" + plnames[i] + "</li>";
         }
-        x = x + "</ul>"
+        x = x + "</ul>";
         pre.innerHTML = x;
     }
     document.getElementById("output").innerHTML = pre.innerHTML;

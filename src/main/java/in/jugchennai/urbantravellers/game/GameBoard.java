@@ -98,6 +98,10 @@ public class GameBoard {
         return player;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFirstPlayer() {
         return this.playerMap.keySet().toArray()[0].toString();
     }
@@ -108,26 +112,20 @@ public class GameBoard {
      * @return
      */
     public String getNextPlayer(String playerName) {
+        String players[] = playerMap.keySet().toArray(new String[]{});
         int index = 0;
-        String nextPlayer = null;
-        String players[] = new String[playerMap.size()];
-        int plyridx = 0;
-        for (String string : playerMap.keySet()) {
-            players[plyridx] = string;
-            plyridx++;
-        }
-        while (index < playerMap.keySet().toArray().length) {
-            if (players[index].toString().equals(playerName)) {
-                int val = index++;
-                if (index++ == players.length) {
-                    val = 0;
+        int tofind = 0;
+        while (index < players.length) {
+            if (players[index].equals(playerName)) {
+                tofind = index + 1;
+                if (index + 1 == players.length) {
+                    tofind = 0;
                 }
-                nextPlayer = players[val];
                 break;
             }
             index++;
         }
-        return nextPlayer;
+        return players[tofind];
     }
 
     /**

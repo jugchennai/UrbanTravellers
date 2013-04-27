@@ -13,14 +13,20 @@ websocket.onerror = function(evt) {
 function rolldice(json) {
     var diceThrow = new Object();
     diceThrow.playerName = json;
-    diceThrow.diceValue = Math.floor((Math.random() * 6) + 1);
+    diceThrow.diceValue = "" + Math.floor((Math.random() * 6) + 1) + "";
     var jsonst = JSON.stringify(diceThrow);
     console.log("sending text: " + jsonst);
-    //websocket.send(jsonst);
+    websocket.send(jsonst);
 }
 
 function onMessage(evt) {
     console.log("received: " + evt.data);
+    var resp = eval("(" + evt.data + ")");
+    var plyr = document.getElementById("playerName").value;
+    if ((resp.nextplayer) && (plyr == resp.nextplayer)) {
+        document.getElementById("dicer").style.display = "block"
+        alert("you are next");
+    }
 }
 
 function onError(evt) {
@@ -28,20 +34,5 @@ function onError(evt) {
 }
 
 function writeToScreen(message) {
-    var pre = document.createElement("p");
-    pre.style.wordWrap = "break-word";
-    var resp = eval("(" + message.toString() + ")");
-    if (resp.startGame) {
-        var plyrName = document.getElementById("plyrName").value;
-        pre.innerHTML = "all player joined <a href='game.jsp?player=" + plyrName + "' class='btn btn-primary btn-small' >Lets Start </a> ";
-    } else {
-        var plnames = resp.player.split(",");
-        var x = "<ul>"
-        for (var i = 0; i < plnames.length - 1; i++) {
-            x = x + "<li>" + plnames[i] + "</li>"
-        }
-        x = x + "</ul>"
-        pre.innerHTML = x;
-    }
-    document.getElementById("output").innerHTML = pre.innerHTML;
+
 }
