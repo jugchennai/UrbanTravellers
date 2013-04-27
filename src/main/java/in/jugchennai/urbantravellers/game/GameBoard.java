@@ -133,7 +133,8 @@ public class GameBoard {
     }
 
     /**
-     * short circuit the game flow by finding if the given player has reach the last position in the game
+     * short circuit the game flow by finding if 
+     * the given player has reach the last position in the game
      * board
      *
      * @param pos

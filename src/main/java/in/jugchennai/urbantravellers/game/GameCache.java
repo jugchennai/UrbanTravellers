@@ -64,7 +64,7 @@ public final class GameCache {
         if (map.isEmpty()) {
             map.put(GAME_ID,
                     GameBoardFactory.createGameBoard(STD_BOARD_NAME,
-                    50, 2, 3));
+                    100, 2, 3));
         }
         return map.get(GAME_ID);
     }

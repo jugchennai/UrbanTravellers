@@ -101,7 +101,7 @@ public class EnrollGameServlet extends HttpServlet {
             default:
                 break;
         }
-        if(player!=null) {
+        if (player != null) {
             try {
                 page = "home.jsp";
             } catch (Exception ex) {
@@ -109,7 +109,7 @@ public class EnrollGameServlet extends HttpServlet {
             }
         }
         request.setAttribute("player", playerName);
-       request.getRequestDispatcher(page).forward(request, response);
+        request.getRequestDispatcher(page).forward(request, response);
     }
 
     /**

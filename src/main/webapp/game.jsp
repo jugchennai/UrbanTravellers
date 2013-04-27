@@ -39,7 +39,8 @@
                         <div id="container"></div>
                     </div>
                     <div class="span2">
-                        <h1>UrbanTravellers</h1>
+                        <img src="images/urbanTravellers.png">
+                        <hr>
                         <input type="text" id="playerName" value="<%= request.getParameter("player")%>">
                         <%
                             if (board.getFirstPlayer().equals(request.getParameter("player").toString())) {

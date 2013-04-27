@@ -66,6 +66,7 @@ public class GameBoardConfig {
     public void toggleSignal(int pos) {
         for (SignalPoint point : sigPos) {
             if (point.getSignalPos() == pos) {
+                System.out.println("changing signal " + point.getSignalPos());
                 point.setSignalColor(
                         point.getSignalColor() == SignalColor.RED
                         ? SignalColor.GREEN : SignalColor.RED);
