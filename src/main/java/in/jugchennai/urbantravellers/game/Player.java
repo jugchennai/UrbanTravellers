@@ -24,7 +24,7 @@ package in.jugchennai.urbantravellers.game;
 public class Player {
 
     private String name;
-    private int position,diceValue,oldPosition;
+    private int position,diceValue,oldPosition,serialNo;
 
     public Player(String name) {
         this.name = name;
@@ -57,6 +57,14 @@ public class Player {
 
     public int getOldPosition() {
         return oldPosition;
+    }
+
+    public void setSerialNo(int serialNo) {
+        this.serialNo = serialNo;
+    }
+
+    public int getSerialNo() {
+        return serialNo;
     }
 
     @Override

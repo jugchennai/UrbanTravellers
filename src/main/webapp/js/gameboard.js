@@ -32,6 +32,9 @@ function onMessage(evt) {
     } else {
         document.getElementById("dicer").style.display = "none";
     }
+    UB.moveCar(resp.plrNo,resp.newPosition);
+    document.getElementById("output").innerHTML = resp.player +" rolled " + 
+            resp.diceValue +" and moved to " + resp.newPosition;
 }
 
 function onError(evt) {

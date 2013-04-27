@@ -15,6 +15,7 @@
  */
 package in.jugchennai.urbantravellers.game;
 
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -58,6 +59,7 @@ public class GameBoard {
             if (playerMap.isEmpty()) {
                 this.gameStatus = GameStatus.INITIALIZED;
             }
+            player.setSerialNo(playerMap.size() + 1);
             playerMap.put(player.getName(), player);
             if (playerMap.size() == boardConfig.getMaxNoOfPlayer()) {
                 this.gameStatus = GameStatus.BOARD_FULL;
@@ -156,6 +158,20 @@ public class GameBoard {
 
     public Set<String> getPlayersOnBoard() {
         return playerMap.keySet();
+    }
+
+    public Collection<Player> getPlayerObsOnBoard() {
+        return playerMap.values();
+    }
+
+    public int getPlayerPosition(String name) {
+        int i = 0;
+        for (Player player : getPlayerObsOnBoard()) {
+            if (player.getName().equals(name)) {
+                i = player.getSerialNo();
+            }
+        }
+        return i;
     }
 
     public void clearPlayers() {
