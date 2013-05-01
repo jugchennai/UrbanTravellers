@@ -1,64 +1,84 @@
-<%-- 
-    Document   : login
-    Created on : Apr 20, 2013, 2:49:49 PM
-    Author     : prasannakumar
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="css/kieticcars.css"/>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css"/>
+        <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,900italic,400,900,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Sansita+One' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Autour+One' rel='stylesheet' type='text/css'>
+        <style>
+
+            body {
+                font-family: 'Autour One', cursive;
+            }    
+
+            .head { 
+                font-family: 'Sansita One', cursive; 
+                font-size:  100px; 
+                font-weight: bold;
+                text-align: center;
+                color: green;
+            }
+
+            .sub-title {
+                font-family: 'Sansita One', cursive; 
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+                line-height: 35px;
+                letter-spacing: -1px;
+            }
+
+            .heading {
+                background-color: #b3daff;
+            }
+        </style>
+
     </head>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-        body {
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-color: #f5f5f5;
-        }
-
-        .form-signin {
-            max-width: 300px;
-            padding: 19px 29px 29px;
-            margin: 0 auto 20px;
-            background-color: #fff;
-            border: 1px solid #e5e5e5;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            border-radius: 5px;
-            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-            box-shadow: 0 1px 2px rgba(0,0,0,.05);
-        }
-        .form-signin .form-signin-heading,
-        .form-signin .checkbox {
-            margin-bottom: 10px;
-        }
-        .form-signin input[type="text"],
-        .form-signin input[type="password"] {
-            font-size: 16px;
-            height: auto;
-            margin-bottom: 15px;
-            padding: 7px 9px;
-        }
-
-    </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <body>
-        <div class="container">
 
-            <form action="enrollgame" method="post" class="form-signin">
-                <img src="images/urbanTravellers.png">
-                <hr>   
-                <h4 class="form-signin-heading">Please sign in to join the game </h4>
-                Your Name <input type="text" name="name"> 
-                <button type="submit" class="btn btn-primary btn-large">Login</button>
-                <a class="btn btn-primary btn-large" href="rest.jsp">Reset</a>  
-            </form>
+        <div class="hero-unit">
+            <p class="head">Urban Travellers</p>
         </div>
+
+        <div class="container-fluid"> 
+            <div class="row-fluid">
+                <div class="span12">
+                    <p class="sub-title">
+                        "UrbanTravellers" is a dice based racing game 
+                    </p>
+                    <hr>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span6">
+                    <div class="span4 pull-right">
+                        <br>
+                        <img src="images/urbanTravellers.png" width="600">
+                    </div>
+                </div>
+                <div class="span6 pull-right">
+                    <form action="enrollgame" method="post" class="form-signin">
+                        <h4 class="form-signin-heading">Please sign in to join the game </h4>
+                        Your Name <input type="text" name="name"> 
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-large">Login</button>
+                        <a class="btn btn-primary btn-large" href="rest.jsp">Reset</a>  
+                    </form>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span6 offset3">
+                    <p class="sub-title">
+                        About UrbanTravellers
+                    </p>
+                    <p>
+                        UrbanTravellers is a case study application which uses  WebSockets (JSR 356) & JSON (JSR 354) spec of JEE7 platform
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
     </body>
 </html>
-
-

@@ -1,61 +1,78 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Kinetic Cars</title>
+        <link rel="stylesheet" type="text/css" href="css/kieticcars.css"/>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css"/>
+        <link href='http://fonts.googleapis.com/css?family=Sansita+One' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
         <script type="text/javascript" src="js/websocket.js"></script>
-        <link href="css/bootstrap.css" rel="stylesheet">
+
         <style type="text/css">
             body {
-                padding-top: 60px;
-                padding-bottom: 40px;
+                font-family: 'Chewy', cursive;
+                font-weight: bold;
+                font-size: 25px;
+                background-image: url('images/SBC_sr-sr599.jpg') ;
+                line-height: 35px;
+                color: #149bdf;
+            }    
+
+
+            .game-hero {
+                padding: 2px;
+                font-weight: 200;
+                line-height: 10px;
+                color: inherit;
+                background-color: #a9302a;
+                -webkit-border-radius: 2px;
+                -moz-border-radius: 2px;
+                border-radius: 2px;
             }
-            .bigtext {
-                font-size: larger;
+
+            .sub-title {
+                font-family: 'Sansita One', cursive; 
+                font-size: 20px;
+                font-weight: bold;
+                line-height: 20px;
+                letter-spacing: -1px;
+                text-align: center;
+                color: #fff;
             }
+
         </style>
     </head>
     <body>
-
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="brand" href="#">UrbanTravellers</a>
-                    <div class="nav-collapse collapse">
-                        <p class="navbar-text pull-right">
-                        </p>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
+        <div class="game-hero">
         </div>
 
-
-        <div class="container-fluid">
+        <div class="container-fluid"> 
             <div class="row-fluid">
-                <div class="span10 offset1">
-                    <div class="span4 offset2">
-                        <h2>
-                            Welcome, <%= request.getAttribute("player")%> !!!
-                        </h2>
-                        <button type="button" class="btn btn-primary btn-large" 
-                                onclick="sendText('<%= request.getAttribute("player")%>');" >Join</button>
-                    </div>
-                    <div class="span2 bigtext">
-                        <h4>Players on board </h4>
-                        <div id="output">
+                <div class="span2" style="background-color: #a9302a;">
+                    <img src="images/urbanTravellers.png">
+                    <p class="sub-title">Urban Travellers</p>
+                    <img src="images/images.jpeg">
+                </div>
+                <div class="span6" id="gamestage">
+                    <h2>
+                        Welcome, <%= request.getAttribute("player")%> !!!
+                    </h2>
+                    <button type="button" class="btn btn-primary btn-large" 
+                            onclick="sendText('<%= request.getAttribute("player")%>');" >Join</button>
+                </div>
+                <div class="span2">
+                    <h4>Players on board </h4>
+                    <div id="output">
 
-                        </div>
                     </div>
                 </div>
                 <input type="hidden" id="plyrName" value="<%=request.getAttribute("player")%>"> 
-            </div>   
+            </div>
+        </div>
+        <div class="game-hero">
+            <p class="sub-title">
+                JUGChennai - Adopt A JSR 
+            </p>
         </div>
     </body>
 </html>
