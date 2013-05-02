@@ -27,20 +27,28 @@ function onMessage(evt) {
     console.log("received: " + evt.data);
     var resp = eval("(" + evt.data + ")");
     var plyr = document.getElementById("playerName").value;
-    if ((resp.nextplayer) && (plyr == resp.nextplayer)) {
-        document.getElementById("dicer").style.display = "block";
-    } else {
-        document.getElementById("dicer").style.display = "none";
+    if (resp.nextplayer) {
+        if (plyr === resp.nextplayer) {
+            document.getElementById("dicer").style.display = "block";
+        } else {
+            document.getElementById("dicer").style.display = "none";
+        }
     }
-    UB.moveCar(resp.plrNo,resp.newPosition);
-    document.getElementById("output").innerHTML = resp.player +" rolled " + 
-            resp.diceValue +" and moved to " + resp.newPosition;
+    UB.moveCar(resp.plrNo, resp.newPosition);
+    var gameStop = resp.gameEnd;
+    if (!gameStop) {
+        document.getElementById("output").innerHTML = "<p>" + resp.player + " rolled " +
+                resp.diceValue + " and moved to " + resp.newPosition + "</p>" +
+                "<p> next player to  move " + resp.nextplayer + "</p>";
+    } else {
+        document.getElementById("output").innerHTML = "<h1> Congrats  " + resp.nextplayer + " won the game </h1>";
+    }
 }
 
 function onError(evt) {
-    console.log("error in handling msg")
+    console.log("error in handling msg");
 }
 
 function writeToScreen(message) {
-    
+
 }

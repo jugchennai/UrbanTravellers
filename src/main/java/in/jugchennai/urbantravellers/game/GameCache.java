@@ -32,7 +32,7 @@ public final class GameCache {
     public static String GAME_ID = "game1";
     private Logger logger = Logger.getLogger(GameCache.class);
     public static String STD_BOARD_NAME = "UrbanTravellers";
-    
+
     private GameCache() {
     }
 
@@ -46,13 +46,13 @@ public final class GameCache {
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public Map<String, GameBoard> getBoards() {
         return this.map;
     }
-    
+
     /**
      * obtains the board instance for the given game id
      *
@@ -63,14 +63,13 @@ public final class GameCache {
     public GameBoard getBoard() {
         if (map.isEmpty()) {
             map.put(GAME_ID,
-                    GameBoardFactory.createGameBoard(STD_BOARD_NAME,
-                    100, 2, 3));
+                    GameBoardFactory.createGameBoard(STD_BOARD_NAME, 10, 2, 3));
         }
         return map.get(GAME_ID);
     }
 
     /**
-     * 
+     *
      */
     public void resetBoard() {
         map.remove(GAME_ID);

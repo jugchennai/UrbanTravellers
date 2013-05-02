@@ -73,7 +73,8 @@
                         About UrbanTravellers
                     </p>
                     <p>
-                        UrbanTravellers is a case study application which uses  WebSockets (JSR 356) & JSON (JSR 354) spec of JEE7 platform
+                        UrbanTravellers is a case study application which uses  
+                        WebSockets (JSR 356) & JSON (JSR 354) spec of JEE7 platform
                     </p>
                 </div>
 

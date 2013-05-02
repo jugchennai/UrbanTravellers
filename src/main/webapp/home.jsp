@@ -13,11 +13,9 @@
                 font-family: 'Chewy', cursive;
                 font-weight: bold;
                 font-size: 25px;
-                background-image: url('images/SBC_sr-sr599.jpg') ;
                 line-height: 35px;
                 color: #149bdf;
             }    
-
 
             .game-hero {
                 padding: 2px;
@@ -63,10 +61,10 @@
                 <div class="span2">
                     <h4>Players on board </h4>
                     <div id="output">
-
+                        
                     </div>
                 </div>
-                <input type="hidden" id="plyrName" value="<%=request.getAttribute("player")%>"> 
+                <input type="hidden" id="plyrName" value="<%=request.getAttribute("player")%>">
             </div>
         </div>
         <div class="game-hero">

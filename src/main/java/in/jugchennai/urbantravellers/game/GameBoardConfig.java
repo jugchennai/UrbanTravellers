@@ -38,7 +38,7 @@ public class GameBoardConfig {
      */
     public GameBoardConfig(int lastPosOnBoard,
             int noOfSignalPoints, int maxNoOfPlayer, int... points) {
-        this.lastPosOnBoard = lastPosOnBoard;
+        this.lastPosOnBoard = lastPosOnBoard-1;
         this.noOfSignalPoints = noOfSignalPoints;
         this.maxNoOfPlayer = maxNoOfPlayer;
         this.sigPos = new SignalPoint[noOfSignalPoints];

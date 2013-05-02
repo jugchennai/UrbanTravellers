@@ -48,8 +48,7 @@
                         <%
                             if (board.getFirstPlayer().equals(request.getParameter("player").toString())) {
                         %>
-                        <button class="btn btn-primary" type="button" id="firstRoll" onclick="rolldice('<%= request.getParameter("player")%>')">Roll Dice</button>
-                        <button class="btn btn-primary" type="button" id="dicer" style="display: none" onclick="rolldice('<%= request.getParameter("player")%>')">Roll Dice</button>
+                        <button class="btn btn-primary" type="button" id="dicer" style="display: block"  onclick="rolldice('<%= request.getParameter("player")%>')">RollDice</button>
                         <%
                         } else {
                         %>

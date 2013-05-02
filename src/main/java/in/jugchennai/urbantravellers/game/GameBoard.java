@@ -80,12 +80,8 @@ public class GameBoard {
     public Player movePlayerPosition(String name, int diceValue) {
         Player player = playerMap.get(name);
         SignalPoint nearPoint = findNearestPoint(player.getPosition());
-        log.info("\n " + name + " rolled > " + diceValue
-                + "\n signal point > "
-                + nearPoint.getSignalPos()
-                + "\n signal color > " + nearPoint.getSignalColor());
         boolean move = false;
-        if (nearPoint.isPositionInSignal(player.getPosition())) {
+        if (nearPoint!=null && nearPoint.isPositionInSignal(player.getPosition())) {
             if (nearPoint.allowedToGo(player.getPosition(), diceValue)) {
                 move = true;
             }
@@ -96,7 +92,12 @@ public class GameBoard {
         if (move) {
             player.setDiceValue(diceValue);
             player.setOldPosition(player.getPosition());
-            player.setPosition(player.getPosition() + diceValue);
+            int newPostion = player.getPosition() + diceValue;
+            if(newPostion <= getBoardConfig().getLastPosOnBoard()) {
+                player.setPosition(newPostion);
+            } else {
+                player.setPosition(player.getPosition());
+            }
         }
         return player;
     }
@@ -197,10 +198,12 @@ public class GameBoard {
         SignalPoint spoint = null;
         for (SignalPoint point : this.boardConfig.getSigPos()) {
             if (pos <= point.getSignalPos()) {
+                log.info("given position " + pos + " signal point " + point.getSignalPos());
                 spoint = point;
                 break;
             }
         }
+        
         return spoint;
     }
 

@@ -19,6 +19,7 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -29,6 +30,7 @@ import javax.websocket.server.ServerEndpoint;
         decoders = {DataDecoder.class})
 public class GameBoardSocket {
 
+    private Logger logger = Logger.getLogger(GameBoardSocket.class);
     protected static Set<Session> peers = Collections.synchronizedSet(new HashSet());
     private GameCache cache = GameCache.getInstance();
 
@@ -61,11 +63,15 @@ public class GameBoardSocket {
             json.add("nextplayer", next);
             json.add("plrNo", player.getSerialNo());
             json.add("nextPlrNo", board.getPlayerPosition(next));
+            json.add("gameEnd", board.hasPlayerWon(playerName));
             gamedata.setJson(json.build());
             gd = gamedata;
+            logger.info("game data " + gd.getJson().toString());
             broadCastMsg(gd);
         } catch (NumberFormatException | IOException | EncodeException ex) {
             ex.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
     }
 

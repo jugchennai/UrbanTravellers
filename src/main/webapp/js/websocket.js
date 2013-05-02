@@ -3,9 +3,11 @@ var wsUri = "ws://localhost:8080/urbantravellers/HomeWS";
 var websocket = new WebSocket(wsUri);
 websocket.binaryType = "arraybuffer";
 var output = document.getElementById("output");
+
 websocket.onmessage = function(evt) {
     onMessage(evt);
 };
+
 websocket.onerror = function(evt) {
     onError(evt);
 };
@@ -31,6 +33,7 @@ function writeToScreen(message) {
     var pre = document.createElement("p");
     pre.style.wordWrap = "break-word";
     var resp = eval("(" + message.toString() + ")");
+    console.log(resp);
     if (resp.startGame) {
         var plyrName = document.getElementById("plyrName").value;
         pre.innerHTML = "all players joined <br> <a href='game.jsp?player=" + plyrName + "' class='btn btn-primary btn-small' >Lets Start </a> ";
