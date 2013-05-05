@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package in.jugchennai.urbantravellers.websocket;
 
 import in.jugchennai.urbantravellers.game.GameBoard;
@@ -12,6 +8,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import javax.websocket.EncodeException;
 import javax.websocket.OnClose;
@@ -63,6 +61,7 @@ public class GameBoardSocket {
             json.add("nextplayer", next);
             json.add("plrNo", player.getSerialNo());
             json.add("nextPlrNo", board.getPlayerPosition(next));
+            json.add("standings", prepareStandings());
             json.add("gameEnd", board.hasPlayerWon(playerName));
             gamedata.setJson(json.build());
             gd = gamedata;
@@ -79,5 +78,16 @@ public class GameBoardSocket {
         for (Session currPeer : peers) {
             currPeer.getBasicRemote().sendObject(gd);
         }
+    }
+
+    private JsonArray prepareStandings() {
+        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        for (Player player : cache.getBoard().getPlayerObsOnBoard()) {
+            JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+            objectBuilder.add("name", player.getName());
+            objectBuilder.add("position", player.getPosition());
+            arrayBuilder.add(objectBuilder.build());
+        }
+        return arrayBuilder.build();
     }
 }

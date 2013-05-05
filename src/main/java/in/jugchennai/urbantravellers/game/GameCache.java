@@ -20,8 +20,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 /**
- * This is a application wide scheduler to toggle signal point across multiple
- * game instances.
+ * This is a application wide scheduler to toggle signal point across multiple game instances.
  *
  * @author Prasanna Kumar <prassee.sathian@gmail.com>
  */
@@ -63,7 +62,7 @@ public final class GameCache {
     public GameBoard getBoard() {
         if (map.isEmpty()) {
             map.put(GAME_ID,
-                    GameBoardFactory.createGameBoard(STD_BOARD_NAME, 10, 2, 3));
+                    GameBoardFactory.createGameBoard(STD_BOARD_NAME, 50, 2, 3));
         }
         return map.get(GAME_ID);
     }

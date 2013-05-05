@@ -1,116 +1,116 @@
 var path = {
     grid: [
         //1st Row
-        {'x': 0, 'y': 0, 's': false, 'b': false},
-        {'x': 50, 'y': 0, 's': false, 'b': true},
-        {'x': 100, 'y': 0, 's': false, 'b': false},
-        {'x': 150, 'y': 0, 's': false, 'b': false},
-        {'x': 200, 'y': 0, 's': false, 'b': false},
-        {'x': 250, 'y': 0, 's': false, 'b': false},
-        {'x': 300, 'y': 0, 's': false, 'b': false},
-        {'x': 350, 'y': 0, 's': false, 'b': false},
-        {'x': 400, 'y': 0, 's': true, 'b': false},
-        {'x': 450, 'y': 0, 's': false, 'b': true},
+        {'x': 0, 'y': 0, 's': false, 'b': false, 'e': 0},
+        {'x': 50, 'y': 0, 's': false, 'b': true, 'e': 0},
+        {'x': 100, 'y': 0, 's': false, 'b': false, 'e': 0},
+        {'x': 150, 'y': 0, 's': false, 'b': false, 'e': 0},
+        {'x': 200, 'y': 0, 's': false, 'b': false, 'e': 0},
+        {'x': 250, 'y': 0, 's': false, 'b': false, 'e': 0},
+        {'x': 300, 'y': 0, 's': false, 'b': false, 'e': 0},
+        {'x': 350, 'y': 0, 's': false, 'b': false, 'e': 0},
+        {'x': 400, 'y': 0, 's': true, 'b': false, 'e': 0},
+        {'x': 450, 'y': 0, 's': false, 'b': false, 'e': 2},
         //2nd Row
-        {'x': 450, 'y': 60, 's': false, 'b': true},
-        {'x': 400, 'y': 60, 's': false, 'b': false},
-        {'x': 350, 'y': 60, 's': false, 'b': false},
-        {'x': 300, 'y': 60, 's': false, 'b': true},
-        {'x': 250, 'y': 60, 's': false, 'b': false},
-        {'x': 200, 'y': 60, 's': false, 'b': true},
-        {'x': 150, 'y': 60, 's': true, 'b': false},
-        {'x': 100, 'y': 60, 's': false, 'b': false},
-        {'x': 50, 'y': 60, 's': false, 'b': true},
-        {'x': 0, 'y': 60, 's': true, 'b': false},
+        {'x': 450, 'y': 60, 's': false, 'b': false, 'e': 4},
+        {'x': 400, 'y': 60, 's': false, 'b': false, 'e': 0},
+        {'x': 350, 'y': 60, 's': false, 'b': false, 'e': 0},
+        {'x': 300, 'y': 60, 's': false, 'b': true, 'e': 0},
+        {'x': 250, 'y': 60, 's': false, 'b': false, 'e': 0},
+        {'x': 200, 'y': 60, 's': false, 'b': true, 'e': 0},
+        {'x': 150, 'y': 60, 's': false, 'b': false, 'e': 0},
+        {'x': 100, 'y': 60, 's': false, 'b': false, 'e': 0},
+        {'x': 50, 'y': 60, 's': false, 'b': true, 'e': 0},
+        {'x': 0, 'y': 60, 's': false, 'b': false, 'e': 2},
         //3rd Row
-        {'x': 0, 'y': 120, 's': false, 'b': true},
-        {'x': 50, 'y': 120, 's': false, 'b': false},
-        {'x': 100, 'y': 120, 's': false, 'b': false},
-        {'x': 150, 'y': 120, 's': false, 'b': false},
-        {'x': 200, 'y': 120, 's': false, 'b': false},
-        {'x': 250, 'y': 120, 's': false, 'b': false},
-        {'x': 300, 'y': 120, 's': false, 'b': false},
-        {'x': 350, 'y': 120, 's': false, 'b': false},
-        {'x': 400, 'y': 120, 's': false, 'b': false},
-        {'x': 450, 'y': 120, 's': false, 'b': false},
+        {'x': 0, 'y': 120, 's': false, 'b': false, 'e': 4},
+        {'x': 50, 'y': 120, 's': false, 'b': false, 'e': 0},
+        {'x': 100, 'y': 120, 's': false, 'b': false, 'e': 0},
+        {'x': 150, 'y': 120, 's': false, 'b': false, 'e': 0},
+        {'x': 200, 'y': 120, 's': false, 'b': false, 'e': 0},
+        {'x': 250, 'y': 120, 's': false, 'b': false, 'e': 0},
+        {'x': 300, 'y': 120, 's': false, 'b': false, 'e': 0},
+        {'x': 350, 'y': 120, 's': false, 'b': false, 'e': 0},
+        {'x': 400, 'y': 120, 's': false, 'b': false, 'e': 0},
+        {'x': 450, 'y': 120, 's': false, 'b': false, 'e': 2},
         //4th Row
-        {'x': 450, 'y': 180, 's': false, 'b': false},
-        {'x': 400, 'y': 180, 's': false, 'b': false},
-        {'x': 350, 'y': 180, 's': false, 'b': false},
-        {'x': 300, 'y': 180, 's': false, 'b': false},
-        {'x': 250, 'y': 180, 's': false, 'b': false},
-        {'x': 200, 'y': 180, 's': true, 'b': false},
-        {'x': 150, 'y': 180, 's': false, 'b': false},
-        {'x': 100, 'y': 180, 's': false, 'b': false},
-        {'x': 50, 'y': 180, 's': false, 'b': false},
-        {'x': 0, 'y': 180, 's': false, 'b': true},
+        {'x': 450, 'y': 180, 's': false, 'b': false, 'e': 4},
+        {'x': 400, 'y': 180, 's': false, 'b': false, 'e': 0},
+        {'x': 350, 'y': 180, 's': false, 'b': false, 'e': 0},
+        {'x': 300, 'y': 180, 's': false, 'b': false, 'e': 0},
+        {'x': 250, 'y': 180, 's': false, 'b': false, 'e': 0},
+        {'x': 200, 'y': 180, 's': false, 'b': false, 'e': 0},
+        {'x': 150, 'y': 180, 's': false, 'b': false, 'e': 0},
+        {'x': 100, 'y': 180, 's': false, 'b': false, 'e': 0},
+        {'x': 50, 'y': 180, 's': false, 'b': false, 'e': 0},
+        {'x': 0, 'y': 180, 's': false, 'b': false, 'e': 2},
         //5th Row
 
-        {'x': 0, 'y': 240, 's': false, 'b': true},
-        {'x': 50, 'y': 240, 's': false, 'b': false},
-        {'x': 100, 'y': 240, 's': false, 'b': false},
-        {'x': 150, 'y': 240, 's': false, 'b': false},
-        {'x': 200, 'y': 240, 's': false, 'b': false},
-        {'x': 250, 'y': 240, 's': true, 'b': false},
-        {'x': 300, 'y': 240, 's': false, 'b': false},
-        {'x': 350, 'y': 240, 's': false, 'b': false},
-        {'x': 400, 'y': 240, 's': true, 'b': false},
-        {'x': 450, 'y': 240, 's': false, 'b': false},
+        {'x': 0, 'y': 240, 's': false, 'b': false, 'e': 4},
+        {'x': 50, 'y': 240, 's': false, 'b': false, 'e': 0},
+        {'x': 100, 'y': 240, 's': false, 'b': false, 'e': 0},
+        {'x': 150, 'y': 240, 's': false, 'b': false, 'e': 0},
+        {'x': 200, 'y': 240, 's': false, 'b': false, 'e': 0},
+        {'x': 250, 'y': 240, 's': false, 'b': false, 'e': 0},
+        {'x': 300, 'y': 240, 's': false, 'b': false, 'e': 0},
+        {'x': 350, 'y': 240, 's': false, 'b': false, 'e': 0},
+        {'x': 400, 'y': 240, 's': false, 'b': false, 'e': 0},
+        {'x': 450, 'y': 240, 's': false, 'b': false, 'e': 2},
         //Sixth Row
-        {'x': 450, 'y': 300, 's': false, 'b': false},
-        {'x': 400, 'y': 300, 's': false, 'b': false},
-        {'x': 350, 'y': 300, 's': false, 'b': false},
-        {'x': 300, 'y': 300, 's': true, 'b': false},
-        {'x': 250, 'y': 300, 's': true, 'b': false},
-        {'x': 200, 'y': 300, 's': false, 'b': false},
-        {'x': 150, 'y': 300, 's': true, 'b': false},
-        {'x': 100, 'y': 300, 's': false, 'b': true},
-        {'x': 50, 'y': 300, 's': false, 'b': false},
-        {'x': 0, 'y': 300, 's': false, 'b': true},
+        {'x': 450, 'y': 300, 's': false, 'b': false, 'e': 4},
+        {'x': 400, 'y': 300, 's': false, 'b': false, 'e': 0},
+        {'x': 350, 'y': 300, 's': false, 'b': false, 'e': 0},
+        {'x': 300, 'y': 300, 's': false, 'b': false, 'e': 0},
+        {'x': 250, 'y': 300, 's': false, 'b': false, 'e': 0},
+        {'x': 200, 'y': 300, 's': false, 'b': false, 'e': 0},
+        {'x': 150, 'y': 300, 's': false, 'b': false, 'e': 0},
+        {'x': 100, 'y': 300, 's': false, 'b': true, 'e': 0},
+        {'x': 50, 'y': 300, 's': false, 'b': false, 'e': 0},
+        {'x': 0, 'y': 300, 's': false, 'b': false, 'e': 2},
         //Seventh Row
-        {'x': 0, 'y': 360, 's': true, 'b': false},
-        {'x': 50, 'y': 360, 's': false, 'b': false},
-        {'x': 100, 'y': 360, 's': false, 'b': false},
-        {'x': 150, 'y': 360, 's': false, 'b': false},
-        {'x': 200, 'y': 360, 's': false, 'b': true},
-        {'x': 250, 'y': 360, 's': true, 'b': false},
-        {'x': 300, 'y': 360, 's': false, 'b': true},
-        {'x': 350, 'y': 360, 's': true, 'b': false},
-        {'x': 400, 'y': 360, 's': false, 'b': false},
-        {'x': 450, 'y': 360, 's': false, 'b': true},
+        {'x': 0, 'y': 360, 's': false, 'b': false, 'e': 4},
+        {'x': 50, 'y': 360, 's': false, 'b': false, 'e': 0},
+        {'x': 100, 'y': 360, 's': false, 'b': false, 'e': 0},
+        {'x': 150, 'y': 360, 's': false, 'b': false, 'e': 0},
+        {'x': 200, 'y': 360, 's': false, 'b': true, 'e': 0},
+        {'x': 250, 'y': 360, 's': false, 'b': false, 'e': 0},
+        {'x': 300, 'y': 360, 's': false, 'b': true, 'e': 0},
+        {'x': 350, 'y': 360, 's': false, 'b': false, 'e': 0},
+        {'x': 400, 'y': 360, 's': false, 'b': false, 'e': 0},
+        {'x': 450, 'y': 360, 's': false, 'b': false, 'e': 2},
         //Eight Row
-        {'x': 450, 'y': 420, 's': false, 'b': false},
-        {'x': 400, 'y': 420, 's': false, 'b': false},
-        {'x': 350, 'y': 420, 's': false, 'b': false},
-        {'x': 300, 'y': 420, 's': false, 'b': false},
-        {'x': 250, 'y': 420, 's': false, 'b': false},
-        {'x': 200, 'y': 420, 's': false, 'b': false},
-        {'x': 150, 'y': 420, 's': false, 'b': false},
-        {'x': 100, 'y': 420, 's': false, 'b': false},
-        {'x': 50, 'y': 420, 's': false, 'b': false},
-        {'x': 0, 'y': 420, 's': false, 'b': true},
+        {'x': 450, 'y': 420, 's': false, 'b': false, 'e': 4},
+        {'x': 400, 'y': 420, 's': false, 'b': false, 'e': 0},
+        {'x': 350, 'y': 420, 's': false, 'b': false, 'e': 0},
+        {'x': 300, 'y': 420, 's': false, 'b': false, 'e': 0},
+        {'x': 250, 'y': 420, 's': false, 'b': false, 'e': 0},
+        {'x': 200, 'y': 420, 's': false, 'b': false, 'e': 0},
+        {'x': 150, 'y': 420, 's': false, 'b': false, 'e': 0},
+        {'x': 100, 'y': 420, 's': false, 'b': false, 'e': 0},
+        {'x': 50, 'y': 420, 's': false, 'b': false, 'e': 0},
+        {'x': 0, 'y': 420, 's': false, 'b': false, 'e': 2},
         //Nineth Row
-        {'x': 0, 'y': 480, 's': true, 'b': false},
-        {'x': 50, 'y': 480, 's': true, 'b': false},
-        {'x': 100, 'y': 480, 's': false, 'b': false},
-        {'x': 150, 'y': 480, 's': false, 'b': false},
-        {'x': 200, 'y': 480, 's': false, 'b': false},
-        {'x': 250, 'y': 480, 's': false, 'b': false},
-        {'x': 300, 'y': 480, 's': false, 'b': false},
-        {'x': 350, 'y': 480, 's': false, 'b': false},
-        {'x': 400, 'y': 480, 's': false, 'b': true},
-        {'x': 450, 'y': 480, 's': false, 'b': false},
+        {'x': 0, 'y': 480, 's': false, 'b': false, 'e': 4},
+        {'x': 50, 'y': 480, 's': false, 'b': false, 'e': 0},
+        {'x': 100, 'y': 480, 's': false, 'b': false, 'e': 0},
+        {'x': 150, 'y': 480, 's': false, 'b': false, 'e': 0},
+        {'x': 200, 'y': 480, 's': false, 'b': false, 'e': 0},
+        {'x': 250, 'y': 480, 's': true, 'b': false, 'e': 0},
+        {'x': 300, 'y': 480, 's': false, 'b': false, 'e': 0},
+        {'x': 350, 'y': 480, 's': false, 'b': false, 'e': 0},
+        {'x': 400, 'y': 480, 's': false, 'b': true, 'e': 0},
+        {'x': 450, 'y': 480, 's': false, 'b': false, 'e': 2},
         //Tenth Row
-        {'x': 450, 'y': 540, 's': true, 'b': false},
-        {'x': 400, 'y': 540, 's': false, 'b': false},
-        {'x': 350, 'y': 540, 's': false, 'b': false},
-        {'x': 300, 'y': 540, 's': true, 'b': false},
-        {'x': 250, 'y': 540, 's': false, 'b': false},
-        {'x': 200, 'y': 540, 's': false, 'b': true},
-        {'x': 150, 'y': 540, 's': false, 'b': false},
-        {'x': 100, 'y': 540, 's': false, 'b': false},
-        {'x': 50, 'y': 540, 's': false, 'b': false},
-        {'x': 0, 'y': 540, 's': false, 'b': false}
+        {'x': 450, 'y': 540, 's': false, 'b': false, 'e': 4},
+        {'x': 400, 'y': 540, 's': false, 'b': false, 'e': 0},
+        {'x': 350, 'y': 540, 's': false, 'b': false, 'e': 0},
+        {'x': 300, 'y': 540, 's': false, 'b': false, 'e': 0},
+        {'x': 250, 'y': 540, 's': false, 'b': false, 'e': 0},
+        {'x': 200, 'y': 540, 's': false, 'b': true, 'e': 0},
+        {'x': 150, 'y': 540, 's': false, 'b': false, 'e': 0},
+        {'x': 100, 'y': 540, 's': false, 'b': false, 'e': 0},
+        {'x': 50, 'y': 540, 's': false, 'b': false, 'e': 0},
+        {'x': 0, 'y': 540, 's': false, 'b': false, 'e': 0}
     ]
 };
 var roadArray = [];
@@ -141,17 +141,19 @@ function loadImages(sources, callback) {
 /*Loading of the image sources*/
 var sources = {
     grass: 'grass.jpg',
-    roadPatch: 'Road.jpg',
+    roadPatch: 'Roads.png',
     cars: 'Cars.png',
-    bomb: 'blast.png',
+    GSignal: 'signal.png',
+    RSignal: 'red.png',
     car1: 'car1.png',
     car2: 'car2.png',
     car3: 'car3.png',
-    car4: 'car4.png',
-    car5: 'car5.png',
-    car6: 'car6.png',
-    winner: 'winner.jpg',
-    booster: 'booster.png'
+    winner: 'start.jpeg',
+    booster: 'booster.png',
+    roadendl: 'RoadEndv2.png',
+    roadendr: 'RoadEndv1.png',
+    roadendo: 'RoadEnd.png',
+    roadendb: 'Roads2.png'
 };
 loadImages(sources, initStage);
 
@@ -229,26 +231,6 @@ Car.prototype = {
     drive: function(newPosition) {/*Code to steer the car to the new box. Either 
      Animate or keep Dynamic*/
     },
-    checkForBooster: function() {
-        var boosterStatus = roadArray[this.position].getBooster();
-        if (boosterStatus === true)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    },
-    checkForBomb: function() {
-        var roadArrStatus = roadArray[this.position].getBomb();
-        if (roadArrStatus === true)
-        {
-            return true;
-        }
-        else
-            return false;
-    }
 };
 /*Winners Lane*/
 function WinnersLane() {
@@ -256,10 +238,10 @@ function WinnersLane() {
 WinnersLane.prototype = {
     drawWinnersLane: function(winnerLayer, stage, images) {
         var winnersFlag = new Kinetic.Image({
-            x: 45,
-            y: 0,
-            image: images.winner,
-            width: 95,
+            x: 10,
+            y: 20,
+            image: images.winners,
+            width: 100,
             height: 55
         });
         winnerLayer.add(winnersFlag);
@@ -272,103 +254,154 @@ function Road() {
 Road.prototype = {
     x: 0,
     y: 0,
-    bombX: 0,
-    bombY: 0,
-    bomb: false,
+    SignalX: 0,
+    SignalY: 0,
+    Signal: false,
     booster: false,
     position: 0,
     roadInstance: null,
-    bombInstance: null,
-    booster:false,
-            boosterX: 0,
+    SignalInstance: null,
+    boosterX: 0,
     boosterY: 0,
     boosterInstance: null,
-    drawBooster: function(stage, roadLayer, images, grid) {
-        if (this.booster === true)
-        {
-            var booster = new Kinetic.Image({
-                x: grid.x + 10,
-                y: grid.y,
-                image: images.booster,
-                width: 10,
-                height: 10
-            });
-            this.boosterX = grid.x + 10;
-            this.boosterY = grid.y;
-            this.boosterInstance = booster;
-            roadLayer.add(booster);
-            stage.add(roadLayer);
+    drawSignal: function(stage, roadLayer, images, grid, color) {
+        var gvalue = grid.toString();
+        var gridx = 50 * (gvalue.slice(0, 1));
+        var gridy = 60 * (gvalue.slice(1, 2));
+        var sig = null;
+        if (color === "RED") {
+            sig = images.RSignal;
+        } else {
+            sig = images.GSignal;
         }
+        var placeSignal = new Kinetic.Image({
+            x: gridx,
+            y: gridy,
+            image: sig,
+            width: 10,
+            height: 10,
+            title: 'Signal'
+        });
+        this.SignalX = gridx;
+        this.SignalY = gridy;
+        this.SignalInstance = placeSignal;
+        roadLayer.add(placeSignal);
+        stage.add(roadLayer);
+
     },
-    drawBomb: function(stage, roadLayer, images, grid) {
-        if (this.bomb === true) {
-            var placeBomb = new Kinetic.Image({
-                x: grid.x,
-                y: grid.y,
-                image: images.bomb,
-                width: 10,
-                height: 10,
-                title: 'Bomb'
-            });
-            this.bombX = grid.x;
-            this.bombY = grid.y;
-            this.bombInstance = placeBomb;
-            roadLayer.add(placeBomb);
-            stage.add(roadLayer);
-        }
+    drawBooster: function(stage, roadLayer, images, grid) {
+        var gvalue = grid.toString();
+        var gridx = 50 * (gvalue.slice(0, 1));
+        var gridy = 60 * (gvalue.slice(1, 2));
+        var sig = null;
+        var placeSignal = new Kinetic.Image({
+            x: gridx,
+            y: gridy,
+            image: images.booster,
+            width: 10,
+            height: 10,
+            title: 'Signal'
+        });
+        this.SignalX = gridx;
+        this.SignalY = gridy;
+        this.SignalInstance = placeSignal;
+        roadLayer.add(placeSignal);
+        stage.add(roadLayer);
+
     },
     drawRoadPatch: function(roadLayer, stage, images, grid, position) {
         var roadPatch = new Kinetic.Image({
             x: grid.x,
             y: grid.y,
             image: images.roadPatch,
+            width: 60,
+            height: 60
+        });
+        var roadEndl = new Kinetic.Image({
+            x: grid.x + 5,
+            y: grid.y,
+            image: images.roadendl,
             width: 50,
-            height: 55
+            height: 60
+        });
+        var roadEndr = new Kinetic.Image({
+            x: grid.x + 5,
+            y: grid.y,
+            image: images.roadendr,
+            width: 50,
+            height: 60
+        });
+        var roadEndo = new Kinetic.Image({
+            x: grid.x + 5,
+            y: grid.y,
+            image: images.roadendo,
+            width: 50,
+            height: 60
+        });
+        var roadEndb = new Kinetic.Image({
+            x: grid.x + 5,
+            y: grid.y,
+            image: images.roadendb,
+            width: 50,
+            height: 60
+        });
+        var winnersFlag = new Kinetic.Image({
+            x: 5,
+            y: 540,
+            image: images.winner,
+            width: 50,
+            height: 60,
         });
         this.x = grid.x;
+        // console.log("X:"+grid.x)
         this.y = grid.y;
+        //console.log("Y:"+grid.y)
         this.roadInstance = roadPatch;
         this.booster = grid.b;
-        this.bomb = grid.s;
+        this.Signal = grid.s;
         this.position = position;
         roadLayer.add(roadPatch);
         stage.add(roadLayer);
-    }
-};
-
-/*Grass For Background*/
-function Grass() {
-}
-Grass.prototype = {
-    grassImage: '',
-    grassX: 0,
-    grassY: 0,
-    grassWidth: 1000,
-    grassHeight: 630,
-    /*Grass Utility Fuctions*/
-    drawGrass: function(background, stage, image) {
-        var grass = new Kinetic.Image({
-            x: this.grassX,
-            y: this.grassY,
-            image: image.grass,
-            width: this.grassWidth,
-            height: this.grassHeight
-        });
-        background.add(grass);
-        stage.add(background);
-    },
-    changeBackgroud: function(background, stage, image) {
-        //This can be used to change the backgroud of page  
+        if (grid.e == 1)
+        {
+            this.roadInstance = roadEndl;
+            roadLayer.add(roadEndl)
+            stage.add(roadLayer);
+        }
+        else if (grid.e == 2)
+        {
+            this.roadInstance = roadEndr;
+            roadLayer.add(roadEndr)
+            stage.add(roadLayer);
+        }
+        else if (grid.e == 3)
+        {
+            this.roadInstance = roadEndo;
+            roadLayer.add(roadEndo)
+            stage.add(roadLayer);
+        }
+        else if (grid.e == 4)
+        {
+            this.roadInstance = roadEndb;
+            roadLayer.add(roadEndb)
+            stage.add(roadLayer);
+        }
+        if (grid.x == 0 && grid.y == 540)
+        {
+            roadLayer.add(winnersFlag);
+            stage.add(roadLayer);
+        }
     }
 };
 
 /**/
 function initStage(images) {
 
+
     /*Declaring the Stage*/
     var stage = new Kinetic.Stage({
-        width: 650,
-        height: 900,
+        width: 700,
+        height: 600,
         container: 'container'
     });
     var backgroundImage = new Image();
@@ -381,13 +414,13 @@ function initStage(images) {
         y: 560
     });
     var roadLayer = new Kinetic.Layer({
-        x: 120,
+        x: 100,
         y: 20
     });
 
-    /*Declaring the Grass as the background object*/
-    var backgrass = new Grass();
-    backgrass.drawGrass(background, stage, images);
+    /*Declaring the Grass as the background object            
+     var backgrass = new Grass();
+     backgrass.drawGrass(background,stage,images);*/
 
     /*Drawing Winners*/
     var winnersLane = new WinnersLane();
@@ -399,10 +432,11 @@ function initStage(images) {
     {
         var road = new Road();
         road.drawRoadPatch(roadLayer, stage, images, path.grid[i], i);
-        road.drawBomb(stage, roadLayer, images, path.grid[i]);
-        road.drawBooster(stage, roadLayer, images, path.grid[i]);
+
+        //road.drawBooster(stage,roadLayer,images,path.grid[i]);
         roadArray.push(road);
     }
+
 
 
     UB = {
@@ -412,6 +446,7 @@ function initStage(images) {
                 var car = new Car();
                 car.drawCar(carNo, stage, roadLayer, images);
                 carArray.push(car);
+
             }
             else {
                 console.log("There are already six players playing");
@@ -433,8 +468,8 @@ function initStage(images) {
                         duration: 1
                     });
                     carArray[i].position = position;
-                    //Bomb Detection
-                    if (roadArray[position].bomb === true)
+                    //Signal Detection
+                    if (roadArray[position].Signal === true)
                     {
                         return 0;
                     }
@@ -456,6 +491,12 @@ function initStage(images) {
                     return carArray[i].position;
                 }
             }
+        },
+        addSignal: function(grid, color) {
+            road.drawSignal(stage, roadLayer, images, grid, color);
+        },
+        addBooster: function(grid) {
+            road.drawBooster(stage, roadLayer, images, grid);
         }
     }
 

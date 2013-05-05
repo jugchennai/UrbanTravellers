@@ -90,6 +90,10 @@ public class GameBoardConfig {
     public SignalPoint[] getSigPos() {
         return sigPos;
     }
+    
+    public int[] getBs() {
+        return bs;
+    }
 
     @Override
     public int hashCode() {

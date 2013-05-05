@@ -81,7 +81,7 @@ public class GameBoard {
         Player player = playerMap.get(name);
         SignalPoint nearPoint = findNearestPoint(player.getPosition());
         boolean move = false;
-        if (nearPoint!=null && nearPoint.isPositionInSignal(player.getPosition())) {
+        if (nearPoint != null && nearPoint.isPositionInSignal(player.getPosition())) {
             if (nearPoint.allowedToGo(player.getPosition(), diceValue)) {
                 move = true;
             }
@@ -93,7 +93,7 @@ public class GameBoard {
             player.setDiceValue(diceValue);
             player.setOldPosition(player.getPosition());
             int newPostion = player.getPosition() + diceValue;
-            if(newPostion <= getBoardConfig().getLastPosOnBoard()) {
+            if (newPostion <= getBoardConfig().getLastPosOnBoard()) {
                 player.setPosition(newPostion);
             } else {
                 player.setPosition(player.getPosition());
@@ -134,8 +134,7 @@ public class GameBoard {
     }
 
     /**
-     * short circuit the game flow by finding if 
-     * the given player has reach the last position in the game
+     * short circuit the game flow by finding if the given player has reach the last position in the game
      * board
      *
      * @param pos
@@ -203,8 +202,19 @@ public class GameBoard {
                 break;
             }
         }
-        
+
         return spoint;
+    }
+
+    public boolean isPlayerInBs(String plyrName) {
+        boolean inBs = false;
+        for (Integer i : getBoardConfig().getBs()) {
+            if (i == playerMap.get(plyrName).getPosition()) {
+                inBs = true;
+                break;
+            }
+        }
+        return inBs;
     }
 
     /**
